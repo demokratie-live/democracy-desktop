@@ -1,0 +1,15 @@
+{
+  "name": "democracydesktop",
+  "version": "0.0.1",
+  "description": "DEMOCRACY Desktop & Web Client",
+  "main": "index.js",
+  "repository": "https://github.com/demokratie-live/democracy-desktop",
+  "author": "Ulf Gebhardt <ulf.gebhardt@webcraft-media.de>",
+  "license": "Apache 2.0",
+  "private": false,
+  "dependencies": {
+    "next": "^6.1.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
+}
