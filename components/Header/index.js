@@ -1,5 +1,5 @@
 import { withRouter } from 'next/router';
-import { Row, Col, Spin } from 'antd';
+import { Row, Col, Card } from 'antd';
 
 import Link from 'Components/shared/Link';
 import Dev from 'Components/shared/Dev';
@@ -11,19 +11,33 @@ const Header = ({ router: { pathname } }) => (
     </Link>
     <Dev>
       <Row>
-        <Col span={6}>
-          ABC
-          {/*<Bubble>DEMOCRACY</Bubble>*/}
+        <Col xs={24} sm={12} lg={6}>
+          <Card title="ABC">
+            <p>Card content</p>
+            <p>Card content</p>
+            <p>Card content</p>
+          </Card>
         </Col>
-        <Col span={12}>
-          EFG
-          {/*<SearchField>Suche</SearchField>*/}
+        <Col xs={24} sm={12} lg={6}>
+          <Card title="EFG">
+            <p>Card content</p>
+            <p>Card content</p>
+            <p>Card content</p>
+          </Card>
         </Col>
-        <Col span={6}>
-          HIJ
-          {/*<Filter />
-        <Download>App Downloaden</Download>
-        <Support>Unterstützen</Support>*/}
+        <Col xs={24} sm={12} lg={6}>
+          <Card title="HIJ">
+            <p>Card content</p>
+            <p>Card content</p>
+            <p>Card content</p>
+          </Card>
+        </Col>
+        <Col xs={24} sm={12} lg={6}>
+          <Card title="KLM">
+            <p>Card content</p>
+            <p>Card content</p>
+            <p>Card content</p>
+          </Card>
         </Col>
       </Row>
       <Row>
