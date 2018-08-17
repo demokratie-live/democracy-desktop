@@ -1,9 +1,11 @@
+import 'dotenv/config';
 import express from 'express';
 import next from 'next';
-import CONSTANTS from './config/constants';
 
-// const dev = CONSTANTS.NODE_ENV !== 'production';
-const dev = true;
+// Process Environments
+const { PORT, NODE_ENV } = process.env;
+
+const dev = NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
@@ -22,9 +24,9 @@ app
       return handle(req, res);
     });
 
-    server.listen(3000, err => {
+    server.listen(PORT, err => {
       if (err) throw err;
-      console.log(`> Ready on http://localhost:3000`);
+      console.log(`> Ready on http://localhost:${PORT}`);
     });
   })
   .catch(ex => {

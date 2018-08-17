@@ -10,7 +10,7 @@ export default ({ children }) => (
   <ThemeProvider theme={defaultTheme}>
     <>
       {children}
-      <link rel="stylesheet" href="/.next/static/style.css" />
+      <link rel="stylesheet" href="/static/style.css" />
       <style jsx global>{`
         * {
           font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono',

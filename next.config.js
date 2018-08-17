@@ -1,9 +1,7 @@
 /* eslint-disable */
 import 'dotenv/config';
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { ANALYZE, BUNDESTAGIO_SERVER_URL_CLIENT, PORT } = process.env;
-
-console.log('next.config.js', PORT);
+import path from 'path';
 
 const withCss = require('@zeit/next-css');
 const withSourceMaps = require('@zeit/next-source-maps');
@@ -16,7 +14,7 @@ if (typeof require !== 'undefined') {
 module.exports = withSourceMaps(
   withCss({
     webpack: function(config) {
-      if (ANALYZE) {
+      if (process.env.ANALYZE) {
         config.plugins.push(
           new BundleAnalyzerPlugin({
             analyzerMode: 'server',
@@ -26,21 +24,25 @@ module.exports = withSourceMaps(
         );
       }
 
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        Components: path.resolve(__dirname, 'components/'),
+      };
+
       return config;
     },
     serverRuntimeConfig: {
       // Will only be available on the server side
-      mySecret: 'secret',
-      PORT,
+      PORT: process.env.PORT,
+      NODE_ENV: process.env.NODE_ENV,
     },
     publicRuntimeConfig: {
       // Will be available on both server and client
-      BUNDESTAGIO_SERVER_URL: BUNDESTAGIO_SERVER_URL_CLIENT,
+      GRAPHQL_URL: process.env.GRAPHQL_URL,
+      PAGE_TITLE: process.env.PAGE_TITLE,
     },
   }),
 );
-
-const withCss = require('@zeit/next-css')
 
 /* // fix: prevents error when .css files are required by node
 if (typeof require !== 'undefined') {
