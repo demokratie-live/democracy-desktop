@@ -8,7 +8,7 @@
   "license": "Apache-2.0",
   "private": false,
   "scripts": {
-    "dev": "node -r dotenv/config server.js",
+    "dev": "babel-node server.js",
     "build": "next build",
     "start": "next start",
     "lint": "eslint ."
@@ -16,8 +16,6 @@
   "dependencies": {
     "antd": "^3.8.1",
     "apollo-boost": "^0.1.12",
-    "babel-plugin-inline-dotenv": "^1.1.2",
-    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "express": "^4.16.3",
     "graphql": "^0.13.2",
     "isomorphic-unfetch": "^2.1.1",
@@ -29,6 +27,11 @@
     "styled-components": "^3.4.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0-rc.1",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/node": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/preset-react": "^7.0.0-rc.1",
     "babel-eslint": "^8.2.6",
     "babel-plugin-styled-components": "^1.5.1",
     "eslint": "^5.3.0",

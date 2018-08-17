@@ -1,12 +1,9 @@
-/* import next from 'next';
 import express from 'express';
-import CONSTANTS from './config/constants'; */
+import next from 'next';
+// import CONSTANTS from './config/constants';
 
-const next = require("next");
-const express = require("express");
-const CONSTANTS = require("./config/constants");
-
-const dev = CONSTANTS.NODE_ENV !== 'production';
+// const dev = CONSTANTS.NODE_ENV !== 'production';
+const dev = true;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
@@ -25,9 +22,9 @@ app
       return handle(req, res);
     });
 
-    server.listen(CONSTANTS.PORT, err => {
+    server.listen(3000, err => {
       if (err) throw err;
-      console.log(`> Ready on http://localhost:${CONSTANTS.PORT}`);
+      console.log(`> Ready on http://localhost:3000`);
     });
   })
   .catch(ex => {
