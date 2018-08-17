@@ -45,6 +45,6 @@ export default ({ children }) => (
           outline: none;
         }
       `}</style>
-  </>
+    </>
   </ThemeProvider>
 );
