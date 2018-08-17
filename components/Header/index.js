@@ -1,7 +1,12 @@
 import { withRouter } from 'next/router';
 
+import Link from "../shared/Link";
+
 const Header = ({ router: { pathname } }) => (
   <header>
+      <Link  as={`/gesetz/234877/Some-Title`} href={"/details?title=testTitle"}>
+        TestLink
+      </Link>
     {/*<Row>
       <Col3>
         <Bubble>DEMOCRACY</Bubble>
