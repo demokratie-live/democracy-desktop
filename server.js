@@ -1,6 +1,6 @@
 import express from 'express';
 import next from 'next';
-// import CONSTANTS from './config/constants';
+import CONSTANTS from './config/constants';
 
 // const dev = CONSTANTS.NODE_ENV !== 'production';
 const dev = true;
