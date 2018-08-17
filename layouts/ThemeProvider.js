@@ -1,7 +1,9 @@
 import { ThemeProvider } from 'styled-components';
 
 const defaultTheme = {
-  color: 'blue',
+  colors: {
+    primary: 'green',
+  },
 };
 
 export default ({ children }) => (
