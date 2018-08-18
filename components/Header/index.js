@@ -39,6 +39,13 @@ const Header = ({ router: { pathname } }) => (
             <p>Card content</p>
           </Card>
         </Col>
+        <Col xs={24} sm={12} lg={6}>
+          <Card title="KLM">
+            <p>Card content</p>
+            <p>Card content</p>
+            <p>Card content</p>
+          </Card>
+        </Col>
       </Row>
       <Row>
         <Col span={3}>
