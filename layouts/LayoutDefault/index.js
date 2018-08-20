@@ -1,12 +1,12 @@
 import Theme from '../ThemeProvider';
-import Header from 'Components/Header';
+import Nav from 'Components/Nav';
 import Footer from 'Components/Footer';
 
 export default ({ children }) => (
   <main>
     <Theme>
       <>
-        <Header />
+        <Nav />
         {children}
         <Footer />
       </>

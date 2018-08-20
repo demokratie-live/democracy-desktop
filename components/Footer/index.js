@@ -1,20 +1,21 @@
 import { withRouter } from 'next/router';
 import styled, { withTheme } from 'styled-components';
+import { Icon } from 'antd';
 
-import { H1, H2 } from '../shared/Headlines';
+import Dev from 'Components/shared/Dev';
 
 const Footer = props => {
   return (
     <footer>
-      <H1>Footer</H1>
-      <H2>Footer h2</H2>
-      {/*<linkX>DEMOCRACY Deutschland e.V.</linkX>
-      <hyphen />
-      <linkX>Impressum</linkX>
-      <hyphen />
-      <linkX>Nutzungsbedingungen</linkX>
-      <hyphen />
-      <linkX>Datenschutz</linkX> */}
+      <Dev>
+        ##Link DEMOCRACY Deutschland e.V.
+        <Icon type="minus" />
+        ##Link Impressum
+        <Icon type="minus" />
+        ##Link Nutzungsbedingungen
+        <Icon type="minus" />
+        ##Link Datenschutz
+      </Dev>
     </footer>
   );
 };
