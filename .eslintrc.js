@@ -1,14 +1,7 @@
 module.exports = {
   "parser": "babel-eslint",
   extends: ["prettier"],
-  plugins: ["prettier", [
-    "styled-components", 
-    {
-      "ssr": true, 
-      "displayName": true, 
-      "preprocess": false 
-    }
-  ]],
+  plugins: ["prettier"],
   rules: {
     "prettier/prettier": ["error"],
     "newline-per-chained-call": [2],
