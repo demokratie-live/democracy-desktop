@@ -1,9 +1,15 @@
 import { Col, Card, Icon } from 'antd';
+import PropTypes from 'prop-types';
+import speakingurl from 'speakingurl';
+
 import Link from 'Components/shared/Link';
 
-const Teaser = () => (
+const Teaser = ({ title, procedureId, type }) => (
   <Col xs={24} sm={24} lg={8}>
-    <Link as={`/gesetz/234877/Some-Title`} href={`/details?title=testTitle`}>
+    <Link
+      as={`/${type.toLowerCase()}/${procedureId}/${speakingurl(title)}`}
+      href={`/details?id=${procedureId}&title=${speakingurl(title)}`}
+    >
       <article>
         ##Time
         <Card
@@ -15,7 +21,7 @@ const Teaser = () => (
             />
           }
         >
-          ##Cannabiskontrollgesetz (CannKG) ##Antrag/Gesetz ##1.124 haben abgestimmt
+          {title}
           <Icon type="tool" />
           <Icon type="tool" />
           <Icon type="tool" />
@@ -28,5 +34,11 @@ const Teaser = () => (
     </Link>
   </Col>
 );
+
+Teaser.propTypes = {
+  title: PropTypes.string.isRequired,
+  procedureId: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+};
 
 export default Teaser;

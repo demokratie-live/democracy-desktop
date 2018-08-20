@@ -1,11 +1,16 @@
 import { Row, Col, Tag, Icon, Select } from 'antd';
+import { Query } from 'react-apollo';
+
 import Dev from 'Components/shared/Dev';
 import Teaser from './Teaser';
+
+// GraphQÖL
+import PROCEDURES from 'GraphQl/queries/procedures';
 
 const Option = Select.Option;
 
 const List = () => (
-  <list>
+  <section>
     <Dev>
       <Row>
         <Col xs={24} sm={24} lg={6}>
@@ -24,23 +29,18 @@ const List = () => (
         </Col>
       </Row>
       <Row>
-        <Teaser />
-        <Teaser />
-        <Teaser />
-        <Teaser />
-        <Teaser />
-        <Teaser />
-        <Teaser />
-        <Teaser />
-        <Teaser />
-        <Teaser />
-        <Teaser />
-        <Teaser />
-        <Teaser />
-        <Teaser />
+        <Query query={PROCEDURES} variables={{ type: 'VOTING' }}>
+          {({ loading, error, data: { procedures } }) => {
+            if (loading) return <p>Loading...</p>;
+            if (error) return <p>Error :(</p>;
+            return procedures.map(({ procedureId, ...rest }) => (
+              <Teaser key={procedureId} procedureId={procedureId} {...rest} />
+            ));
+          }}
+        </Query>
       </Row>
     </Dev>
-  </list>
+  </section>
 );
 
 export default List;

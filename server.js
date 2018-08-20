@@ -14,7 +14,7 @@ app
   .then(() => {
     const server = express();
 
-    server.get('/gesetz/:id/:title', (req, res) => {
+    server.get('/:type(gesetzgebung|antrag)/:id/:title', (req, res) => {
       const actualPage = '/details';
       const queryParams = { id: req.params.id, title: req.params.title };
       app.render(req, res, actualPage, queryParams);
