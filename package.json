@@ -12,7 +12,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "stylelint": "stylelint '**/*.js"
+    "stylelint": "stylelint **/*.js"
   },
   "dependencies": {
     "@zeit/next-css": "^0.2.0",
