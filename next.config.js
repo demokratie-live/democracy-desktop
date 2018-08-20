@@ -1,17 +1,17 @@
 /* eslint-disable */
-import 'dotenv/config';
+require( 'dotenv/config');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-import path from 'path';
+const path = require("path")
 
 const withCss = require('@zeit/next-css');
-const withSourceMaps = require('@zeit/next-source-maps');
+// const withSourceMaps = require('@zeit/next-source-maps');
 
 // fix: prevents error when .css files are required by node
 if (typeof require !== 'undefined') {
   require.extensions['.css'] = file => {};
 }
 
-module.exports = withSourceMaps(
+module.exports = 
   withCss({
     webpack: function(config) {
       if (process.env.ANALYZE) {
@@ -27,6 +27,7 @@ module.exports = withSourceMaps(
       config.resolve.alias = {
         ...config.resolve.alias,
         Components: path.resolve(__dirname, 'components/'),
+        GraphQl: path.resolve(__dirname, 'graphql/'),
       };
 
       return config;
@@ -41,7 +42,7 @@ module.exports = withSourceMaps(
       GRAPHQL_URL: process.env.GRAPHQL_URL,
       PAGE_TITLE: process.env.PAGE_TITLE,
     },
-  }),
+  },
 );
 
 /* // fix: prevents error when .css files are required by node
