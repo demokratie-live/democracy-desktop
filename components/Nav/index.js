@@ -10,8 +10,7 @@ const Header = ({ router: { pathname } }) => (
     <Dev>
       <Row>
         <Col xs={24} sm={24} lg={6}>
-          ##ImgBubble
-          ##TextDEMOCRACY
+          ##ImgBubble ##TextDEMOCRACY
         </Col>
         <Col xs={24} sm={24} lg={12}>
           <Input
@@ -21,9 +20,13 @@ const Header = ({ router: { pathname } }) => (
           />
         </Col>
         <Col xs={24} sm={24} lg={6}>
-          <Icon type="filter" /><Icon type="down" />##LinkInline Filter
-          <Icon type="mobile" />##Link App Downloaden
-          <Icon type="heart" />##Link Unterstützen
+          <Icon type="filter" />
+          <Icon type="down" />
+          ##LinkInline Filter
+          <Icon type="mobile" />
+          ##Link App Downloaden
+          <Icon type="heart" />
+          ##Link Unterstützen
         </Col>
       </Row>
       <Row>
@@ -33,10 +36,7 @@ const Header = ({ router: { pathname } }) => (
           </Select>
         </Col>
         <Col xs={24} sm={24} lg={12}>
-          ##Filter in Abstimmung
-          ##Filter Vergangen
-          ##Filter in Vorbereitung
-          ##Filter What's Hot
+          ##Filter in Abstimmung ##Filter Vergangen ##Filter in Vorbereitung ##Filter What's Hot
         </Col>
         <Col xs={24} sm={24} lg={6} />
       </Row>

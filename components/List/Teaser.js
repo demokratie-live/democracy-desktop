@@ -8,19 +8,20 @@ const Teaser = () => (
         ##Time
         <Card
           hoverable
-          cover={<img alt="example" src="https://www.bundestag.de/image/558288/16x9/750/422/aefcd3415c9e921d4405f2e346d8bc73/UM/kw26_pa_gesundheit_cannabis_bild.jpg" />}
-          >
-          ##Cannabiskontrollgesetz (CannKG) ##Antrag/Gesetz
-          
-          ##1.124 haben abgestimmt
-
+          cover={
+            <img
+              alt="example"
+              src="https://www.bundestag.de/image/558288/16x9/750/422/aefcd3415c9e921d4405f2e346d8bc73/UM/kw26_pa_gesundheit_cannabis_bild.jpg"
+            />
+          }
+        >
+          ##Cannabiskontrollgesetz (CannKG) ##Antrag/Gesetz ##1.124 haben abgestimmt
           <Icon type="tool" />
           <Icon type="tool" />
           <Icon type="tool" />
           <Icon type="tool" />
           <Icon type="tool" />
           <Icon type="tool" />
-
           ##Weiterlesen
         </Card>
       </article>

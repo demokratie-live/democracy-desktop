@@ -1,3 +1,3 @@
-import { Input } from "antd";
+import { Input } from 'antd';
 
 export default Input;

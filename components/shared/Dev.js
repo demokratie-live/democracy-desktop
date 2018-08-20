@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Dev = styled.div`
-  filter: blur(1px);
+  filter: blur(3px);
   &:hover {
     filter: blur(0px);
   }
