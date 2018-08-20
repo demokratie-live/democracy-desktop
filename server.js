@@ -4,7 +4,7 @@ import next from 'next';
 
 // Process Environments
 const { PORT, NODE_ENV } = process.env;
-
+console.log('HIER', PORT, NODE_ENV);
 const dev = NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
