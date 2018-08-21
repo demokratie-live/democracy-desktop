@@ -6,8 +6,17 @@ import styled from 'styled-components';
 import Link from 'Components/shared/Link';
 import Title from 'Components/shared/Ellipsis';
 
+const Section = styled.section`
+  background-color: ${({ theme }) => theme.backgrounds.secondary};
+  padding-left: ${({ theme }) => theme.space * 1}px;
+  padding-right: ${({ theme }) => theme.space * 1}px;
+  padding-top: ${({ theme }) => theme.space * 1}px;
+  padding-bottom: ${({ theme }) => theme.space * 1}px;
+`;
+
 const Teaser = ({ title, procedureId, type }) => (
   <Col xs={24} sm={24} lg={8}>
+    <Section>
     <Link
       as={`/${type.toLowerCase()}/${procedureId}/${speakingurl(title)}`}
       href={`/details?id=${procedureId}&title=${speakingurl(title)}`}
@@ -36,6 +45,7 @@ const Teaser = ({ title, procedureId, type }) => (
         </Card>
       </article>
     </Link>
+    </Section>
   </Col>
 );
 
