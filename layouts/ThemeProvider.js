@@ -23,24 +23,24 @@ const ThemeProviderWrapper = ({ children }) => (
       <style jsx global>{`
         @font-face {
           font-family: 'helvetica';
-          src: url('./files/font/HelveticaNeue-Light-08.ttf') format('truetype');
+          src: url('/static/fonts/HelveticaNeue-Light-08.ttf') format('truetype');
         }
         @font-face {
           font-family: 'edosz';
-          src: url('./files/font/edosz.ttf') format('truetype');
+          src: url('/static/fonts/edosz.ttf') format('truetype');
         }
         @font-face {
           font-family: "icomoon";
-          src:    url("./files/font/icomoon.eot?kp7wew");
-          src:    url("./files/font/icomoon.eot?kp7wew#iefix") format("embedded-opentype"),
-                  url("./files/font/icomoon.ttf?kp7wew") format("truetype"),
-                  url("./files/font/icomoon.woff?kp7wew") format("woff"),
-                  url("./files/font/icomoon.svg?kp7wew#icomoon") format("svg");
+          src:    url("/static/fonts/icomoon.eot?kp7wew");
+          src:    url("/static/fonts/icomoon.eot?kp7wew#iefix") format("embedded-opentype"),
+                  url("/static/fonts/icomoon.ttf?kp7wew") format("truetype"),
+                  url("/static/fonts/icomoon.woff?kp7wew") format("woff"),
+                  url("/static/fonts/icomoon.svg?kp7wew#icomoon") format("svg");
           font-weight: normal;
           font-style: normal;
         }
         * {
-          font-family: HelveticaNeue-Light;
+          font-family: helvetica;
         }
         body {
           background-color: ${props => props.theme.color}
