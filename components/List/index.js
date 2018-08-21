@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Row, Col, Tag, Icon, Select, Spin } from 'antd';
+import { Row, Col, Tag, Icon, Select, Spin as SpinComponent } from 'antd';
 import { Query } from 'react-apollo';
 import InfiniteScroll from 'react-infinite-scroller';
 import styled from 'styled-components';
@@ -33,6 +33,11 @@ const TeaserCol = styled(Col).attrs({
 })`
   padding-top: ${({ theme }) => theme.space * 1}px;
   padding-bottom: ${({ theme }) => theme.space * 1}px;
+`;
+
+const Spin = styled(SpinComponent)`
+  width: 100%;
+  padding-top: ${({ theme }) => theme.space * 1}px;
 `;
 
 class List extends Component {
