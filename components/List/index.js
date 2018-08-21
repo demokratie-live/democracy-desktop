@@ -15,14 +15,14 @@ const Option = Select.Option;
 
 const Section = styled.section`
   background-color: ${({ theme }) => theme.backgrounds.secondary};
-  padding-left: ${({ theme }) => theme.space * 4}px;
-  padding-right: ${({ theme }) => theme.space * 4}px;
-  padding-top: ${({ theme }) => theme.space * 2}px;
-  padding-bottom: ${({ theme }) => theme.space * 4}px;
+  padding-left: ${({ theme }) => theme.space(4)}px;
+  padding-right: ${({ theme }) => theme.space(4)}px;
+  padding-top: ${({ theme }) => theme.space(2)}px;
+  padding-bottom: ${({ theme }) => theme.space(4)}px;
 `;
 
 const TeaserRow = styled(Row).attrs({
-  gutter: ({ theme }) => theme.space * 2,
+  gutter: ({ theme }) => theme.space(2),
 })``;
 
 const TeaserCol = styled(Col).attrs({
@@ -31,13 +31,13 @@ const TeaserCol = styled(Col).attrs({
   md: 12,
   lg: 8,
 })`
-  padding-top: ${({ theme }) => theme.space * 1}px;
-  padding-bottom: ${({ theme }) => theme.space * 1}px;
+  padding-top: ${({ theme }) => theme.space(1)}px;
+  padding-bottom: ${({ theme }) => theme.space(1)}px;
 `;
 
 const Spin = styled(SpinComponent)`
   width: 100%;
-  padding-top: ${({ theme }) => theme.space * 1}px;
+  padding-top: ${({ theme }) => theme.space(1)}px;
 `;
 
 class List extends Component {

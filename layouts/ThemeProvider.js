@@ -14,7 +14,7 @@ const defaultTheme = {
     medium: '20px',
     large: '50px',
   },
-  space: 10,
+  space: multi => multi * 10,
 };
 
 const ThemeProviderWrapper = ({ children }) => (

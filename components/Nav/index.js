@@ -14,10 +14,10 @@ const H1 = styled.h1`
 
 const Nav = styled.nav`
   background-color: ${({ theme }) => theme.backgrounds.primary};
-  padding-left: ${({ theme }) => theme.space * 4}px;
-  padding-right: ${({ theme }) => theme.space * 4}px;
-  padding-top: ${({ theme }) => theme.space * 2}px;
-  padding-bottom: ${({ theme }) => theme.space * 2}px;
+  padding-left: ${({ theme }) => theme.space(4)}px;
+  padding-right: ${({ theme }) => theme.space(4)}px;
+  padding-top: ${({ theme }) => theme.space(2)}px;
+  padding-bottom: ${({ theme }) => theme.space(2)}px;
 `;
 
 const Img = styled.img`
