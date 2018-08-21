@@ -15,8 +15,8 @@ const Option = Select.Option;
 
 const Section = styled.section`
   background-color: ${({ theme }) => theme.backgrounds.secondary};
-  padding-left: ${({ theme }) => theme.space * 3}px;
-  padding-right: ${({ theme }) => theme.space * 3}px;
+  padding-left: ${({ theme }) => theme.space * 4}px;
+  padding-right: ${({ theme }) => theme.space * 4}px;
   padding-top: ${({ theme }) => theme.space * 2}px;
   padding-bottom: ${({ theme }) => theme.space * 4}px;
 `;
