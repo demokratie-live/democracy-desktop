@@ -1,11 +1,12 @@
 import { withRouter } from 'next/router';
 import styled from 'styled-components';
-import { Row, Col, Input, Icon, Select as SelectComponent } from 'antd';
+import { Row, Col, Input, Icon } from 'antd';
 
 import Dev from 'Components/shared/Dev';
 import Link from 'Components/shared/Link';
+import Select from 'Components/shared/Select';
 
-const Option = SelectComponent.Option;
+const Option = Select.Option;
 
 const H1 = styled.h1`
   font-family: edosz;
@@ -22,10 +23,6 @@ const Nav = styled.nav`
 
 const Img = styled.img`
   width: 50px;
-`;
-
-const Select = styled(SelectComponent)`
-  width: 100%;
 `;
 
 const Header = ({ router: { pathname } }) => (
@@ -60,7 +57,7 @@ const Header = ({ router: { pathname } }) => (
     </Row>
     <Row>
       <Col xs={24} sm={24} lg={6}>
-        <Select defaultValue="19. Bundestag (2017-2021)">
+        <Select defaultValue="19. Bundestag (2017-2021)" dropdownClassName="select-dropdown-period">
           <Option value="19">19. Bundestag (2017-2021)</Option>
         </Select>
       </Col>
