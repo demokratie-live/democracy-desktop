@@ -2,7 +2,7 @@ import { withRouter } from 'next/router';
 import styled from 'styled-components';
 import { Icon } from 'antd';
 
-import Link from 'Components/shared/Link/primary';
+import Link from 'Components/shared/Link';
 
 const FooterElem = styled.footer`
   height: 80px;

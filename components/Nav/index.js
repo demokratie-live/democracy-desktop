@@ -2,7 +2,7 @@ import { withRouter } from 'next/router';
 import { Row, Col, Input, Icon, Select } from 'antd';
 
 import Dev from 'Components/shared/Dev';
-import Link from 'Components/shared/Link/secondary';
+import Link from 'Components/shared/Link';
 
 const Option = Select.Option;
 
@@ -10,13 +10,9 @@ const Header = ({ router: { pathname } }) => (
   <nav>
     <Row>
       <Col xs={24} sm={24} lg={6}>
-        <Link href="/">
+        <Link href="/" secondary>
           <h1>
-            <img
-              alt="DEMOCRACY Deutschland"
-              src="/static/images/Bubble.png"
-              width="50"
-            />
+            <img alt="DEMOCRACY Deutschland" src="/static/images/Bubble.png" width="50" />
             &nbsp;DEMOCRACY
           </h1>
         </Link>
