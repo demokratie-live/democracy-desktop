@@ -1,22 +1,37 @@
 import { withRouter } from 'next/router';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { Icon } from 'antd';
 
-import Dev from 'Components/shared/Dev';
+import Link from 'Components/shared/Link/primary';
+
+const FooterElem = styled.footer`
+  height: 80px;
+  text-align: center;
+  padding-top: 30px;
+  background-color: ${({ theme }) => theme.backgrounds.primary};
+  color: ${({ theme }) => theme.colors.link};
+  font-size: ${({ theme }) => theme.fontSizes.medium};
+`;
 
 const Footer = props => {
   return (
-    <footer>
-      <Dev>
-        ##Link DEMOCRACY Deutschland e.V.
-        <Icon type="minus" />
-        ##Link Impressum
-        <Icon type="minus" />
-        ##Link Nutzungsbedingungen
-        <Icon type="minus" />
-        ##Link Datenschutz
-      </Dev>
-    </footer>
+    <FooterElem>
+      <Link href="https://www.democracy-deutschland.de" target="_blank">
+        DEMOCRACY Deutschland e.V.
+      </Link>
+      &nbsp; <Icon type="minus" /> &nbsp;
+      <Link href="https://www.democracy-deutschland.de/#!impressum" target="_blank">
+        Impressum
+      </Link>
+      &nbsp; <Icon type="minus" /> &nbsp;
+      <Link href="https://www.democracy-deutschland.de/#!agbs" target="_blank">
+        Nutzungsbedingungen
+      </Link>
+      &nbsp; <Icon type="minus" /> &nbsp;
+      <Link href="https://www.democracy-deutschland.de/#!datenschutz" target="_blank">
+        Datenschutz
+      </Link>
+    </FooterElem>
   );
 };
 

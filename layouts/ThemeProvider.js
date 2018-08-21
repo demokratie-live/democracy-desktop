@@ -2,7 +2,16 @@ import { ThemeProvider } from 'styled-components';
 
 const defaultTheme = {
   colors: {
+    default: '#000',
     primary: 'green',
+    link: 'rgb(0,118,255)',
+  },
+  backgrounds: {
+    primary: '#fff',
+    secondary: 'rgb(236,236,236)',
+  },
+  fontSizes: {
+    medium: '20px',
   },
 };
 
@@ -12,9 +21,26 @@ const ThemeProviderWrapper = ({ children }) => (
       {children}
       <link rel="stylesheet" href="/static/style.css" />
       <style jsx global>{`
+        @font-face {
+          font-family: 'helvetica';
+          src: url('./files/font/HelveticaNeue-Light-08.ttf') format('truetype');
+        }
+        @font-face {
+          font-family: 'edosz';
+          src: url('./files/font/edosz.ttf') format('truetype');
+        }
+        @font-face {
+          font-family: "icomoon";
+          src:    url("./files/font/icomoon.eot?kp7wew");
+          src:    url("./files/font/icomoon.eot?kp7wew#iefix") format("embedded-opentype"),
+                  url("./files/font/icomoon.ttf?kp7wew") format("truetype"),
+                  url("./files/font/icomoon.woff?kp7wew") format("woff"),
+                  url("./files/font/icomoon.svg?kp7wew#icomoon") format("svg");
+          font-weight: normal;
+          font-style: normal;
+        }
         * {
-          font-family: Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono',
-            'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;
+          font-family: HelveticaNeue-Light;
         }
         body {
           background-color: ${props => props.theme.color}

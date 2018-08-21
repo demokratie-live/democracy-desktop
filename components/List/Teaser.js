@@ -1,9 +1,14 @@
 import { Col, Card, Icon } from 'antd';
 import PropTypes from 'prop-types';
 import speakingurl from 'speakingurl';
+import styled from 'styled-components';
 
 import Link from 'Components/shared/Link';
 import Title from 'Components/shared/Ellipsis';
+
+const Title = styled.p`
+  height: 50px;
+`;
 
 const Teaser = ({ title, procedureId, type }) => (
   <Col xs={24} sm={24} lg={8}>

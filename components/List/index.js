@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { Row, Col, Tag, Icon, Select, Spin } from 'antd';
 import { Query } from 'react-apollo';
 import InfiniteScroll from 'react-infinite-scroller';
+import styled from 'styled-components';
 
 import Dev from 'Components/shared/Dev';
 import Teaser from './Teaser';
@@ -11,6 +12,10 @@ import PROCEDURES from 'GraphQl/queries/procedures';
 const PAGE_SIZE = 15;
 
 const Option = Select.Option;
+
+const Section = styled.section`
+  background-color: ${({ theme }) => theme.backgrounds.secondary};
+`;
 
 class List extends Component {
   state = {
@@ -36,7 +41,7 @@ class List extends Component {
 
   render() {
     return (
-      <section>
+      <Section>
         <Dev>
           <Row>
             <Col xs={24} sm={24} lg={6}>
@@ -78,7 +83,7 @@ class List extends Component {
             </Query>
           </Row>
         </Dev>
-      </section>
+      </Section>
     );
   }
 }

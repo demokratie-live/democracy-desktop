@@ -2,16 +2,26 @@ import { withRouter } from 'next/router';
 import { Row, Col, Input, Icon, Select } from 'antd';
 
 import Dev from 'Components/shared/Dev';
+import Link from 'Components/shared/Link/secondary';
 
 const Option = Select.Option;
 
 const Header = ({ router: { pathname } }) => (
   <nav>
-    <Dev>
-      <Row>
-        <Col xs={24} sm={24} lg={6}>
-          ##ImgBubble ##TextDEMOCRACY
-        </Col>
+    <Row>
+      <Col xs={24} sm={24} lg={6}>
+        <Link href="/">
+          <h1>
+            <img
+              alt="DEMOCRACY Deutschland"
+              src="/static/images/Bubble.png"
+              width="50"
+            />
+            &nbsp;DEMOCRACY
+          </h1>
+        </Link>
+      </Col>
+      <Dev>
         <Col xs={24} sm={24} lg={12}>
           <Input
             placeholder="Suche"
@@ -28,8 +38,10 @@ const Header = ({ router: { pathname } }) => (
           <Icon type="heart" />
           ##Link Unterstützen
         </Col>
-      </Row>
-      <Row>
+      </Dev>
+    </Row>
+    <Row>
+      <Dev>
         <Col xs={24} sm={24} lg={6}>
           <Select defaultValue="##19. Bundestag (2017-2021)" onChange={value => console.log(value)}>
             <Option value="19">##19. Bundestag (2017-2021)</Option>
@@ -39,8 +51,8 @@ const Header = ({ router: { pathname } }) => (
           ##Filter in Abstimmung ##Filter Vergangen ##Filter in Vorbereitung ##Filter What's Hot
         </Col>
         <Col xs={24} sm={24} lg={6} />
-      </Row>
-    </Dev>
+      </Dev>
+    </Row>
   </nav>
 );
 

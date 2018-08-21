@@ -1,21 +1,26 @@
 import { withRouter } from 'next/router';
 import { Row, Col, Menu, Icon, Collapse } from 'antd';
+import styled from 'styled-components';
 
 import { H1 } from 'Components/shared/Headlines';
 import Dev from 'Components/shared/Dev';
 
 const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
 const Panel = Collapse.Panel;
 
+const Section = styled.section`
+  background-color: ${({ theme }) => theme.backgrounds.secondary};
+`;
+
 const Details = ({ router: { pathname, query } }) => (
-  <Row>
+  <Section>
+    <Row>
     <Dev>
       <Col xs={24} sm={24} md={24} lg={3}>
         <aside>##Facebook ##Twitter ##EMail</aside>
       </Col>
       <Col xs={24} sm={24} md={24} lg={18}>
-        <detail>
+        <section>
           <Row>
             <Col xs={24} sm={24} md={24} lg={24}>
               <img
@@ -72,7 +77,7 @@ const Details = ({ router: { pathname, query } }) => (
               </Collapse>
             </Col>
           </Row>
-        </detail>
+        </section>
       </Col>
       <Col xs={24} sm={24} md={24} lg={3}>
         <aside>
@@ -93,7 +98,8 @@ const Details = ({ router: { pathname, query } }) => (
         </aside>
       </Col>
     </Dev>
-  </Row>
+    </Row>
+  </Section>
 );
 
 export default withRouter(Details);
