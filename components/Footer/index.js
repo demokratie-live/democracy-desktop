@@ -16,19 +16,19 @@ const FooterElem = styled.footer`
 const Footer = props => {
   return (
     <FooterElem>
-      <Link href="https://www.democracy-deutschland.de" target="_blank">
+      <Link href="https://www.democracy-deutschland.de" external>
         DEMOCRACY Deutschland e.V.
       </Link>
       &nbsp; <Icon type="minus" /> &nbsp;
-      <Link href="https://www.democracy-deutschland.de/#!impressum" target="_blank">
+      <Link href="https://www.democracy-deutschland.de/#!impressum" external>
         Impressum
       </Link>
       &nbsp; <Icon type="minus" /> &nbsp;
-      <Link href="https://www.democracy-deutschland.de/#!agbs" target="_blank">
+      <Link href="https://www.democracy-deutschland.de/#!agbs" external>
         Nutzungsbedingungen
       </Link>
       &nbsp; <Icon type="minus" /> &nbsp;
-      <Link href="https://www.democracy-deutschland.de/#!datenschutz" target="_blank">
+      <Link href="https://www.democracy-deutschland.de/#!datenschutz" external>
         Datenschutz
       </Link>
     </FooterElem>
