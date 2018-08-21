@@ -21,6 +21,20 @@ const Section = styled.section`
   padding-bottom: ${({ theme }) => theme.space * 4}px;
 `;
 
+const TeaserRow = styled(Row).attrs({
+  gutter: ({ theme }) => theme.space * 2,
+})``;
+
+const TeaserCol = styled(Col).attrs({
+  xs: 24,
+  sm: 24,
+  md: 12,
+  lg: 8,
+})`
+  padding-top: ${({ theme }) => theme.space * 1}px;
+  padding-bottom: ${({ theme }) => theme.space * 1}px;
+`;
+
 class List extends Component {
   state = {
     hasMore: true,
@@ -66,26 +80,28 @@ class List extends Component {
               </Select>
             </Col>
           </Row>
-          <Row>
-            <Query query={PROCEDURES} variables={{ type: 'VOTING', pageSize: PAGE_SIZE }}>
-              {({ loading, error, data: { procedures }, fetchMore }) => {
-                if (loading) return <p>Loading...</p>;
-                if (error) return <p>Error :(</p>;
-                return (
-                  <InfiniteScroll
-                    pageStart={0}
-                    loadMore={this.loadMore({ fetchMore })}
-                    hasMore={this.state.hasMore}
-                    loader={<Spin size="large" key="spinner" />}
-                  >
+          <Query query={PROCEDURES} variables={{ type: 'VOTING', pageSize: PAGE_SIZE }}>
+            {({ loading, error, data: { procedures }, fetchMore }) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) return <p>Error :(</p>;
+              return (
+                <InfiniteScroll
+                  pageStart={0}
+                  loadMore={this.loadMore({ fetchMore })}
+                  hasMore={this.state.hasMore}
+                  loader={<Spin size="large" key="spinner" />}
+                >
+                  <TeaserRow>
                     {procedures.map(({ procedureId, ...rest }) => (
-                      <Teaser key={procedureId} procedureId={procedureId} {...rest} />
+                      <TeaserCol key={procedureId}>
+                        <Teaser procedureId={procedureId} {...rest} />
+                      </TeaserCol>
                     ))}
-                  </InfiniteScroll>
-                );
-              }}
-            </Query>
-          </Row>
+                  </TeaserRow>
+                </InfiniteScroll>
+              );
+            }}
+          </Query>
         </Dev>
       </Section>
     );

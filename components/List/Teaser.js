@@ -1,52 +1,39 @@
-import { Col, Card, Icon } from 'antd';
+import { Card, Icon } from 'antd';
 import PropTypes from 'prop-types';
 import speakingurl from 'speakingurl';
-import styled from 'styled-components';
 
 import Link from 'Components/shared/Link';
 import Title from 'Components/shared/Ellipsis';
 
-const Section = styled.section`
-  background-color: ${({ theme }) => theme.backgrounds.secondary};
-  padding-left: ${({ theme }) => theme.space * 1}px;
-  padding-right: ${({ theme }) => theme.space * 1}px;
-  padding-top: ${({ theme }) => theme.space * 1}px;
-  padding-bottom: ${({ theme }) => theme.space * 1}px;
-`;
-
 const Teaser = ({ title, procedureId, type }) => (
-  <Col xs={24} sm={24} lg={8}>
-    <Section>
-    <Link
-      as={`/${type.toLowerCase()}/${procedureId}/${speakingurl(title)}`}
-      href={`/details?id=${procedureId}&title=${speakingurl(title)}`}
-    >
-      <article>
-        ##Time
-        <Card
-          hoverable
-          cover={
-            <img
-              alt="example"
-              src="https://www.bundestag.de/image/558288/16x9/750/422/aefcd3415c9e921d4405f2e346d8bc73/UM/kw26_pa_gesundheit_cannabis_bild.jpg"
-            />
-          }
-        >
-          <Title tag={'h2'} lines={2}>
-            {title}
-          </Title>
-          <Icon type="tool" />
-          <Icon type="tool" />
-          <Icon type="tool" />
-          <Icon type="tool" />
-          <Icon type="tool" />
-          <Icon type="tool" />
-          ##Weiterlesen
-        </Card>
-      </article>
-    </Link>
-    </Section>
-  </Col>
+  <Link
+    as={`/${type.toLowerCase()}/${procedureId}/${speakingurl(title)}`}
+    href={`/details?id=${procedureId}&title=${speakingurl(title)}`}
+  >
+    <article>
+      ##Time
+      <Card
+        hoverable
+        cover={
+          <img
+            alt="example"
+            src="https://www.bundestag.de/image/558288/16x9/750/422/aefcd3415c9e921d4405f2e346d8bc73/UM/kw26_pa_gesundheit_cannabis_bild.jpg"
+          />
+        }
+      >
+        <Title tag={'h2'} lines={2}>
+          {title}
+        </Title>
+        <Icon type="tool" />
+        <Icon type="tool" />
+        <Icon type="tool" />
+        <Icon type="tool" />
+        <Icon type="tool" />
+        <Icon type="tool" />
+        ##Weiterlesen
+      </Card>
+    </article>
+  </Link>
 );
 
 Teaser.propTypes = {
