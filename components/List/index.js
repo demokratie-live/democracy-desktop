@@ -1,10 +1,11 @@
 import { Component } from 'react';
-import { Row, Col, Tag, Icon, Select, Spin as SpinComponent } from 'antd';
+import { Row, Col, Tag, Icon, Spin as SpinComponent } from 'antd';
 import { Query } from 'react-apollo';
 import InfiniteScroll from 'react-infinite-scroller';
 import styled from 'styled-components';
 
 import Dev from 'Components/shared/Dev';
+import Select from 'Components/shared/Select';
 import Teaser from './Teaser';
 
 // GraphQL

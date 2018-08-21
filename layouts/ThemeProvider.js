@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 const defaultTheme = {
   colors: {
     default: '#000',
-    primary: 'green',
+    primary: 'rgb(68,148,211)',
     link: 'rgb(0,118,255)',
   },
   backgrounds: {
@@ -11,6 +11,8 @@ const defaultTheme = {
     secondary: 'rgb(236,236,236)',
   },
   fontSizes: {
+    small: '16px',
+    default: '20px',
     medium: '20px',
     large: '50px',
   },
