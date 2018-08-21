@@ -33,11 +33,11 @@ const ThemeProviderWrapper = ({ children }) => (
         }
         @font-face {
           font-family: "icomoon";
-          src:    url("/static/fonts/icomoon.eot?kp7wew");
-          src:    url("/static/fonts/icomoon.eot?kp7wew#iefix") format("embedded-opentype"),
-                  url("/static/fonts/icomoon.ttf?kp7wew") format("truetype"),
-                  url("/static/fonts/icomoon.woff?kp7wew") format("woff"),
-                  url("/static/fonts/icomoon.svg?kp7wew#icomoon") format("svg");
+          src:    url("/static/fonts/icomoon/icomoon.eot?kp7wew");
+          src:    url("/static/fonts/icomoon/icomoon.eot?kp7wew#iefix") format("embedded-opentype"),
+                  url("/static/fonts/icomoon/icomoon.ttf?kp7wew") format("truetype"),
+                  url("/static/fonts/icomoon/icomoon.woff?kp7wew") format("woff"),
+                  url("/static/fonts/icomoon/icomoon.svg?kp7wew#icomoon") format("svg");
           font-weight: normal;
           font-style: normal;
         }

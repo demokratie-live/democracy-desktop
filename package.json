@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "babel-node server.js",
     "build": "next build",
+    "build:fonts": "icon-font-generator assets/fontSvgs/*.svg -o static/fonts/democracy/",
     "start": "NODE_ENV=production babel-node server.js",
     "lint": "eslint ."
   },
@@ -46,6 +47,7 @@
     "eslint-config-prettier": "^3.0.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.11.1",
+    "icon-font-generator": "^2.1.8",
     "prettier": "^1.14.2"
   }
 }
