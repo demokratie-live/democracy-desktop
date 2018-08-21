@@ -1,4 +1,5 @@
 import { withRouter } from 'next/router';
+import styled from 'styled-components';
 import { Row, Col, Input, Icon, Select } from 'antd';
 
 import Dev from 'Components/shared/Dev';
@@ -6,19 +7,32 @@ import Link from 'Components/shared/Link/secondary';
 
 const Option = Select.Option;
 
+const H1 = styled.h1`
+  font-family: edosz;
+  font-size: ${({ theme }) => theme.fontSizes.large};
+`;
+
+const Nav = styled.nav`
+  background-color: ${({ theme }) => theme.backgrounds.primary};
+  padding-left: ${({ theme }) => theme.space * 4}px;
+  padding-right: ${({ theme }) => theme.space * 4}px;
+  padding-top: ${({ theme }) => theme.space * 2}px;
+  padding-bottom: ${({ theme }) => theme.space * 2}px;
+`;
+
+const Img = styled.img`
+  width: 50px;
+`
+
 const Header = ({ router: { pathname } }) => (
-  <nav>
+  <Nav>
     <Row>
       <Col xs={24} sm={24} lg={6}>
         <Link href="/">
-          <h1>
-            <img
-              alt="DEMOCRACY Deutschland"
-              src="/static/images/Bubble.png"
-              width="50"
-            />
+          <H1>
+            <Img alt="DEMOCRACY Deutschland" src="/static/images/Bubble.png" />
             &nbsp;DEMOCRACY
-          </h1>
+          </H1>
         </Link>
       </Col>
       <Dev>
@@ -53,7 +67,7 @@ const Header = ({ router: { pathname } }) => (
         <Col xs={24} sm={24} lg={6} />
       </Dev>
     </Row>
-  </nav>
+  </Nav>
 );
 
 export default withRouter(Header);

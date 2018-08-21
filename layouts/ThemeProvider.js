@@ -12,7 +12,9 @@ const defaultTheme = {
   },
   fontSizes: {
     medium: '20px',
+    large: '50px',
   },
+  space: 10,
 };
 
 const ThemeProviderWrapper = ({ children }) => (
