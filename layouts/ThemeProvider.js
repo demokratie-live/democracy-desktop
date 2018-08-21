@@ -25,6 +25,16 @@ const ThemeProviderWrapper = ({ children }) => (
       {children}
       <link rel="stylesheet" href="/static/style.css" />
       <style jsx global>{`
+        .select-dropdown-period {
+          left: 0 !important;
+          top: 172px !important;
+          width: 250px !important;
+        }
+        .select-dropdown-period ul li{
+          padding-left: ${defaultTheme.space(4)}px;
+          background-color:  ${defaultTheme.backgrounds.primary};
+          height: 50px !important;
+        }
         @font-face {
           font-family: 'helvetica';
           src: url('/static/fonts/HelveticaNeue-Light-08.ttf') format('truetype');

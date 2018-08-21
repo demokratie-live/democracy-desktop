@@ -5,14 +5,14 @@ import InfiniteScroll from 'react-infinite-scroller';
 import styled from 'styled-components';
 
 import Dev from 'Components/shared/Dev';
-import Select from 'Components/shared/Select';
+import SelectComponent from 'Components/shared/Select';
 import Teaser from './Teaser';
 
 // GraphQL
 import PROCEDURES from 'GraphQl/queries/procedures';
 const PAGE_SIZE = 15;
 
-const Option = Select.Option;
+const Option = SelectComponent.Option;
 
 const Section = styled.section`
   background-color: ${({ theme }) => theme.backgrounds.secondary};
@@ -39,6 +39,10 @@ const TeaserCol = styled(Col).attrs({
 const Spin = styled(SpinComponent)`
   width: 100%;
   padding-top: ${({ theme }) => theme.space(1)}px;
+`;
+
+const Select = styled(SelectComponent)`
+  float: right;
 `;
 
 class List extends Component {

@@ -56,11 +56,16 @@ const Header = ({ router: { pathname } }) => (
       </Dev>
     </Row>
     <Row>
-      <Col xs={24} sm={24} lg={6}>
-        <Select defaultValue="19. Bundestag (2017-2021)" dropdownClassName="select-dropdown-period">
-          <Option value="19">19. Bundestag (2017-2021)</Option>
-        </Select>
-      </Col>
+      <Dev>
+        <Col xs={24} sm={24} lg={6}>
+          <Select
+            defaultValue="19. Bundestag (2017-2021)"
+            dropdownClassName="select-dropdown-period"
+          >
+            <Option value="19">19. Bundestag (2017-2021)</Option>
+          </Select>
+        </Col>
+      </Dev>
       <Dev>
         <Col xs={24} sm={24} lg={12}>
           ##Filter in Abstimmung ##Filter Vergangen ##Filter in Vorbereitung ##Filter What's Hot
