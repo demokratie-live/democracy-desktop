@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import speakingurl from 'speakingurl';
 
 import Link from 'Components/shared/Link';
+import Title from 'Components/shared/Ellipsis';
 
 const Teaser = ({ title, procedureId, type }) => (
   <Col xs={24} sm={24} lg={8}>
@@ -21,7 +22,9 @@ const Teaser = ({ title, procedureId, type }) => (
             />
           }
         >
-          {title}
+          <Title tag={'h2'} lines={2}>
+            {title}
+          </Title>
           <Icon type="tool" />
           <Icon type="tool" />
           <Icon type="tool" />

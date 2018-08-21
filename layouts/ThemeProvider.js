@@ -6,7 +6,7 @@ const defaultTheme = {
   },
 };
 
-export default ({ children }) => (
+const ThemeProviderWrapper = ({ children }) => (
   <ThemeProvider theme={defaultTheme}>
     <>
       {children}
@@ -51,3 +51,7 @@ export default ({ children }) => (
     </>
   </ThemeProvider>
 );
+
+ThemeProviderWrapper.displayName = 'ThemeProvider';
+
+export default ThemeProviderWrapper;
