@@ -82,15 +82,17 @@ class List extends Component {
   render() {
     return (
       <Section>
-        <Dev>
-          <Row>
-            <Col xs={24} sm={24} lg={6}>
+        <Row>
+          <Col xs={24} sm={24} lg={6}>
+            <Dev>
               <Tag>
                 <Icon type="info-circle" /> in Abstimung
               </Tag>
-            </Col>
-            <Col xs={24} sm={24} lg={12} />
-            <Col xs={24} sm={24} lg={6}>
+            </Dev>
+          </Col>
+          <Col xs={24} sm={24} lg={12} />
+          <Col xs={24} sm={24} lg={6}>
+            <Dev>
               <Select
                 defaultValue="##Nach Restzeit sortieren"
                 onChange={value => console.log(value)}
@@ -99,31 +101,33 @@ class List extends Component {
                 <Option value="timeleft">##Nach Restzeit sortieren</Option>
                 <Option value="activity">##Nach Aktivitäten sortieren</Option>
               </Select>
-            </Col>
-          </Row>
-          <Query query={PROCEDURES} variables={{ type: 'VOTING', pageSize: PAGE_SIZE }}>
-            {({ loading, error, data: { procedures }, fetchMore }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error :(</p>;
-              return (
-                <InfiniteScroll
-                  pageStart={0}
-                  loadMore={this.loadMore({ fetchMore })}
-                  hasMore={this.state.hasMore}
-                  loader={<Spin size="large" key="spinner" />}
-                >
-                  <TeaserRow>
-                    {procedures.map(({ procedureId, ...rest }) => (
-                      <TeaserCol key={procedureId}>
+            </Dev>
+          </Col>
+        </Row>
+        <Query query={PROCEDURES} variables={{ type: 'VOTING', pageSize: PAGE_SIZE }}>
+          {({ loading, error, data: { procedures }, fetchMore }) => {
+            if (loading) return <p>Loading...</p>;
+            if (error) return <p>Error :(</p>;
+            return (
+              <InfiniteScroll
+                pageStart={0}
+                loadMore={this.loadMore({ fetchMore })}
+                hasMore={this.state.hasMore}
+                loader={<Spin size="large" key="spinner" />}
+              >
+                <TeaserRow>
+                  {procedures.map(({ procedureId, ...rest }) => (
+                    <TeaserCol key={procedureId}>
+                      <Dev>
                         <Teaser procedureId={procedureId} {...rest} />
-                      </TeaserCol>
-                    ))}
-                  </TeaserRow>
-                </InfiniteScroll>
-              );
-            }}
-          </Query>
-        </Dev>
+                      </Dev>
+                    </TeaserCol>
+                  ))}
+                </TeaserRow>
+              </InfiniteScroll>
+            );
+          }}
+        </Query>
       </Section>
     );
   }
