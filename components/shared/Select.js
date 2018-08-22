@@ -1,9 +1,9 @@
-import {Select as SelectComponent} from 'antd';
+import { Select as SelectComponent } from 'antd';
 import styled from 'styled-components';
 
 const Select = styled(SelectComponent)`
   font-size: ${({ theme }) => theme.fontSizes.default};
-  .ant-select-selection {
+  & .ant-select-selection {
     border: 0;
     box-shadow: none;
     .ant-select-arrow {
@@ -11,12 +11,9 @@ const Select = styled(SelectComponent)`
       font-size: ${({ theme }) => theme.fontSizes.small};
       font-weight: bold;
     }
-    div {
+    & div {
       margin-left: 0;
     }
-  }
-  .select-dropdown-period {
-    background-color: red;
   }
 `;
 
