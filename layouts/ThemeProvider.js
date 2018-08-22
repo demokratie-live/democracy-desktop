@@ -3,12 +3,12 @@ import { ThemeProvider } from 'styled-components';
 const defaultTheme = {
   colors: {
     default: '#000',
-    primary: 'rgb(68,148,211)',
-    link: 'rgb(0,118,255)',
+    primary: '#4494d3',
+    link: '#0076ff',
   },
   backgrounds: {
-    primary: '#fff',
-    secondary: 'rgb(236,236,236)',
+    primary: '#ffffff',
+    secondary: '#ececec',
   },
   fontSizes: {
     small: '16px',

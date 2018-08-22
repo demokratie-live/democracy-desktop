@@ -4,6 +4,7 @@ import speakingurl from 'speakingurl';
 
 import Link from 'Components/shared/Link';
 import Title from 'Components/shared/Ellipsis';
+import Ribbon from './Ribbon';
 
 const Teaser = ({ title, procedureId, type }) => (
   <Link
@@ -15,10 +16,12 @@ const Teaser = ({ title, procedureId, type }) => (
       <Card
         hoverable
         cover={
-          <img
-            alt="example"
-            src="https://www.bundestag.de/image/558288/16x9/750/422/aefcd3415c9e921d4405f2e346d8bc73/UM/kw26_pa_gesundheit_cannabis_bild.jpg"
-          />
+          <>
+            <img
+              alt="example"
+              src="https://www.bundestag.de/image/558288/16x9/750/422/aefcd3415c9e921d4405f2e346d8bc73/UM/kw26_pa_gesundheit_cannabis_bild.jpg"
+            />
+          </>
         }
       >
         <Title tag={'h2'} lines={2}>
@@ -31,6 +34,7 @@ const Teaser = ({ title, procedureId, type }) => (
         <Icon type="tool" />
         <Icon type="tool" />
         ##Weiterlesen
+        <Ribbon>##Gesetz</Ribbon>
       </Card>
     </article>
   </Link>
