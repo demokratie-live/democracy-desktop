@@ -10,7 +10,7 @@ const FooterElem = styled.footer`
   padding-top: 30px;
   background-color: ${({ theme }) => theme.backgrounds.primary};
   color: ${({ theme }) => theme.colors.link};
-  font-size: ${({ theme }) => theme.fontSizes.medium};
+  font-size: ${({ theme }) => theme.fontSizes.default};
 `;
 
 const Footer = props => {
