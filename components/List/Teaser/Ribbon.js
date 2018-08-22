@@ -7,14 +7,14 @@ const Wrapper = styled.div`
   border-bottom-right-radius: 3px;
   position: relative;
   left: -31px;
-  width: 100px;
-  height: 34;
+  display: inline-block;
 `;
 
-const Text = styled.h2`
+const Text = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.small};
   margin: 0 12px;
   color: ${({ theme }) => theme.backgrounds.primary};
+  vertical-align: middle;
 
   &:before {
     content: '';
@@ -24,7 +24,6 @@ const Text = styled.h2`
     border-color: transparent;
     border-top-color: ${({ theme }) => darken(0.2, theme.colors.primary)};
     bottom: -5px;
-
     left: 0;
     border-width: 5px 0 0 7px;
   }

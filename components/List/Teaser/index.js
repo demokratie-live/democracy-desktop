@@ -5,6 +5,7 @@ import speakingurl from 'speakingurl';
 import Link from 'Components/shared/Link';
 import Title from 'Components/shared/Ellipsis';
 import Ribbon from './Ribbon';
+import Time from './Time';
 
 const Teaser = ({ title, procedureId, type }) => (
   <Link
@@ -12,11 +13,11 @@ const Teaser = ({ title, procedureId, type }) => (
     href={`/details?id=${procedureId}&title=${speakingurl(title)}`}
   >
     <article>
-      ##Time
       <Card
         hoverable
         cover={
           <>
+            <Time>##Time</Time>
             <img
               alt="example"
               src="https://www.bundestag.de/image/558288/16x9/750/422/aefcd3415c9e921d4405f2e346d8bc73/UM/kw26_pa_gesundheit_cannabis_bild.jpg"
@@ -27,14 +28,13 @@ const Teaser = ({ title, procedureId, type }) => (
         <Title tag={'h2'} lines={2}>
           {title}
         </Title>
-        <Icon type="tool" />
-        <Icon type="tool" />
-        <Icon type="tool" />
-        <Icon type="tool" />
-        <Icon type="tool" />
-        <Icon type="tool" />
-        ##Weiterlesen
         <Ribbon>##Gesetz</Ribbon>
+        <Icon type="tool" />
+        <Icon type="tool" />
+        <Icon type="tool" />
+        <Icon type="tool" />
+        <Icon type="tool" />
+        <Icon type="tool" />
       </Card>
     </article>
   </Link>
