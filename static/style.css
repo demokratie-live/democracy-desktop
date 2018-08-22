@@ -1,0 +1,17 @@
+@font-face {
+    font-family: "anticon";
+    src: url("/static/fonts/democracy/icons.eot?6342a7af6fcbca43f332fe515a97a57e?#iefix") format("embedded-opentype"),
+url("/static/fonts/democracy/icons.woff2?6342a7af6fcbca43f332fe515a97a57e") format("woff2"),
+url("/static/fonts/democracy/icons.woff?6342a7af6fcbca43f332fe515a97a57e") format("woff"),
+url("/static/fonts/democracy/icons.ttf?6342a7af6fcbca43f332fe515a97a57e") format("truetype"),
+url("/static/fonts/democracy/icons.svg?6342a7af6fcbca43f332fe515a97a57e#icons") format("svg");
+}
+
+
+.myicon-anticon-antrag:before {
+    content: "\f101";
+}
+.anticon-antrag:before {
+    font-family: anticon;
+    content: "\f102";
+}

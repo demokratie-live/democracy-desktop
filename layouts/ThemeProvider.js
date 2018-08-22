@@ -24,28 +24,14 @@ const ThemeProviderWrapper = ({ children }) => (
       {children}
       <link rel="stylesheet" href="/static/style.css" />
       <style jsx global>{`
-        
         @font-face {
-          font-family: 'helvetica';
-          src: url('/static/fonts/HelveticaNeue-Light-08.ttf') format('truetype');
-        }
-        @font-face {
-          font-family: 'edosz';
-          src: url('/static/fonts/edosz.ttf') format('truetype');
-        }
-        @font-face {
-          font-family: "icomoon";
-          src:    url("/static/fonts/icomoon/icomoon.eot?kp7wew");
-          src:    url("/static/fonts/icomoon/icomoon.eot?kp7wew#iefix") format("embedded-opentype"),
-                  url("/static/fonts/icomoon/icomoon.ttf?kp7wew") format("truetype"),
-                  url("/static/fonts/icomoon/icomoon.woff?kp7wew") format("woff"),
-                  url("/static/fonts/icomoon/icomoon.svg?kp7wew#icomoon") format("svg");
-          font-weight: normal;
-          font-style: normal;
-        }
-        * {
-          font-family: anticon;
-        }
+          font-family: "anticon";
+          src: url("/static/fonts/democracy/icons.eot?6342a7af6fcbca43f332fe515a97a57e?#iefix") format("embedded-opentype"),
+      url("/static/fonts/democracy/icons.woff2?6342a7af6fcbca43f332fe515a97a57e") format("woff2"),
+      url("/static/fonts/democracy/icons.woff?6342a7af6fcbca43f332fe515a97a57e") format("woff"),
+      url("/static/fonts/democracy/icons.ttf?6342a7af6fcbca43f332fe515a97a57e") format("truetype"),
+      url("/static/fonts/democracy/icons.svg?6342a7af6fcbca43f332fe515a97a57e#icons") format("svg");
+      }
         body {
           background-color: ${props => props.theme.color}
           margin: 0;

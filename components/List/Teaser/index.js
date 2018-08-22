@@ -29,12 +29,7 @@ const Teaser = ({ title, procedureId, type }) => (
           {title}
         </Title>
         <Ribbon>##Gesetz</Ribbon>
-        <Icon type="tool" />
-        <Icon type="\\f10a" />
-        <Icon type="gesundheit" />
-        <Icon type="antrag" />
-        <Icon type="smile" />
-        <Icon type="\f105" className="icon-antrag" />
+        <Icon type="antrag" className="myicon" />
         <Button type="primary" shape="circle" icon="antrag" />
       </Card>
     </article>
