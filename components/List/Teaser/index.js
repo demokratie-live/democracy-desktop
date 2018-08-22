@@ -14,6 +14,7 @@ import Demicon from './Demicon';
 const SubjectGroups = styled.div`
   float: right;
   margin-top: ${({ theme }) => theme.space(5)}px;
+  height: 100%;
 `;
 
 const Card = styled(CardComponent)`
@@ -58,13 +59,11 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
         <Row>
           <Col xs={24} sm={24} lg={24}>
             <Ribbon>{type}</Ribbon>
-            <Dev>
-              <SubjectGroups>
-                {subjectGroups.map(group => (
-                  <Demicon type={group} tooltip={group} />
-                ))}
-              </SubjectGroups>
-            </Dev>
+            <SubjectGroups>
+              {subjectGroups.map(group => (
+                <Demicon type={group} tooltip={group} />
+              ))}
+            </SubjectGroups>
           </Col>
         </Row>
       </Card>
@@ -77,6 +76,8 @@ Teaser.propTypes = {
   procedureId: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   activityIndex: PropTypes.number.isRequired,
+  voteDate: PropTypes.string,
+  subjectGroups: PropTypes.string.isRequired,
 };
 
 export default Teaser;
