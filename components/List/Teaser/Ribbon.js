@@ -8,11 +8,15 @@ const Wrapper = styled.div`
   position: relative;
   left: -31px;
   display: inline-block;
+  height: ${({ theme }) => theme.space(4)}px;
+  top: 50px;
 `;
 
 const Text = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.small};
-  margin: 0 12px;
+  margin: 0 15px;
+  margin-top: 6px;
+  display: table;
   color: ${({ theme }) => theme.backgrounds.primary};
   vertical-align: middle;
 

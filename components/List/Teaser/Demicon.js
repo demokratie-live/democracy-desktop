@@ -35,7 +35,7 @@ Demicon.propTypes = {
   tooltip: PropTypes.string,
 };
 Demicon.defaultProps = {
-  tooltip: 'The Tooltip of the Demicon',
+  tooltip: '',
 };
 
 export default Demicon;

@@ -12,6 +12,11 @@ export default gql`
       title
       procedureId
       type
+      activityIndex {
+        activityIndex
+      }
+      voteDate
+      subjectGroups
     }
   }
 `;

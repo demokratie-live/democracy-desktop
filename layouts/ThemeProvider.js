@@ -6,6 +6,7 @@ const defaultTheme = {
     primary: '#4494d3',
     link: '#0076ff',
     disabled: 'rgb(216,216,216)',
+    inactive: 'rgb(143,142,148)',
   },
   backgrounds: {
     primary: '#ffffff',
@@ -16,7 +17,7 @@ const defaultTheme = {
     small: '16px',
     default: '20px',
     large: '50px',
-    huge: '120px',
+    huge: '80px',
   },
   space: multi => multi * 10,
 };
