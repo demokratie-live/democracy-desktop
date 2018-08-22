@@ -24,6 +24,7 @@ const ThemeProviderWrapper = ({ children }) => (
       {children}
       <link rel="stylesheet" href="/static/style.css" />
       <style jsx global>{`
+        
         @font-face {
           font-family: 'helvetica';
           src: url('/static/fonts/HelveticaNeue-Light-08.ttf') format('truetype');
@@ -43,7 +44,7 @@ const ThemeProviderWrapper = ({ children }) => (
           font-style: normal;
         }
         * {
-          font-family: helvetica;
+          font-family: anticon;
         }
         body {
           background-color: ${props => props.theme.color}

@@ -15,6 +15,10 @@ const Text = styled.span`
   margin: 5px 12px;
   color: ${({ theme }) => theme.colors.default};
   vertical-align: middle;
+
+  &:before {
+    content: '\f101';
+  }
 `;
 
 const Time = ({ children }) => {

@@ -1,4 +1,4 @@
-import { Card, Icon } from 'antd';
+import { Card, Icon, Button } from 'antd';
 import PropTypes from 'prop-types';
 import speakingurl from 'speakingurl';
 
@@ -30,11 +30,12 @@ const Teaser = ({ title, procedureId, type }) => (
         </Title>
         <Ribbon>##Gesetz</Ribbon>
         <Icon type="tool" />
-        <Icon type="tool" />
-        <Icon type="tool" />
-        <Icon type="tool" />
-        <Icon type="tool" />
-        <Icon type="tool" />
+        <Icon type="\\f10a" />
+        <Icon type="gesundheit" />
+        <Icon type="antrag" />
+        <Icon type="smile" />
+        <Icon type="\f105" className="icon-antrag" />
+        <Button type="primary" shape="circle" icon="antrag" />
       </Card>
     </article>
   </Link>
