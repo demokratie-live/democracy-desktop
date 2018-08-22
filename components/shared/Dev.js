@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 const Dev = styled.div`
-  filter: blur(1px);
+  filter: brightness(0.5);
+  background-color: #fff;
   &:hover {
-    filter: blur(0px);
+    filter: brightness(1);
+    background-color: transparent;
   }
 `;
 

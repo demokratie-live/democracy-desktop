@@ -3,13 +3,14 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.backgrounds.primary};
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
   position: absolute;
   right: 0;
   top: 36px;
   width: auto;
   padding: 5px;
+  z-index: 1;
 `;
 
 const Text = styled.span`

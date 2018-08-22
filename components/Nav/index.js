@@ -58,15 +58,17 @@ const Header = ({ router: { pathname } }) => (
           </H1>
         </Link>
       </Col>
-      <Dev>
-        <Col xs={24} sm={24} lg={12}>
+      <Col xs={24} sm={24} lg={12}>
+        <Dev>
           <Search
             placeholder="Suche"
             onChange={value => console.log(value)}
             prefix={<Icon type="search" />}
           />
-        </Col>
-        <Col xs={24} sm={24} lg={6}>
+        </Dev>
+      </Col>
+      <Col xs={24} sm={24} lg={6}>
+        <Dev>
           <Row>
             <Col xs={24} sm={24} lg={4}>
               <Link secondary>
@@ -85,22 +87,22 @@ const Header = ({ router: { pathname } }) => (
               </Link>
             </Col>
           </Row>
-        </Col>
-      </Dev>
+        </Dev>
+      </Col>
     </Row>
     <Row>
-      <Dev>
-        <Col xs={24} sm={24} lg={6}>
+      <Col xs={24} sm={24} lg={6}>
+        <Dev>
           <Select
             defaultValue="19. Bundestag (2017-2021)"
             dropdownClassName="select-dropdown-period"
           >
             <Option value="19">19. Bundestag (2017-2021)</Option>
           </Select>
-        </Col>
-      </Dev>
-      <Dev>
-        <Col xs={24} sm={24} lg={12}>
+        </Dev>
+      </Col>
+      <Col xs={24} sm={24} lg={12}>
+        <Dev>
           <Row>
             <Col xs={24} sm={24} lg={6}>
               <FilterLink primary>in Abstimmung</FilterLink>
@@ -115,9 +117,9 @@ const Header = ({ router: { pathname } }) => (
               <FilterLink secondary>What's Hot</FilterLink>
             </Col>
           </Row>
-        </Col>
-        <Col xs={24} sm={24} lg={6} />
-      </Dev>
+        </Dev>
+      </Col>
+      <Col xs={24} sm={24} lg={6} />
     </Row>
   </Nav>
 );

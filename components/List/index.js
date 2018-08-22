@@ -118,9 +118,7 @@ class List extends Component {
                 <TeaserRow>
                   {procedures.map(({ procedureId, ...rest }) => (
                     <TeaserCol key={procedureId}>
-                      <Dev>
-                        <Teaser procedureId={procedureId} {...rest} />
-                      </Dev>
+                      <Teaser procedureId={procedureId} {...rest} />
                     </TeaserCol>
                   ))}
                 </TeaserRow>

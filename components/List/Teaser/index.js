@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import speakingurl from 'speakingurl';
 import styled from 'styled-components';
 
+import Dev from 'Components/shared/Dev';
 import Link from 'Components/shared/Link';
 import Title from 'Components/shared/Ellipsis';
 import Ribbon from './Ribbon';
@@ -30,31 +31,40 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
         cover={
           <>
             <Time>{voteDate ? voteDate : 'N/A'}</Time>
-            <img
-              alt="example"
-              src="https://www.bundestag.de/image/558288/16x9/750/422/aefcd3415c9e921d4405f2e346d8bc73/UM/kw26_pa_gesundheit_cannabis_bild.jpg"
-            />
+            <Dev>
+              <img
+                alt="example"
+                src="https://www.bundestag.de/image/558288/16x9/750/422/aefcd3415c9e921d4405f2e346d8bc73/UM/kw26_pa_gesundheit_cannabis_bild.jpg"
+                width="100%"
+              />
+            </Dev>
           </>
         }
       >
         <Row>
           <Col xs={24} sm={24} lg={18}>
-            <Title tag={'h2'} lines={2}>
-              {title}
-            </Title>
+            <Dev>
+              <Title tag={'h2'} lines={2}>
+                {title}
+              </Title>
+            </Dev>
           </Col>
           <Col xs={24} sm={24} lg={6}>
-            <ActivityIndex>{activityIndex.activityIndex}</ActivityIndex>
+            <Dev>
+              <ActivityIndex>{activityIndex.activityIndex}</ActivityIndex>
+            </Dev>
           </Col>
         </Row>
         <Row>
           <Col xs={24} sm={24} lg={24}>
             <Ribbon>{type}</Ribbon>
-            <SubjectGroups>
-              {subjectGroups.map(group => (
-                <Demicon type={group} tooltip={group} />
-              ))}
-            </SubjectGroups>
+            <Dev>
+              <SubjectGroups>
+                {subjectGroups.map(group => (
+                  <Demicon type={group} tooltip={group} />
+                ))}
+              </SubjectGroups>
+            </Dev>
           </Col>
         </Row>
       </Card>
