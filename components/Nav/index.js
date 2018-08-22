@@ -4,9 +4,18 @@ import { Row, Col, Input, Icon } from 'antd';
 
 import Dev from 'Components/shared/Dev';
 import Link from 'Components/shared/Link';
-import Select from 'Components/shared/Select';
+import SelectComponent from 'Components/shared/Select';
 
-const Option = Select.Option;
+const Option = styled(SelectComponent.Option)`
+  padding-left: ${({ theme }) => theme.space(4)}px;
+  background-color: ${({ theme }) => theme.backgrounds.primary};
+  height: 50px !important;
+`;
+const Select = styled(SelectComponent)`
+  margin-left: -${({ theme }) => theme.space(4)}px;
+  padding-left: ${({ theme }) => theme.space(4)}px;
+  margin-bottom: ${({ theme }) => theme.space(0.5)}px;
+`;
 
 const H1 = styled.h1`
   font-family: edosz;
@@ -18,7 +27,20 @@ const Nav = styled.nav`
   padding-left: ${({ theme }) => theme.space(4)}px;
   padding-right: ${({ theme }) => theme.space(4)}px;
   padding-top: ${({ theme }) => theme.space(2)}px;
-  padding-bottom: ${({ theme }) => theme.space(2)}px;
+  padding-bottom: ${({ theme }) => theme.space(0)}px;
+`;
+
+const FilterLink = styled(Link)`
+  font-size: ${({ theme }) => theme.fontSizes.default};
+`;
+
+const Search = styled(Input)`
+  height: 45px;
+  border-radius: 3px;
+
+  & .ant-input {
+    background-color: ${({ theme }) => theme.backgrounds.secondary};
+  }
 `;
 
 const Img = styled.img`
@@ -38,20 +60,31 @@ const Header = ({ router: { pathname } }) => (
       </Col>
       <Dev>
         <Col xs={24} sm={24} lg={12}>
-          <Input
+          <Search
             placeholder="Suche"
-            onSearch={value => console.log(value)}
+            onChange={value => console.log(value)}
             prefix={<Icon type="search" />}
           />
         </Col>
         <Col xs={24} sm={24} lg={6}>
-          <Icon type="filter" />
-          <Icon type="down" />
-          ##LinkInline Filter
-          <Icon type="mobile" />
-          ##Link App Downloaden
-          <Icon type="heart" />
-          ##Link Unterstützen
+          <Row>
+            <Col xs={24} sm={24} lg={4}>
+              <Link secondary>
+                <Icon type="filter" />
+                <Icon type="down" />
+              </Link>
+            </Col>
+            <Col xs={24} sm={24} lg={10}>
+              <Link secondary>
+                <Icon type="mobile" /> App Downloaden
+              </Link>
+            </Col>
+            <Col xs={24} sm={24} lg={10}>
+              <Link secondary>
+                <Icon type="heart" /> Unterstützen
+              </Link>
+            </Col>
+          </Row>
         </Col>
       </Dev>
     </Row>
@@ -68,7 +101,20 @@ const Header = ({ router: { pathname } }) => (
       </Dev>
       <Dev>
         <Col xs={24} sm={24} lg={12}>
-          ##Filter in Abstimmung ##Filter Vergangen ##Filter in Vorbereitung ##Filter What's Hot
+          <Row>
+            <Col xs={24} sm={24} lg={6}>
+              <FilterLink primary>in Abstimmung</FilterLink>
+            </Col>
+            <Col xs={24} sm={24} lg={6}>
+              <FilterLink secondary>Vergangen</FilterLink>
+            </Col>
+            <Col xs={24} sm={24} lg={6}>
+              <FilterLink secondary>in Vorbereitung</FilterLink>
+            </Col>
+            <Col xs={24} sm={24} lg={6}>
+              <FilterLink secondary>What's Hot</FilterLink>
+            </Col>
+          </Row>
         </Col>
         <Col xs={24} sm={24} lg={6} />
       </Dev>
