@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.primary};
@@ -20,7 +21,8 @@ const Text = styled.h2`
     position: absolute;
     display: block;
     border-style: solid;
-    border-color: #2b5a81 transparent transparent transparent;
+    border-color: transparent;
+    border-top-color: ${({ theme }) => darken(0.2, theme.colors.primary)};
     bottom: -5px;
 
     left: 0;
