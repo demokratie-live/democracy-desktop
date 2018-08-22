@@ -5,6 +5,7 @@ const defaultTheme = {
     default: '#000',
     primary: '#4494d3',
     link: '#0076ff',
+    disabled: 'rgb(216,216,216)',
   },
   backgrounds: {
     primary: '#ffffff',
@@ -15,6 +16,7 @@ const defaultTheme = {
     small: '16px',
     default: '20px',
     large: '50px',
+    huge: '120px',
   },
   space: multi => multi * 10,
 };
@@ -25,6 +27,10 @@ const ThemeProviderWrapper = ({ children }) => (
       {children}
       <link rel="stylesheet" href="/static/style.css" />
       <style jsx global>{`
+        @font-face {
+          font-family: 'democracy';
+          src: url('/static/fonts/democracy/icons.ttf') format('truetype');
+        }
         @font-face {
           font-family: 'helvetica';
           src: url('/static/fonts/HelveticaNeue-Light-08.ttf') format('truetype');

@@ -1,4 +1,4 @@
-import { Card, Icon } from 'antd';
+import { Card } from 'antd';
 import PropTypes from 'prop-types';
 import speakingurl from 'speakingurl';
 
@@ -6,6 +6,8 @@ import Link from 'Components/shared/Link';
 import Title from 'Components/shared/Ellipsis';
 import Ribbon from './Ribbon';
 import Time from './Time';
+import ActivityIndex from './ActivityIndex';
+import Demicon from './Demicon';
 
 const Teaser = ({ title, procedureId, type }) => (
   <Link
@@ -28,13 +30,14 @@ const Teaser = ({ title, procedureId, type }) => (
         <Title tag={'h2'} lines={2}>
           {title}
         </Title>
+        <ActivityIndex>3567</ActivityIndex>
         <Ribbon>##Gesetz</Ribbon>
-        <Icon type="tool" />
-        <Icon type="tool" />
-        <Icon type="tool" />
-        <Icon type="tool" />
-        <Icon type="tool" />
-        <Icon type="tool" />
+        <Demicon type="test" />
+        <Demicon type="test" />
+        <Demicon type="test" />
+        <Demicon type="test" />
+        <Demicon type="test" />
+        <Demicon type="test" />
       </Card>
     </article>
   </Link>

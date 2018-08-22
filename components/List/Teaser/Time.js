@@ -1,3 +1,4 @@
+import { Icon } from 'antd';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -8,6 +9,7 @@ const Wrapper = styled.div`
   right: 0;
   top: 36px;
   width: auto;
+  padding: 5px;
 `;
 
 const Text = styled.span`
@@ -20,6 +22,7 @@ const Text = styled.span`
 const Time = ({ children }) => {
   return (
     <Wrapper>
+      <Icon type="clock-circle-o" />
       <Text>{children}</Text>
     </Wrapper>
   );
