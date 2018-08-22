@@ -9,6 +9,7 @@ const defaultTheme = {
   backgrounds: {
     primary: '#ffffff',
     secondary: '#ececec',
+    tertiary: 'rgb(242,242,242)',
   },
   fontSizes: {
     small: '16px',

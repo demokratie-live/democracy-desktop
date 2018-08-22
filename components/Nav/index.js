@@ -31,7 +31,7 @@ const Nav = styled.nav`
 `;
 
 const FilterLink = styled(Link)`
-  font-size: ${({ theme }) => theme.fontSizes.default};
+  font-size: ${({ theme }) => theme.fontSizes.default} !important;
 `;
 
 const Search = styled(Input)`

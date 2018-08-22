@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Row, Col, Tag, Icon, Spin as SpinComponent } from 'antd';
+import { Row, Col, Tag as TagComponent, Icon, Spin as SpinComponent } from 'antd';
 import { Query } from 'react-apollo';
 import InfiniteScroll from 'react-infinite-scroller';
 import styled from 'styled-components';
@@ -43,6 +43,18 @@ const Spin = styled(SpinComponent)`
 
 const Select = styled(SelectComponent)`
   float: right;
+  & .ant-select-selection {
+    background-color: ${({ theme }) => theme.backgrounds.tertiary};
+  }
+`;
+
+const Tag = styled(TagComponent)`
+  background-color: ${({ theme }) => theme.backgrounds.tertiary};
+  font-size: ${({ theme }) => theme.fontSizes.default};
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 35px;
+  border: 0;
 `;
 
 class List extends Component {
@@ -74,16 +86,15 @@ class List extends Component {
           <Row>
             <Col xs={24} sm={24} lg={6}>
               <Tag>
-                <Icon type="info" />
-                ##in Abstimung
+                <Icon type="info-circle" /> in Abstimung
               </Tag>
             </Col>
             <Col xs={24} sm={24} lg={12} />
             <Col xs={24} sm={24} lg={6}>
-              <Icon type="arrow-down" />
               <Select
                 defaultValue="##Nach Restzeit sortieren"
                 onChange={value => console.log(value)}
+                prefix="\E619"
               >
                 <Option value="timeleft">##Nach Restzeit sortieren</Option>
                 <Option value="activity">##Nach Aktivitäten sortieren</Option>
