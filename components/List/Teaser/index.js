@@ -23,10 +23,7 @@ const Card = styled(CardComponent)`
 `;
 
 const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGroups }) => (
-  <Link
-    as={`/${type.toLowerCase()}/${procedureId}/${speakingurl(title)}`}
-    href={`/details?id=${procedureId}&title=${speakingurl(title)}`}
-  >
+  <Link href={`/${type.toLowerCase()}/${procedureId}/${speakingurl(title)}`}>
     <article>
       <Card
         hoverable
