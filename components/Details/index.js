@@ -1,5 +1,5 @@
 import { withRouter } from 'next/router';
-import { Row, Col, Menu, Icon, Collapse } from 'antd';
+import { Row, Col, Menu, Icon, Collapse, Timeline } from 'antd';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 
@@ -277,15 +277,11 @@ const Details = ({ router: { pathname, query } }) => (
                         ))}
                       </Panel>
                       <Panel header="Gesetzesstand" key="status">
-                        <Dev>
-                          {procedure.currentStatusHistory.map((status, i) => (
-                            <div key={i}>
-                              <Icon type="check-circle" />
-                              &nbsp;&nbsp;
-                              {status}
-                            </div>
+                        <Timeline>
+                          {procedure.currentStatusHistory.map(status => (
+                            <Timeline.Item>{status}</Timeline.Item>
                           ))}
-                        </Dev>
+                        </Timeline>
                       </Panel>
                       <Panel header="Ergebnisse" key="results">
                         <Dev>
