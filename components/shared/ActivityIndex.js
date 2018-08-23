@@ -1,5 +1,6 @@
-import { Icon as IconComponent } from 'antd';
 import styled from 'styled-components';
+
+import IconComponent from 'Components/shared/Icon';
 
 const Wrapper = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.medium};
@@ -8,9 +9,10 @@ const Wrapper = styled.div`
   padding: 0;
 `;
 
-const Icon = styled(IconComponent)`
+const Icon = styled(IconComponent).attrs({
+  fontSize: 50,
+})`
   font-size: ${({ theme }) => theme.fontSizes.huge};
-  width: 100%;
 `;
 
 const Text = styled.div`
@@ -19,7 +21,7 @@ const Text = styled.div`
 
 const ActivityIndex = ({ children }) => (
   <Wrapper>
-    <Icon type="up" />
+    <Icon type="arrow" />
     <Text>{children}</Text>
   </Wrapper>
 );
