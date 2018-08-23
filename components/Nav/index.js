@@ -77,12 +77,12 @@ const Header = ({ router: { pathname } }) => (
               </Link>
             </Col>
             <Col xs={24} sm={24} lg={10}>
-              <Link secondary>
+              <Link href="https://www.democracy-deutschland.de" secondary external>
                 <Icon type="mobile" /> App Downloaden
               </Link>
             </Col>
             <Col xs={24} sm={24} lg={10}>
-              <Link secondary>
+              <Link href="https://www.democracy-deutschland.de/#!donate" secondary external>
                 <Icon type="heart" /> Unterstützen
               </Link>
             </Col>
