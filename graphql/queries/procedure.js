@@ -15,6 +15,13 @@ export default gql`
       abstract
       currentStatus
       submissionDate
+      importantDocuments {
+        editor
+        type
+        url
+        number
+      }
+      currentStatusHistory
     }
   }
 `;

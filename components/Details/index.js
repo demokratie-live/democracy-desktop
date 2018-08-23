@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import Dev from 'Components/shared/Dev';
 import ActivityIndex from 'Components/shared/ActivityIndex';
 import Demicon from 'Components/shared/Demicon';
+import Link from 'Components/shared/Link';
 
 // GraphQL
 import PROCEDURE from 'GraphQl/queries/procedure';
@@ -66,11 +67,15 @@ const Panel = styled(PanelComponent)`
   font-size: ${({ theme }) => theme.fontSizes.default};
   padding: 0;
 
+  .ant-collapse-item {
+    border: 0 !important;
+  }
+
   .ant-collapse-header {
     font-weight: bold;
     border-radius: 0;
-    background-color: ${({ theme }) => theme.backgrounds.primary};
     border-bottom: 1px solid ${({ theme }) => theme.colors.divider};
+    background-color: ${({ theme }) => theme.backgrounds.primary};
     padding-left: ${({ theme }) => theme.space(4)}px !important;
     padding-right: ${({ theme }) => theme.space(4)}px !important;
 
@@ -138,6 +143,11 @@ const ColDetail = styled(Col).attrs({
 })`
   text-align: right;
   padding-right: ${({ theme }) => theme.space(2)}px;
+`;
+
+const H3 = styled.h3`
+  font-size: ${({ theme }) => theme.fontSizes.medium};
+  text-align: center;
 `;
 
 const Details = ({ router: { pathname, query } }) => (
@@ -256,14 +266,25 @@ const Details = ({ router: { pathname, query } }) => (
                         </Row>
                       </Panel>
                       <Panel header="Dokumente" key="documents">
-                        <Dev>
-                          <Icon type="tool" /> ##Antrag (BT 19/978)
-                          <Icon type="tool" /> ##Beschlussempfehlung und Bericht (BT 19/2117)
-                        </Dev>
+                        {procedure.importantDocuments.map(({ editor, type, url, number }, i) => (
+                          <div key={i}>
+                            <Icon type="file-text" />
+                            &nbsp;&nbsp;
+                            <Link href={url} external primary>
+                              {`${type} (${editor} ${number})`}
+                            </Link>
+                          </div>
+                        ))}
                       </Panel>
                       <Panel header="Gesetzesstand" key="status">
                         <Dev>
-                          ##1. Lesung ##Überwiesen ##Beschlussempfehlung liegt vor ##2. Lesung ##Abgelehnt
+                          {procedure.currentStatusHistory.map((status, i) => (
+                            <div key={i}>
+                              <Icon type="check-circle" />
+                              &nbsp;&nbsp;
+                              {status}
+                            </div>
+                          ))}
                         </Dev>
                       </Panel>
                       <Panel header="Ergebnisse" key="results">
@@ -280,8 +301,14 @@ const Details = ({ router: { pathname, query } }) => (
                           <Icon type="tool" />
                           <Icon type="tool" />
                           <Icon type="tool" />
-                          ##Um mitzustimmen, lade Dir bitte das 10X-Improvement für unsere Demokratie
-                          herunter
+                          <H3>
+                            Um mitzustimmen, lade Dir bitte das <b>10X-Improvement</b>
+                            <br />
+                            <Link href="https://www.democracy-deutschland.de/" external primary>
+                              für unsere Demokratie
+                            </Link>
+                            &nbsp;herunter
+                          </H3>
                           <Icon type="tool" />
                           <Icon type="tool" />
                         </Panel>
