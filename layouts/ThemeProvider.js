@@ -16,6 +16,7 @@ const defaultTheme = {
   fontSizes: {
     small: '16px',
     default: '20px',
+    medium: '30px',
     large: '50px',
     huge: '80px',
   },

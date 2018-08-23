@@ -15,6 +15,7 @@ const SubjectGroups = styled.div`
   float: right;
   margin-top: ${({ theme }) => theme.space(5)}px;
   height: 100%;
+  padding-right: ${({ theme }) => theme.space(1)}px;
 `;
 
 const Card = styled(CardComponent)`
@@ -43,17 +44,13 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
         }
       >
         <Row>
-          <Col xs={24} sm={24} lg={18}>
-            <Dev>
-              <Title tag={'h2'} lines={2}>
-                {title}
-              </Title>
-            </Dev>
+          <Col xs={24} sm={24} lg={20}>
+            <Title tag={'h2'} lines={2}>
+              {title}
+            </Title>
           </Col>
-          <Col xs={24} sm={24} lg={6}>
-            <Dev>
-              <ActivityIndex>{activityIndex.activityIndex}</ActivityIndex>
-            </Dev>
+          <Col xs={24} sm={24} lg={4}>
+            <ActivityIndex>{activityIndex.activityIndex}</ActivityIndex>
           </Col>
         </Row>
         <Row>
