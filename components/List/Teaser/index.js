@@ -8,8 +8,8 @@ import Link from 'Components/shared/Link';
 import Title from 'Components/shared/Ellipsis';
 import Ribbon from './Ribbon';
 import Time from './Time';
-import ActivityIndex from './ActivityIndex';
-import Demicon from './Demicon';
+import ActivityIndex from 'Components/shared/ActivityIndex';
+import Demicon from 'Components/shared/Demicon';
 
 const SubjectGroups = styled.div`
   float: right;

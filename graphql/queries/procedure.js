@@ -11,6 +11,10 @@ export default gql`
       }
       voteDate
       subjectGroups
+      tags
+      abstract
+      currentStatus
+      submissionDate
     }
   }
 `;

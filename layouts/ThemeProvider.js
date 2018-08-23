@@ -6,6 +6,7 @@ const defaultTheme = {
     primary: '#4494d3',
     tertiary: 'rgb(239,239,244)',
     link: '#0076ff',
+    highlight: 'rgb(68,148,211)',
     disabled: 'rgb(216,216,216)',
     inactive: 'rgb(143,142,148)',
     divider: 'rgb(188,187,193)',

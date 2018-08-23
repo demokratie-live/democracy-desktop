@@ -4,6 +4,8 @@ import { Query } from 'react-apollo';
 import styled from 'styled-components';
 
 import Dev from 'Components/shared/Dev';
+import ActivityIndex from 'Components/shared/ActivityIndex';
+import Demicon from 'Components/shared/Demicon';
 
 // GraphQL
 import PROCEDURE from 'GraphQl/queries/procedure';
@@ -74,6 +76,7 @@ const Panel = styled(PanelComponent)`
 
     .arrow {
       right: 16px;
+      left: auto !important;
       color: ${({ theme }) => theme.colors.arrow};
       font-size: ${({ theme }) => theme.fontSizes.small} !important;
     }
@@ -91,6 +94,8 @@ const Panel = styled(PanelComponent)`
     .ant-collapse-content-box {
       padding-left: ${({ theme }) => theme.space(4)}px;
       padding-right: ${({ theme }) => theme.space(4)}px;
+      padding-bottom: ${({ theme }) => theme.space(4)}px;
+      padding-top: ${({ theme }) => theme.space(1.5)}px !important;
     }
   }
 `;
@@ -98,6 +103,41 @@ const Panel = styled(PanelComponent)`
 const Overview = styled.div`
   padding-left: ${({ theme }) => theme.space(4)}px;
   padding-right: ${({ theme }) => theme.space(4)}px;
+  padding-top: ${({ theme }) => theme.space(5)}px;
+  padding-bottom: ${({ theme }) => theme.space(4)}px;
+`;
+
+const Title = styled.h2`
+  font-size: ${({ theme }) => theme.fontSizes.medium};
+`;
+
+const SubjectGroups = styled.div`
+  padding-top: ${({ theme }) => theme.space(2)}px;
+  height: 100%;
+`;
+
+const DetailHead = styled.text`
+  color: ${({ theme }) => theme.colors.highlight};
+`;
+
+const P = styled.p`
+  margin-bottom: ${({ theme }) => theme.space(0.5)}px;
+  font-size: ${({ theme }) => theme.fontSizes.default};
+`;
+
+const subjectGroups = groups => {
+  return groups.map((item, i) => {
+    return <P key={i}>{item}</P>;
+  });
+};
+
+const ColDetail = styled(Col).attrs({
+  xs: 24,
+  sm: 24,
+  lg: 18,
+})`
+  text-align: right;
+  padding-right: ${({ theme }) => theme.space(2)}px;
 `;
 
 const Details = ({ router: { pathname, query } }) => (
@@ -107,62 +147,134 @@ const Details = ({ router: { pathname, query } }) => (
       {({ loading, error, data: { procedure } }) => {
         if (loading) return <p>Loading...</p>;
         if (error) return <p>Error :(</p>;
+        console.log(procedure);
         return (
           <Row>
-            <Dev>
-              <Col xs={24} sm={24} md={24} lg={3}>
-                <Dev>
-                  <ASide>##Facebook ##Twitter ##EMail</ASide>
-                </Dev>
-              </Col>
-              <Col xs={24} sm={24} md={24} lg={18}>
-                <ContentSection>
-                  <Row>
-                    <WhiteCol>
+            <Col xs={24} sm={24} md={24} lg={4}>
+              <Dev>
+                <ASide>##Facebook ##Twitter ##EMail</ASide>
+              </Dev>
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={16}>
+              <ContentSection>
+                <Row>
+                  <WhiteCol>
+                    <Dev>
                       <img
                         alt="example"
                         src="https://www.bundestag.de/image/558288/16x9/750/422/aefcd3415c9e921d4405f2e346d8bc73/UM/kw26_pa_gesundheit_cannabis_bild.jpg"
                         width="100%"
                       />
-                      <Overview>
-                        ##{procedure.title}
-                        <Icon type="tool" />
-                        <Icon type="tool" />
-                        ##Abgelehnt ##05.07.18 ##Internationales
-                      </Overview>
-                    </WhiteCol>
-                    <GrayCol>
-                      ##Internationales Abkommen, Menschenrechte, Menschenrechtsrat der Vereinten
-                      Nationen, Multinationales Unternehmen, Produktion, Unternehmensethik, Verhaltenskodex
-                    </GrayCol>
-                    <WhiteCol>
-                      <Collapse
-                        defaultActiveKey={['details', 'documents', 'status', 'results']}
-                        onChange={key => console.log(key)}
-                        bordered={false}
-                      >
-                        <Panel header="Details" key="details">
-                          ##Sachgebiet Wirtschaft Recht ##Typ Antrag ##Vorgang 232645 ##erstellt am 28.02.18
-                          ##Abstimmung 05.07.18 ##Aktueller Stand Abgelehnt ##Inhalt ##Gerechtigkeit und
-                          Verantwortung in weltweiten Produktionsketten und Lieferketten durch Abschluss
-                          eines internationalen Abkommens zur Sanktionierung von
-                          Menschenrechtsverstößen: aktive Beteiligung am Beratungsprozess, Sicherstellung
-                          finanzieller und personeller Ressourcen der UN-Arbeitsgruppe und Beteiligung der
-                          Zivilgesellschaft, Unterstützung auf EU-Ebene
-                        </Panel>
-                        <Panel header="Dokumente" key="documents">
+                    </Dev>
+                    <Overview>
+                      <Row>
+                        <Col xs={24} sm={24} lg={22}>
+                          <Title>{procedure.title}</Title>
+                        </Col>
+                        <Col xs={24} sm={24} lg={2}>
+                          <ActivityIndex>{procedure.activityIndex.activityIndex}</ActivityIndex>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col xs={24} sm={24} lg={22}>
+                          <Dev>
+                            <SubjectGroups>
+                              {procedure.subjectGroups.map(group => (
+                                <Demicon type={group} tooltip={group} />
+                              ))}
+                            </SubjectGroups>
+                          </Dev>
+                        </Col>
+                        <Col xs={24} sm={24} lg={2}>
+                          <Dev>
+                            {procedure.voteDate}
+                          </Dev>
+                        </Col>
+                      </Row>
+                    </Overview>
+                  </WhiteCol>
+                  <GrayCol>{procedure.tags.join(', ')}</GrayCol>
+                  <WhiteCol>
+                    <Collapse
+                      defaultActiveKey={['details', 'documents', 'status', 'results']}
+                      bordered={false}
+                    >
+                      <Panel header="Details" key="details">
+                        <Row>
+                          <Col xs={24} sm={24} lg={12}>
+                            <DetailHead>Sachgebiete</DetailHead>
+                            <br />
+                            {subjectGroups(procedure.subjectGroups)}
+                            <br />
+                            <DetailHead>Aktueller Stand</DetailHead>
+                            <br />
+                            {procedure.currentStatus}
+                            <br />
+                            <br />
+                          </Col>
+                          <Col xs={24} sm={24} lg={12}>
+                            <Row>
+                              <ColDetail>
+                                <DetailHead>Typ</DetailHead>
+                              </ColDetail>
+                              <Col xs={24} sm={24} lg={6}>
+                                {procedure.type}
+                              </Col>
+                            </Row>
+                            <Row>
+                              <ColDetail>
+                                <DetailHead>Vorgang</DetailHead>
+                              </ColDetail>
+                              <Col xs={24} sm={24} lg={6}>
+                                {procedure.procedureId}
+                              </Col>
+                            </Row>
+                            <Row>
+                              <ColDetail>
+                                <DetailHead>erstellt am</DetailHead>
+                              </ColDetail>
+                              <Col xs={24} sm={24} lg={6}>
+                              {procedure.submissionDate}
+                              </Col>
+                            </Row>
+                            <Row>
+                              <ColDetail>
+                                <DetailHead>Abstimmung</DetailHead>
+                              </ColDetail>
+                              <Col xs={24} sm={24} lg={6}>
+                                {procedure.voteDate ? procedure.voteDate : 'N/A'}
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xs={24} sm={24} lg={24}>
+                            <DetailHead>Inhalt</DetailHead>
+                            <br />
+                            {procedure.abstract}
+                          </Col>
+                        </Row>
+                      </Panel>
+                      <Panel header="Dokumente" key="documents">
+                        <Dev>
                           <Icon type="tool" /> ##Antrag (BT 19/978)
                           <Icon type="tool" /> ##Beschlussempfehlung und Bericht (BT 19/2117)
-                        </Panel>
-                        <Panel header="Gesetzesstand" key="status">
+                        </Dev>
+                      </Panel>
+                      <Panel header="Gesetzesstand" key="status">
+                        <Dev>
                           ##1. Lesung ##Überwiesen ##Beschlussempfehlung liegt vor ##2. Lesung ##Abgelehnt
-                        </Panel>
-                        <Panel header="Ergebnisse" key="results">
+                        </Dev>
+                      </Panel>
+                      <Panel header="Ergebnisse" key="results">
+                        <Dev>
                           ##PiechartBundestag ##PiechartCommunity
-                        </Panel>
-                      </Collapse>
-                    </WhiteCol>
-                    <WhiteColPad>
+                        </Dev>
+                      </Panel>
+                    </Collapse>
+                  </WhiteCol>
+                  <WhiteColPad>
+                    <Dev>
                       <Collapse defaultActiveKey={['vote']} onChange={key => console.log(key)} bordered={false}>
                         <Panel header="AppStimmen" key="vote">
                           <Icon type="tool" />
@@ -174,12 +286,14 @@ const Details = ({ router: { pathname, query } }) => (
                           <Icon type="tool" />
                         </Panel>
                       </Collapse>
-                    </WhiteColPad>
-                  </Row>
-                </ContentSection>
-              </Col>
-              <Col xs={24} sm={24} md={24} lg={3}>
-                <ASide>
+                    </Dev>
+                  </WhiteColPad>
+                </Row>
+              </ContentSection>
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={4}>
+              <ASide>
+                <Dev>
                   <Menu
                     onClick={data => console.log(data)}
                     defaultSelectedKeys={['antrag']}
@@ -194,9 +308,9 @@ const Details = ({ router: { pathname, query } }) => (
                     </SubMenu>
                     <SubMenu key="vote" title="2. AppStimmen" />
                   </Menu>
-                </ASide>
-              </Col>
-            </Dev>
+                </Dev>
+              </ASide>
+            </Col>
           </Row>
         );
       }}
