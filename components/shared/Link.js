@@ -31,13 +31,16 @@ const A = styled.a`
   }
 `;
 
-const PrimaryLink = ({ children, href, external, primary, secondary }) => (
-  <Link href={href} passHref>
-    <A target={external ? '_blank' : '_self'} primary={primary} secondary={secondary}>
-      {children}
-    </A>
-  </Link>
-);
+const PrimaryLink = (props) => {
+  const { children, href, external, primary, secondary } = props;
+  return (
+    <Link href={href} passHref>
+      <A target={external ? '_blank' : '_self'} primary={primary} secondary={secondary} {...props}>
+        {children}
+      </A>
+    </Link>
+  );
+};
 
 PrimaryLink.displayName = 'PrimaryLink';
 
