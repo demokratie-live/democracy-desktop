@@ -5,7 +5,7 @@ const Icon = styled.i`
   &:before {
     font-size: 22px;
     position: relative;
-    top: 3px;
+    top: 4px;
   }
 `;
 

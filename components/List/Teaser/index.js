@@ -1,15 +1,17 @@
-import { Card as CardComponent, Row, Col } from 'antd';
 import PropTypes from 'prop-types';
 import speakingurl from 'speakingurl';
 import styled from 'styled-components';
 
+// Components
+import { Card as CardComponent, Row, Col } from 'antd';
+
+import SubjectIcon from './SubjectIcon';
+import Ribbon from './Ribbon';
+import Time from './Time';
 import Dev from 'Components/shared/Dev';
 import Link from 'Components/shared/Link';
 import Title from 'Components/shared/Ellipsis';
-import Ribbon from './Ribbon';
-import Time from './Time';
 import ActivityIndex from 'Components/shared/ActivityIndex';
-import Demicon from 'Components/shared/Demicon';
 
 const SubjectGroups = styled.div`
   float: right;
@@ -18,9 +20,7 @@ const SubjectGroups = styled.div`
   padding-right: ${({ theme }) => theme.space(1)}px;
 `;
 
-const Card = styled(CardComponent)`
-  padding-bottom: ${({ theme }) => theme.space(3)}px;
-`;
+const Card = styled(CardComponent)``;
 
 const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGroups }) => (
   <Link href={`/${type.toLowerCase()}/${procedureId}/${speakingurl(title)}`}>
@@ -55,7 +55,7 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
             <Ribbon>{type}</Ribbon>
             <SubjectGroups>
               {subjectGroups.map(group => (
-                <Demicon type={group} tooltip={group} />
+                <SubjectIcon key={group} group={group} />
               ))}
             </SubjectGroups>
           </Col>
