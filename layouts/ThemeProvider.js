@@ -27,11 +27,8 @@ const ThemeProviderWrapper = ({ children }) => (
     <>
       {children}
       <link rel="stylesheet" href="/static/style.css" />
+      <link rel="stylesheet" href="/static/fonts/democracy/icons.css" />
       <style jsx global>{`
-        @font-face {
-          font-family: 'democracy';
-          src: url('/static/fonts/democracy/icons.ttf') format('truetype');
-        }
         @font-face {
           font-family: 'helvetica';
           src: url('/static/fonts/HelveticaNeue-Light-08.ttf') format('truetype');

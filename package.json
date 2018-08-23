@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "npm run build:fonts && babel-node server.js",
     "build": "next build",
-    "build:fonts": "icon-font-generator assets/fontSvgs/*.svg -o static/fonts/democracy/",
+    "build:fonts": "icon-font-generator assets/fontSvgs/*.svg -o static/fonts/democracy/ --normalize",
     "prebuild": "npm run build:fonts",
     "start": "NODE_ENV=production babel-node server.js",
     "lint": "eslint ."
