@@ -19,6 +19,8 @@ const Circle = styled.i`
   background-color: ${({ theme }) => theme.colors.disabled};
   border-radius: 50%;
   padding: 15px;
+  margin-left: ${({ theme }) => theme.space(0.5)}px;
+  margin-right: ${({ theme }) => theme.space(0.5)}px;
   &:before {
     font-family: 'democracy';
     font-size: ${({ theme }) => theme.fontSizes.default};

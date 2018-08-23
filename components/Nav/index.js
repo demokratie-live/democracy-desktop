@@ -15,11 +15,17 @@ const Select = styled(SelectComponent)`
   margin-left: -${({ theme }) => theme.space(4)}px;
   padding-left: ${({ theme }) => theme.space(4)}px;
   margin-bottom: ${({ theme }) => theme.space(0.5)}px;
+
+  .ant-select-selection__rendered {
+    margin-left: 0;
+  }
 `;
 
 const H1 = styled.h1`
   font-family: edosz;
   font-size: ${({ theme }) => theme.fontSizes.large};
+  margin-bottom: ${({ theme }) => theme.space(2)}px;
+  margin-top: -${({ theme }) => theme.space(2)}px;
 `;
 
 const Nav = styled.nav`
@@ -30,13 +36,18 @@ const Nav = styled.nav`
   padding-bottom: ${({ theme }) => theme.space(0)}px;
 `;
 
-const FilterLink = styled(Link)`
-  font-size: ${({ theme }) => theme.fontSizes.default} !important;
+const MenuLink = styled(Link)`
+  font-size: ${({ theme }) => theme.fontSizes.default};
+
+  .anticon {
+    font-size: ${({ theme }) => theme.fontSizes.medium};
+  }
 `;
 
 const Search = styled(Input)`
   height: 45px;
   border-radius: 3px;
+  padding-right: ${({ theme }) => theme.space(2)}px;
 
   & .ant-input {
     background-color: ${({ theme }) => theme.backgrounds.secondary};
@@ -68,26 +79,26 @@ const Header = ({ router: { pathname } }) => (
         </Dev>
       </Col>
       <Col xs={24} sm={24} lg={6}>
-        <Dev>
-          <Row>
-            <Col xs={24} sm={24} lg={4}>
-              <Link secondary>
+        <Row>
+          <Col xs={24} sm={24} lg={4}>
+            <Dev>
+              <MenuLink secondary>
                 <Icon type="filter" />
                 <Icon type="down" />
-              </Link>
-            </Col>
-            <Col xs={24} sm={24} lg={10}>
-              <Link secondary>
-                <Icon type="mobile" /> App Downloaden
-              </Link>
-            </Col>
-            <Col xs={24} sm={24} lg={10}>
-              <Link secondary>
-                <Icon type="heart" /> Unterstützen
-              </Link>
-            </Col>
-          </Row>
-        </Dev>
+              </MenuLink>
+            </Dev>
+          </Col>
+          <Col xs={24} sm={24} lg={10}>
+            <MenuLink href="https://www.democracy-deutschland.de" secondary external>
+              <Icon type="mobile" /> App Downloaden
+            </MenuLink>
+          </Col>
+          <Col xs={24} sm={24} lg={10}>
+            <MenuLink href="https://www.democracy-deutschland.de/#!donate" secondary external>
+              <Icon type="heart" /> Unterstützen
+            </MenuLink>
+          </Col>
+        </Row>
       </Col>
     </Row>
     <Row>
@@ -105,16 +116,16 @@ const Header = ({ router: { pathname } }) => (
         <Dev>
           <Row>
             <Col xs={24} sm={24} lg={6}>
-              <FilterLink primary>in Abstimmung</FilterLink>
+              <MenuLink primary>in Abstimmung</MenuLink>
             </Col>
             <Col xs={24} sm={24} lg={6}>
-              <FilterLink secondary>Vergangen</FilterLink>
+              <MenuLink secondary>Vergangen</MenuLink>
             </Col>
             <Col xs={24} sm={24} lg={6}>
-              <FilterLink secondary>in Vorbereitung</FilterLink>
+              <MenuLink secondary>in Vorbereitung</MenuLink>
             </Col>
             <Col xs={24} sm={24} lg={6}>
-              <FilterLink secondary>What's Hot</FilterLink>
+              <MenuLink secondary>What's Hot</MenuLink>
             </Col>
           </Row>
         </Dev>

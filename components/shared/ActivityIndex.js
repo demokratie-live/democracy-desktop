@@ -2,7 +2,7 @@ import { Icon as IconComponent } from 'antd';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.large};
+  font-size: ${({ theme }) => theme.fontSizes.medium};
   color: ${({ theme }) => theme.colors.inactive};
   text-align: center;
   padding: 0;
@@ -14,7 +14,7 @@ const Icon = styled(IconComponent)`
 `;
 
 const Text = styled.div`
-  margin-top: -${({ theme }) => theme.space(4)}px;
+  margin-top: -${({ theme }) => theme.space(2)}px;
 `;
 
 const ActivityIndex = ({ children }) => (
