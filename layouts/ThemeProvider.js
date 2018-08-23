@@ -4,9 +4,12 @@ const defaultTheme = {
   colors: {
     default: '#000',
     primary: '#4494d3',
+    tertiary: 'rgb(239,239,244)',
     link: '#0076ff',
     disabled: 'rgb(216,216,216)',
     inactive: 'rgb(143,142,148)',
+    divider: 'rgb(188,187,193)',
+    arrow: 'rgb(173,173,176)',
   },
   backgrounds: {
     primary: '#ffffff',
