@@ -295,9 +295,9 @@ const Details = ({ router: { pathname, query } }) => (
                     </Collapse>
                   </WhiteCol>
                   <WhiteColPad>
-                    <Dev>
-                      <Collapse defaultActiveKey={['vote']} onChange={key => console.log(key)} bordered={false}>
-                        <Panel header="AppStimmen" key="vote">
+                    <Collapse defaultActiveKey={['vote']} onChange={key => console.log(key)} bordered={false}>
+                      <Panel header="AppStimmen" key="vote">
+                        <Dev>
                           <Icon type="tool" />
                           <Icon type="tool" />
                           <Icon type="tool" />
@@ -311,9 +311,9 @@ const Details = ({ router: { pathname, query } }) => (
                           </H3>
                           <Icon type="tool" />
                           <Icon type="tool" />
-                        </Panel>
-                      </Collapse>
-                    </Dev>
+                        </Dev>
+                      </Panel>
+                    </Collapse>
                   </WhiteColPad>
                 </Row>
               </ContentSection>
