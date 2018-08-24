@@ -58,7 +58,11 @@ const Img = styled.img`
   width: 50px;
 `;
 
-const Header = () => (
+const Header = ({
+  router: {
+    query: { listType },
+  },
+}) => (
   <Nav>
     <Row>
       <Col xs={24} sm={24} lg={6}>
@@ -116,16 +120,44 @@ const Header = () => (
         <Dev>
           <Row>
             <Col xs={24} sm={24} lg={6}>
-              <MenuLink primary>in Abstimmung</MenuLink>
+              <MenuLink
+                prefetch
+                secondary={listType !== 'in-abstimmung'}
+                href={`/?listType=in-abstimmung`}
+                as={'/'}
+              >
+                in Abstimmung
+              </MenuLink>
             </Col>
             <Col xs={24} sm={24} lg={6}>
-              <MenuLink secondary>Vergangen</MenuLink>
+              <MenuLink
+                prefetch
+                secondary={listType !== 'vergangen'}
+                href={`/?listType=vergangen`}
+                as={'/vergangen'}
+              >
+                Vergangen
+              </MenuLink>
             </Col>
             <Col xs={24} sm={24} lg={6}>
-              <MenuLink secondary>in Vorbereitung</MenuLink>
+              <MenuLink
+                prefetch
+                secondary={listType !== 'in-vorbereitung'}
+                href={`/?listType=in-vorbereitung`}
+                as={'/in-vorbereitung'}
+              >
+                in Vorbereitung
+              </MenuLink>
             </Col>
             <Col xs={24} sm={24} lg={6}>
-              <MenuLink secondary>What's Hot</MenuLink>
+              <MenuLink
+                prefetch
+                secondary={listType !== 'whats-hot'}
+                href={`/?listType=whats-hot`}
+                as={'/whats-hot'}
+              >
+                What's Hot
+              </MenuLink>
             </Col>
           </Row>
         </Dev>

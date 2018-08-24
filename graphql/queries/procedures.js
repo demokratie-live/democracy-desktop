@@ -4,11 +4,17 @@ export default gql`
   query procedures(
     $offset: Int
     $pageSize: Int
-    $type: ProcedureType!
+    $listTypes: [ProcedureType!]
     $sort: String
     $filter: ProcedureFilter
   ) {
-    procedures(offset: $offset, pageSize: $pageSize, type: $type, sort: $sort, filter: $filter) {
+    procedures(
+      offset: $offset
+      pageSize: $pageSize
+      listTypes: $listTypes
+      sort: $sort
+      filter: $filter
+    ) {
       title
       procedureId
       type

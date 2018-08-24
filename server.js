@@ -4,7 +4,6 @@ import next from 'next';
 
 // Process Environments
 const { PORT, NODE_ENV } = process.env;
-console.log('HIER', PORT, NODE_ENV);
 const dev = NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -13,6 +12,12 @@ app
   .prepare()
   .then(() => {
     const server = express();
+
+    server.get('/:listType(vergangen|in-vorbereitung|whats-hot)?/', (req, res) => {
+      const actualPage = '/';
+      const queryParams = { listType: req.params.listType || 'in-abstimmung' };
+      app.render(req, res, actualPage, queryParams);
+    });
 
     server.get('/:type(gesetzgebung|antrag)/:id/:title', (req, res) => {
       const actualPage = '/details';

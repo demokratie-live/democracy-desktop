@@ -26,7 +26,6 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
   <Link
     as={`/${type.toLowerCase()}/${procedureId}/${speakingurl(title)}`}
     href={`/details?id=${procedureId}&title=${speakingurl(title)}`}
-    prefetch
   >
     <article>
       <Card

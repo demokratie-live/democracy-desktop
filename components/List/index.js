@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Row, Col, Tag as TagComponent, Icon, Spin as SpinComponent } from 'antd';
+import { withRouter } from 'next/router';
 import { Query } from 'react-apollo';
 import InfiniteScroll from 'react-infinite-scroller';
 import styled from 'styled-components';
@@ -7,6 +8,9 @@ import styled from 'styled-components';
 import Dev from 'Components/shared/Dev';
 import SelectComponent from 'Components/shared/Select';
 import Teaser from './Teaser';
+
+// Helper
+import getListType from '../../lib/helpers/listTypeUrlToQueryParam';
 
 // GraphQL
 import PROCEDURES from 'GraphQl/queries/procedures';
@@ -69,8 +73,10 @@ class List extends Component {
       },
       updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult) {
-          this.setState({ hasMore: false });
           return prev;
+        }
+        if (fetchMoreResult.procedures.length === 0) {
+          this.setState({ hasMore: false });
         }
         return Object.assign({}, prev, {
           procedures: [...prev.procedures, ...fetchMoreResult.procedures],
@@ -80,6 +86,11 @@ class List extends Component {
   };
 
   render() {
+    const {
+      router: {
+        query: { listType },
+      },
+    } = this.props;
     return (
       <Section>
         <Row>
@@ -104,7 +115,10 @@ class List extends Component {
             </Dev>
           </Col>
         </Row>
-        <Query query={PROCEDURES} variables={{ type: 'VOTING', pageSize: PAGE_SIZE }}>
+        <Query
+          query={PROCEDURES}
+          variables={{ listTypes: [getListType(listType)], pageSize: PAGE_SIZE }}
+        >
           {({ loading, error, data: { procedures }, fetchMore }) => {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>Error :(</p>;
@@ -131,4 +145,4 @@ class List extends Component {
   }
 }
 
-export default List;
+export default withRouter(List);
