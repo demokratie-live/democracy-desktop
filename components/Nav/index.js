@@ -1,11 +1,11 @@
-import { withRouter } from 'next/router';
 import styled from 'styled-components';
-import { Row, Col, Input, Icon } from 'antd';
+import { Row, Col, Icon } from 'antd';
 
 import Dev from 'Components/shared/Dev';
 import Link from 'Components/shared/Link';
 import SelectComponent from 'Components/shared/Select';
 import ListLink from './ListLink';
+import Search from './Search';
 
 const Option = styled(SelectComponent.Option)`
   padding-left: ${({ theme }) => theme.space(4)}px;
@@ -45,25 +45,11 @@ const MenuLink = styled(Link)`
   }
 `;
 
-const Search = styled(Input)`
-  height: 45px;
-  border-radius: 3px;
-  padding-right: ${({ theme }) => theme.space(2)}px;
-
-  & .ant-input {
-    background-color: ${({ theme }) => theme.backgrounds.secondary};
-  }
-`;
-
 const Img = styled.img`
   width: 50px;
 `;
 
-const Header = ({
-  router: {
-    query: { listType },
-  },
-}) => (
+const Header = () => (
   <Nav>
     <Row>
       <Col xs={24} sm={24} lg={6}>
@@ -76,11 +62,7 @@ const Header = ({
       </Col>
       <Col xs={24} sm={24} lg={12}>
         <Dev>
-          <Search
-            placeholder="Suche"
-            onChange={value => console.log(value)}
-            prefix={<Icon type="search" />}
-          />
+          <Search />
         </Dev>
       </Col>
       <Col xs={24} sm={24} lg={6}>
@@ -140,4 +122,4 @@ const Header = ({
   </Nav>
 );
 
-export default withRouter(Header);
+export default Header;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 import styled from 'styled-components';
 
@@ -23,6 +24,10 @@ const MenuLink = ({ listType, router: { query }, children }) => {
       {children}
     </Link>
   );
+};
+
+MenuLink.propTypes = {
+  listType: PropTypes.string.isRequired,
 };
 
 export default withRouter(MenuLink);
