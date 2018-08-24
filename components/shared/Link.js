@@ -31,7 +31,7 @@ const A = styled.a`
   }
 `;
 
-const PrimaryLink = (props) => {
+const LinkComponent = props => {
   const { children, href, external, primary, secondary } = props;
   return (
     <Link href={href} passHref>
@@ -42,19 +42,19 @@ const PrimaryLink = (props) => {
   );
 };
 
-PrimaryLink.displayName = 'PrimaryLink';
+LinkComponent.displayName = 'LinkComponent';
 
-PrimaryLink.propTypes = {
+LinkComponent.propTypes = {
   href: PropTypes.string.isRequired,
   external: PropTypes.bool,
   primary: PropTypes.bool,
   secondary: PropTypes.bool,
 };
 
-PrimaryLink.defaultProps = {
+LinkComponent.defaultProps = {
   external: false,
   primary: true,
   secondary: false,
 };
 
-export default PrimaryLink;
+export default LinkComponent;

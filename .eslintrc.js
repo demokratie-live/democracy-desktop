@@ -11,6 +11,7 @@ module.exports = {
     // REACT
       "react/react-in-jsx-scope": 0,
       "react/prop-types": [2, { ignore: ['theme', 'children', 'router'] }],
+      "react/no-unescaped-entities": 0,
   },
   globals: {
     Log: true,

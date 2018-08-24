@@ -58,7 +58,7 @@ const Img = styled.img`
   width: 50px;
 `;
 
-const Header = ({ router: { pathname } }) => (
+const Header = () => (
   <Nav>
     <Row>
       <Col xs={24} sm={24} lg={6}>
@@ -82,7 +82,7 @@ const Header = ({ router: { pathname } }) => (
         <Row>
           <Col xs={24} sm={24} lg={4}>
             <Dev>
-              <MenuLink secondary>
+              <MenuLink secondary href="#">
                 <Icon type="filter" />
                 <Icon type="down" />
               </MenuLink>
