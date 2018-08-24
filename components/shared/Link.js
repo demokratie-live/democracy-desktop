@@ -32,9 +32,9 @@ const A = styled.a`
 `;
 
 const LinkComponent = props => {
-  const { children, as, href, external, primary, secondary } = props;
+  const { children, as, href, prefetch, external, primary, secondary } = props;
   return (
-    <Link href={href} as={as} passHref>
+    <Link href={href} as={as} prefetch={prefetch} passHref>
       <A target={external ? '_blank' : '_self'} primary={primary} secondary={secondary} {...props}>
         {children}
       </A>
