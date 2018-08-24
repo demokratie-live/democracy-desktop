@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Row, Col, Tag as TagComponent, Icon, Spin as SpinComponent } from 'antd';
+import { Row, Col, Spin as SpinComponent } from 'antd';
 import { withRouter } from 'next/router';
 import { Query } from 'react-apollo';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -10,10 +10,11 @@ import SelectComponent from 'Components/shared/Select';
 import Teaser from './Teaser';
 
 // Helper
-import getListType from '../../lib/helpers/listTypeUrlToQueryParam';
+import { listTypeUrlToQueryParam as getListType } from '../../lib/helpers/listTypeConvert';
 
 // GraphQL
 import PROCEDURES from 'GraphQl/queries/procedures';
+import ListDesctiption from './ListDescription';
 const PAGE_SIZE = 15;
 
 const Option = SelectComponent.Option;
@@ -52,15 +53,6 @@ const Select = styled(SelectComponent)`
   }
 `;
 
-const Tag = styled(TagComponent)`
-  background-color: ${({ theme }) => theme.backgrounds.tertiary};
-  font-size: ${({ theme }) => theme.fontSizes.default};
-  padding-top: 5px;
-  padding-bottom: 5px;
-  height: 35px;
-  border: 0;
-`;
-
 class List extends Component {
   state = {
     hasMore: true,
@@ -96,9 +88,7 @@ class List extends Component {
         <Row>
           <Col xs={24} sm={24} lg={6}>
             <Dev>
-              <Tag>
-                <Icon type="info-circle" /> in Abstimung
-              </Tag>
+              <ListDesctiption />
             </Dev>
           </Col>
           <Col xs={24} sm={24} lg={12} />
