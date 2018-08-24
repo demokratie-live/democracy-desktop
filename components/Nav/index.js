@@ -5,6 +5,7 @@ import { Row, Col, Input, Icon } from 'antd';
 import Dev from 'Components/shared/Dev';
 import Link from 'Components/shared/Link';
 import SelectComponent from 'Components/shared/Select';
+import ListLink from './ListLink';
 
 const Option = styled(SelectComponent.Option)`
   padding-left: ${({ theme }) => theme.space(4)}px;
@@ -120,44 +121,16 @@ const Header = ({
         <Dev>
           <Row>
             <Col xs={24} sm={24} lg={6}>
-              <MenuLink
-                prefetch
-                secondary={listType !== 'in-abstimmung'}
-                href={`/?listType=in-abstimmung`}
-                as={'/'}
-              >
-                in Abstimmung
-              </MenuLink>
+              <ListLink listType="in-abstimmung">in Abstimmung</ListLink>
             </Col>
             <Col xs={24} sm={24} lg={6}>
-              <MenuLink
-                prefetch
-                secondary={listType !== 'vergangen'}
-                href={`/?listType=vergangen`}
-                as={'/vergangen'}
-              >
-                Vergangen
-              </MenuLink>
+              <ListLink listType="vergangen">Vergangen</ListLink>
             </Col>
             <Col xs={24} sm={24} lg={6}>
-              <MenuLink
-                prefetch
-                secondary={listType !== 'in-vorbereitung'}
-                href={`/?listType=in-vorbereitung`}
-                as={'/in-vorbereitung'}
-              >
-                in Vorbereitung
-              </MenuLink>
+              <ListLink listType="in-vorbereitung">in Vorbereitung</ListLink>
             </Col>
             <Col xs={24} sm={24} lg={6}>
-              <MenuLink
-                prefetch
-                secondary={listType !== 'whats-hot'}
-                href={`/?listType=whats-hot`}
-                as={'/whats-hot'}
-              >
-                What's Hot
-              </MenuLink>
+              <ListLink listType="whats-hot">What's Hot</ListLink>
             </Col>
           </Row>
         </Dev>
