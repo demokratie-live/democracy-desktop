@@ -7,11 +7,16 @@ import subjectGroupIconHelper, { subjectGroups } from 'Helpers/subjectGroupToIco
 import Button from 'Components/shared/Button';
 import Icon from 'Components/shared/Icon';
 
-const SubjectButton = ({ group, onClick }) => (
+const SubjectButton = ({ group, onClick, active }) => (
   <div>
-    <Button style={{ marginLeft: 6 }} type="primary" shape="circle" size="large" onClick={onClick}>
-      <Icon type={subjectGroupIconHelper(group)} />
-    </Button>
+    <Button
+      style={{ marginLeft: 6 }}
+      type={active ? 'primary' : 'dashed'}
+      shape="circle"
+      size="large"
+      onClick={onClick}
+      icon={subjectGroupIconHelper(group)}
+    />
     {group}
   </div>
 );

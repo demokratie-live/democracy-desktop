@@ -27,6 +27,7 @@ class FilterBox extends Component {
             <Box>
               {Object.keys(subjectGroups).map(subjectGroup => (
                 <SubjectButton
+                  active={state.subjectGroups.indexOf(subjectGroup) > 1}
                   key={subjectGroup}
                   group={subjectGroup}
                   onClick={() => toggleSubjectGroup(subjectGroup)}
