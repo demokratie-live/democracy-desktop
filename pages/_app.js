@@ -4,7 +4,7 @@ import withApolloClient from '../lib/with-apollo-client';
 import { ApolloProvider } from 'react-apollo';
 
 // Context
-import FilterContext, { Provider as FilterProvider } from 'Context/filter';
+import { Provider as FilterProvider } from 'Context/filter';
 
 class MyApp extends App {
   render() {

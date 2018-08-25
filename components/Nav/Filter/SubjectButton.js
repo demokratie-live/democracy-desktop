@@ -5,7 +5,6 @@ import subjectGroupIconHelper, { subjectGroups } from 'Helpers/subjectGroupToIco
 
 // Components
 import Button from 'Components/shared/Button';
-import Icon from 'Components/shared/Icon';
 
 const SubjectButton = ({ group, onClick, active }) => (
   <div>

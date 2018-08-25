@@ -2,8 +2,6 @@ import { Component } from 'react';
 import styled from 'styled-components';
 
 // Components
-import { Modal as AntModal, Popover } from 'antd';
-
 import Icon from 'Components/shared/Icon';
 import ButtonComponent from 'Components/shared/Button';
 import RenderToBody from 'Components/shared/RenderToBody';
@@ -28,11 +26,6 @@ const ArrowIcon = styled(Icon)`
   }
 `;
 
-const Modal = styled(AntModal)`
-  /* top: 140px;
-  border-radius: 0; */
-`;
-
 class Filter extends Component {
   state = {
     visible: false,
@@ -44,14 +37,19 @@ class Filter extends Component {
     });
   };
 
+  toggleVisibility = () => {
+    this.setState({ visible: !this.state.visible });
+  };
+
   handleVisibleChange = visible => {
     this.setState({ visible });
   };
-
   render() {
+    const { visible } = this.state;
+    console.log({ visible });
     return (
       <>
-        <Button>
+        <Button onClick={this.toggleVisibility}>
           <Icon type="funnel" />
           <ArrowIconWrapper>
             <ArrowIcon type="arrow" />
@@ -59,7 +57,7 @@ class Filter extends Component {
         </Button>
 
         <RenderToBody>
-          <FilterBox />
+          <FilterBox visible={visible} handleVisibleChange={this.handleVisibleChange} />
         </RenderToBody>
       </>
     );

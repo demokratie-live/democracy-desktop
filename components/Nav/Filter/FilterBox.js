@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import styled from 'styled-components';
+import Router from 'next/router';
 
 // Components
 import Modal from 'Components/shared/Modal';
@@ -20,8 +21,9 @@ const Box = styled.div`
 
 class FilterBox extends Component {
   render() {
+    const { visible, handleVisibleChange } = this.props;
     return (
-      <Modal>
+      <Modal visible={visible} handleVisibleChange={handleVisibleChange}>
         <FilterConsumer>
           {({ state, toggleSubjectGroup }) => (
             <Box>

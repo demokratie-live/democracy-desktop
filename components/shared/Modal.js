@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import RenderToBody from './RenderToBody';
 
 const Wrapper = styled.div`
+  display: ${({ visible }) => (visible ? 'block' : 'none')};
   position: absolute; /* Stay in place */
   z-index: 1; /* Sit on top */
   position: absolute;
@@ -23,11 +24,24 @@ class Modal extends Component {
 
       .substr(2, 9);
   }
+
+  handleClickOutside = e => {
+    if (e.target === this.outer) {
+      this.props.handleVisibleChange(false);
+    }
+  };
+
   render() {
-    const { children } = this.props;
+    const { children, ...props } = this.props;
     return (
       <RenderToBody id={this.id}>
-        <Wrapper>{children}</Wrapper>
+        <Wrapper
+          innerRef={outer => (this.outer = outer)}
+          onClick={this.handleClickOutside}
+          {...props}
+        >
+          {children}
+        </Wrapper>
       </RenderToBody>
     );
   }
