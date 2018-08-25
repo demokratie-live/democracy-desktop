@@ -28,6 +28,8 @@ module.exports =
         ...config.resolve.alias,
         Components: path.resolve(__dirname, 'components/'),
         GraphQl: path.resolve(__dirname, 'graphql/'),
+        Helpers: path.resolve(__dirname, 'lib/helpers/'),
+        Context: path.resolve(__dirname, 'lib/context/'),
       };
 
       return config;

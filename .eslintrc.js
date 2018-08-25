@@ -18,6 +18,7 @@ module.exports = {
     process: true,
     console: 1,
     React: 1,
-    global: 1
+    global: 1,
+    document: 1
   },
 };

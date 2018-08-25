@@ -6,6 +6,7 @@ import Link from 'Components/shared/Link';
 import SelectComponent from 'Components/shared/Select';
 import ListLink from './ListLink';
 import Search from './Search';
+import Filter from './Filter';
 
 const Option = styled(SelectComponent.Option)`
   padding-left: ${({ theme }) => theme.space(4)}px;
@@ -69,10 +70,7 @@ const Header = () => (
         <Row>
           <Col xs={24} sm={24} lg={4}>
             <Dev>
-              <MenuLink secondary href="#">
-                <Icon type="filter" />
-                <Icon type="down" />
-              </MenuLink>
+              <Filter />
             </Dev>
           </Col>
           <Col xs={24} sm={24} lg={10}>
