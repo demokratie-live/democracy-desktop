@@ -9,7 +9,7 @@ import SubjectButton from './SubjectButton';
 import { subjectGroups } from 'Helpers/subjectGroupToIcon';
 
 // Context
-import FilterContext from 'Context/filter';
+import { Consumer as FilterConsumer } from 'Context/filter';
 
 const Box = styled.div`
     background-color: green;
@@ -22,12 +22,20 @@ class FilterBox extends Component {
   render() {
     return (
       <Modal>
-        <Box>
-          {Object.keys(subjectGroups).map(subjectGroup => (
-            <SubjectButton key={subjectGroup} group={subjectGroup} />
-          ))}
-          <FilterContext.Consumer>{value => value}</FilterContext.Consumer>
-        </Box>
+        <FilterConsumer>
+          {({ state, toggleSubjectGroup }) => (
+            <Box>
+              {Object.keys(subjectGroups).map(subjectGroup => (
+                <SubjectButton
+                  key={subjectGroup}
+                  group={subjectGroup}
+                  onClick={() => toggleSubjectGroup(subjectGroup)}
+                />
+              ))}
+              {state.subjectGroups}
+            </Box>
+          )}
+        </FilterConsumer>
       </Modal>
     );
   }

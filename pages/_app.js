@@ -4,7 +4,7 @@ import withApolloClient from '../lib/with-apollo-client';
 import { ApolloProvider } from 'react-apollo';
 
 // Context
-import FilterContext from 'Context/filter';
+import FilterContext, { Provider as FilterProvider } from 'Context/filter';
 
 class MyApp extends App {
   render() {
@@ -12,9 +12,9 @@ class MyApp extends App {
     return (
       <Container>
         <ApolloProvider client={apolloClient}>
-          <FilterContext.Provider value="Test value.">
+          <FilterProvider>
             <Component {...pageProps} />
-          </FilterContext.Provider>
+          </FilterProvider>
         </ApolloProvider>
       </Container>
     );
