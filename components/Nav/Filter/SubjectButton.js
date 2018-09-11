@@ -1,13 +1,23 @@
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 // Helper
-import subjectGroupIconHelper, { subjectGroups } from 'Helpers/subjectGroupToIcon';
+import subjectGroupIconHelper, { subjectGroups, getDisplayTitle } from 'Helpers/subjectGroupToIcon';
 
 // Components
 import Button from 'Components/shared/Button';
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  min-height: 130px;
+  text-align: center;
+`;
+
 const SubjectButton = ({ group, onClick, active }) => (
-  <div>
+  <Container>
     <Button
       style={{ marginLeft: 6 }}
       type={active ? 'primary' : 'dashed'}
@@ -16,8 +26,8 @@ const SubjectButton = ({ group, onClick, active }) => (
       onClick={onClick}
       icon={subjectGroupIconHelper(group)}
     />
-    {group}
-  </div>
+    {getDisplayTitle(group)}
+  </Container>
 );
 
 SubjectButton.propTypes = {
