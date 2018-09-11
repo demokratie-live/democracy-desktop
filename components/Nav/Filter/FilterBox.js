@@ -6,6 +6,7 @@ import Router from 'next/router';
 import Modal from 'Components/shared/Modal';
 import SubjectButton from './SubjectButton';
 import { H3 } from 'Components/shared/Headlines';
+import Button from 'Components/shared/Button';
 
 // Helpers
 import { subjectGroups } from 'Helpers/subjectGroupToIcon';
@@ -38,12 +39,20 @@ class FilterBox extends Component {
   render() {
     const { visible, handleVisibleChange } = this.props;
     return (
-      <Modal visible={true} handleVisibleChange={handleVisibleChange}>
+      <Modal visible={visible} handleVisibleChange={handleVisibleChange}>
         <FilterConsumer>
-          {({ state, toggleSubjectGroup }) => (
+          {({ state, toggleSubjectGroup, toggleAllSubjectGroups }) => (
             <Box>
               <FilterGroup>
                 <H3>Sachgebiete</H3>
+                <Button
+                  style={{ marginLeft: 6 }}
+                  type={state.allSubjectGroups ? 'primary' : 'dashed'}
+                  shape="circle"
+                  size="large"
+                  onClick={toggleAllSubjectGroups}
+                  icon={'checkmark'}
+                />
                 <SubjectGroups>
                   {Object.keys(subjectGroups).map(subjectGroup => (
                     <SubjectButton

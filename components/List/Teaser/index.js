@@ -8,10 +8,12 @@ import { Card as CardComponent, Row, Col } from 'antd';
 import SubjectIcon from './SubjectIcon';
 import Ribbon from './Ribbon';
 import Time from './Time';
-import Dev from 'Components/shared/Dev';
 import Link from 'Components/shared/Link';
 import Title from 'Components/shared/Ellipsis';
 import ActivityIndex from 'Components/shared/ActivityIndex';
+
+// Helpers
+import { getImage } from 'Helpers/subjectGroupToIcon';
 
 const SubjectGroups = styled.div`
   float: right;
@@ -21,6 +23,17 @@ const SubjectGroups = styled.div`
 `;
 
 const Card = styled(CardComponent)``;
+
+const ImageContainer = styled.div`
+  display: block;
+  height: 0;
+  padding-bottom: 55%;
+  overflow: hidden;
+`;
+
+const Image = styled.img`
+  width: 100%;
+`;
 
 const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGroups }) => (
   <Link
@@ -33,13 +46,9 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
         cover={
           <>
             <Time>{voteDate ? voteDate : 'N/A'}</Time>
-            <Dev>
-              <img
-                alt="example"
-                src="https://www.bundestag.de/image/558288/16x9/750/422/aefcd3415c9e921d4405f2e346d8bc73/UM/kw26_pa_gesundheit_cannabis_bild.jpg"
-                width="100%"
-              />
-            </Dev>
+            <ImageContainer>
+              <Image src={getImage(subjectGroups[0])} alt={subjectGroups[0]} />
+            </ImageContainer>
           </>
         }
       >
