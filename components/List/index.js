@@ -61,6 +61,17 @@ class List extends Component {
     hasMore: true,
   };
 
+  componentDidUpdate({
+    router: {
+      query: { listType },
+    },
+  }) {
+    if (listType !== this.props.router.query.listType) {
+      this.setState({ hasMore: true });
+    }
+    return null;
+  }
+
   loadMore = ({ fetchMore }) => page => {
     fetchMore({
       variables: {
@@ -88,60 +99,63 @@ class List extends Component {
     } = this.props;
     return (
       <Section>
-        <Row>
-          <Col xs={24} sm={24} lg={6}>
-            <Dev>
-              <ListDesctiption />
-            </Dev>
-          </Col>
-          <Col xs={24} sm={24} lg={12} />
-          <Col xs={24} sm={24} lg={6}>
-            <Dev>
-              <Select
-                defaultValue="##Nach Restzeit sortieren"
-                onChange={value => console.log(value)}
-                prefix="\E619"
-              >
-                <Option value="timeleft">##Nach Restzeit sortieren</Option>
-                <Option value="activity">##Nach Aktivitäten sortieren</Option>
-              </Select>
-            </Dev>
-          </Col>
-        </Row>
         <FilterConsumer>
           {filterConsumer => {
             if (!filterConsumer) return null;
-            const { state } = filterConsumer;
+            const { state, changeSort } = filterConsumer;
             return (
-              <Query
-                query={PROCEDURES}
-                variables={{
-                  listTypes: [getListType(listType)],
-                  filter: { subjectGroups: state.subjectGroups },
-                  pageSize: PAGE_SIZE,
-                }}
-              >
-                {({ loading, error, data: { procedures }, fetchMore }) => {
-                  if (loading) return <p>Loading...</p>;
-                  if (error) return <p>Error :(</p>;
-                  return (
-                    <InfiniteScroll
-                      pageStart={0}
-                      loadMore={this.loadMore({ fetchMore })}
-                      hasMore={this.state.hasMore}
-                      loader={<Spin size="large" key="spinner" />}
-                    >
-                      <TeaserRow>
-                        {procedures.map(({ procedureId, ...rest }) => (
-                          <TeaserCol key={procedureId}>
-                            <Teaser procedureId={procedureId} {...rest} />
-                          </TeaserCol>
-                        ))}
-                      </TeaserRow>
-                    </InfiniteScroll>
-                  );
-                }}
-              </Query>
+              <>
+                <Row>
+                  <Col xs={24} sm={24} lg={6}>
+                    <Dev>
+                      <ListDesctiption />
+                    </Dev>
+                  </Col>
+                  <Col xs={24} sm={24} lg={12} />
+                  <Col xs={24} sm={24} lg={6}>
+                    <Dev>
+                      <Select
+                        defaultValue="##Nach Restzeit sortieren"
+                        onChange={sort => changeSort({ listType, sort })}
+                        prefix="\E619"
+                      >
+                        <Option value="lastUpdateDate">##Nach Restzeit sortieren</Option>
+                        <Option value="activities">##Nach Aktivitäten sortieren</Option>
+                      </Select>
+                    </Dev>
+                  </Col>
+                </Row>
+                <Query
+                  query={PROCEDURES}
+                  variables={{
+                    listTypes: [getListType(listType)],
+                    filter: { subjectGroups: state.subjectGroups },
+                    pageSize: PAGE_SIZE,
+                    sort: state.sorters[listType].sortBy,
+                  }}
+                >
+                  {({ loading, error, data: { procedures }, fetchMore }) => {
+                    if (loading) return <p>Loading...</p>;
+                    if (error) return <p>Error :(</p>;
+                    return (
+                      <InfiniteScroll
+                        pageStart={0}
+                        loadMore={this.loadMore({ fetchMore })}
+                        hasMore={this.state.hasMore}
+                        loader={<Spin size="large" key="spinner" />}
+                      >
+                        <TeaserRow>
+                          {procedures.map(({ procedureId, ...rest }) => (
+                            <TeaserCol key={procedureId}>
+                              <Teaser procedureId={procedureId} {...rest} />
+                            </TeaserCol>
+                          ))}
+                        </TeaserRow>
+                      </InfiniteScroll>
+                    );
+                  }}
+                </Query>
+              </>
             );
           }}
         </FilterConsumer>
