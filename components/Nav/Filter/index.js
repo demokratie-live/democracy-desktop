@@ -56,7 +56,7 @@ class Filter extends Component {
           </ArrowIconWrapper>
         </Button>
 
-        <RenderToBody>
+        <RenderToBody id="FilterBox">
           <FilterBox visible={visible} handleVisibleChange={this.handleVisibleChange} />
         </RenderToBody>
       </>
