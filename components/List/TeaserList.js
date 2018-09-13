@@ -17,9 +17,9 @@ const TeaserRow = styled(Row).attrs({
 
 const TeaserCol = styled(Col).attrs({
   xs: 24,
-  sm: 24,
   md: 12,
-  lg: 8,
+  xl: 8,
+  xxl: 6,
 })`
   padding-top: ${({ theme }) => theme.space(1)}px;
   padding-bottom: ${({ theme }) => theme.space(1)}px;

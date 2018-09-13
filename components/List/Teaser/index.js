@@ -45,7 +45,7 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
         hoverable
         cover={
           <>
-            <Time>{voteDate ? voteDate : 'N/A'}</Time>
+            {voteDate && <Time>{voteDate}</Time>}
             <ImageContainer>
               <Image src={getImage(subjectGroups[0])} alt={subjectGroups[0]} />
             </ImageContainer>
