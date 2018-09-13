@@ -36,7 +36,7 @@ const Select = styled(SelectComponent)`
   }
 `;
 
-class List extends Component {
+class ListTypesList extends Component {
   state = {
     hasMore: true,
   };
@@ -140,4 +140,4 @@ class List extends Component {
   }
 }
 
-export default withRouter(List);
+export default withRouter(ListTypesList);

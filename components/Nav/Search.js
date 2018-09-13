@@ -3,6 +3,9 @@ import { Input as AntInput } from 'antd';
 
 import Icon from 'Components/shared/Icon';
 
+// Context
+import { Consumer as SearchConsumer } from 'Context/search';
+
 const Input = styled(AntInput)`
   height: 45px;
   border-radius: 3px;
@@ -14,11 +17,16 @@ const Input = styled(AntInput)`
 `;
 
 const Suche = () => (
-  <Input
-    placeholder="Suche"
-    onChange={value => console.log(value)}
-    prefix={<Icon type="search" />}
-  />
+  <SearchConsumer>
+    {({ term, changeSearchTerm }) => (
+      <Input
+        placeholder="Suche"
+        onChange={({ target: { value } }) => changeSearchTerm(value)}
+        value={term}
+        prefix={<Icon type="search" />}
+      />
+    )}
+  </SearchConsumer>
 );
 
 export default Suche;

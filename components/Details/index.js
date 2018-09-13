@@ -1,4 +1,5 @@
 import { withRouter } from 'next/router';
+import Head from 'next/head';
 import { Row, Col, Menu, Icon, Collapse, Timeline } from 'antd';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
@@ -159,182 +160,195 @@ const Details = ({ router: { pathname, query } }) => (
         if (error) return <p>Error :(</p>;
         console.log(procedure);
         return (
-          <Row>
-            <Col xs={24} sm={24} md={24} lg={4}>
-              <Dev>
-                <ASide>##Facebook ##Twitter ##EMail</ASide>
-              </Dev>
-            </Col>
-            <Col xs={24} sm={24} md={24} lg={16}>
-              <ContentSection>
-                <Row>
-                  <WhiteCol>
-                    <Dev>
-                      <img
-                        alt="example"
-                        src="https://www.bundestag.de/image/558288/16x9/750/422/aefcd3415c9e921d4405f2e346d8bc73/UM/kw26_pa_gesundheit_cannabis_bild.jpg"
-                        width="100%"
-                      />
-                    </Dev>
-                    <Overview>
-                      <Row>
-                        <Col xs={24} sm={24} lg={22}>
-                          <Title>{procedure.title}</Title>
-                        </Col>
-                        <Col xs={24} sm={24} lg={2}>
-                          <ActivityIndex>{procedure.activityIndex.activityIndex}</ActivityIndex>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col xs={24} sm={24} lg={22}>
-                          <Dev>
-                            <SubjectGroups>
-                              {procedure.subjectGroups.map(group => (
-                                <Demicon type={group} tooltip={group} />
-                              ))}
-                            </SubjectGroups>
-                          </Dev>
-                        </Col>
-                        <Col xs={24} sm={24} lg={2}>
-                          <Dev>
-                            {procedure.voteDate}
-                          </Dev>
-                        </Col>
-                      </Row>
-                    </Overview>
-                  </WhiteCol>
-                  <GrayCol>{procedure.tags.join(', ')}</GrayCol>
-                  <WhiteCol>
-                    <Collapse
-                      defaultActiveKey={['details', 'documents', 'status', 'results']}
-                      bordered={false}
-                    >
-                      <Panel header="Details" key="details">
-                        <Row>
-                          <Col xs={24} sm={24} lg={12}>
-                            <DetailHead>Sachgebiete</DetailHead>
-                            <br />
-                            {subjectGroups(procedure.subjectGroups)}
-                            <br />
-                            <DetailHead>Aktueller Stand</DetailHead>
-                            <br />
-                            {procedure.currentStatus}
-                            <br />
-                            <br />
-                          </Col>
-                          <Col xs={24} sm={24} lg={12}>
-                            <Row>
-                              <ColDetail>
-                                <DetailHead>Typ</DetailHead>
-                              </ColDetail>
-                              <Col xs={24} sm={24} lg={6}>
-                                {procedure.type}
-                              </Col>
-                            </Row>
-                            <Row>
-                              <ColDetail>
-                                <DetailHead>Vorgang</DetailHead>
-                              </ColDetail>
-                              <Col xs={24} sm={24} lg={6}>
-                                {procedure.procedureId}
-                              </Col>
-                            </Row>
-                            <Row>
-                              <ColDetail>
-                                <DetailHead>erstellt am</DetailHead>
-                              </ColDetail>
-                              <Col xs={24} sm={24} lg={6}>
-                              {procedure.submissionDate}
-                              </Col>
-                            </Row>
-                            <Row>
-                              <ColDetail>
-                                <DetailHead>Abstimmung</DetailHead>
-                              </ColDetail>
-                              <Col xs={24} sm={24} lg={6}>
-                                {procedure.voteDate ? procedure.voteDate : 'N/A'}
-                              </Col>
-                            </Row>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col xs={24} sm={24} lg={24}>
-                            <DetailHead>Inhalt</DetailHead>
-                            <br />
-                            {procedure.abstract}
-                          </Col>
-                        </Row>
-                      </Panel>
-                      <Panel header="Dokumente" key="documents">
-                        {procedure.importantDocuments.map(({ editor, type, url, number }, i) => (
-                          <div key={i}>
-                            <Icon type="file-text" />
-                            &nbsp;&nbsp;
-                            <Link href={url} external primary>
-                              {`${type} (${editor} ${number})`}
-                            </Link>
-                          </div>
-                        ))}
-                      </Panel>
-                      <Panel header="Gesetzesstand" key="status">
-                        <Timeline>
-                          {procedure.currentStatusHistory.map(status => (
-                            <Timeline.Item>{status}</Timeline.Item>
-                          ))}
-                        </Timeline>
-                      </Panel>
-                      <Panel header="Ergebnisse" key="results">
-                        <Dev>
-                          ##PiechartBundestag ##PiechartCommunity
-                        </Dev>
-                      </Panel>
-                    </Collapse>
-                  </WhiteCol>
-                  <WhiteColPad>
-                    <Collapse defaultActiveKey={['vote']} onChange={key => console.log(key)} bordered={false}>
-                      <Panel header="AppStimmen" key="vote">
-                        <Dev>
-                          <Icon type="tool" />
-                          <Icon type="tool" />
-                          <Icon type="tool" />
-                          <H3>
-                            Um mitzustimmen, lade Dir bitte das <b>10X-Improvement</b>
-                            <br />
-                            <Link href="https://www.democracy-deutschland.de/" external primary>
-                              für unsere Demokratie
-                            </Link>
-                            &nbsp;herunter
-                          </H3>
-                          <Icon type="tool" />
-                          <Icon type="tool" />
-                        </Dev>
-                      </Panel>
-                    </Collapse>
-                  </WhiteColPad>
-                </Row>
-              </ContentSection>
-            </Col>
-            <Col xs={24} sm={24} md={24} lg={4}>
-              <ASide>
+          <>
+            <Head>
+              <title>{procedure.title}</title>
+              <meta
+                property="al:ios:url"
+                content={`democracyapp://procedure/${procedure.procedureId}`}
+              />
+              <meta
+                property="al:android:url"
+                content={`democracyapp://procedure/${procedure.procedureId}`}
+              />
+            </Head>
+            <Row>
+              <Col xs={24} sm={24} md={24} lg={4}>
                 <Dev>
-                  <Menu
-                    onClick={data => console.log(data)}
-                    defaultSelectedKeys={['antrag']}
-                    defaultOpenKeys={['antrag']}
-                    mode="inline"
-                  >
-                    <SubMenu key="antrag" title={<span>##1. Antrag - 232645</span>}>
-                      <Menu.Item key="details">Details</Menu.Item>
-                      <Menu.Item key="documents">Dokumente</Menu.Item>
-                      <Menu.Item key="status">Gesetzesstand</Menu.Item>
-                      <Menu.Item key="results">Ergebnisse</Menu.Item>
-                    </SubMenu>
-                    <SubMenu key="vote" title="2. AppStimmen" />
-                  </Menu>
+                  <ASide>##Facebook ##Twitter ##EMail</ASide>
                 </Dev>
-              </ASide>
-            </Col>
-          </Row>
+              </Col>
+              <Col xs={24} sm={24} md={24} lg={16}>
+                <ContentSection>
+                  <Row>
+                    <WhiteCol>
+                      <Dev>
+                        <img
+                          alt="example"
+                          src="https://www.bundestag.de/image/558288/16x9/750/422/aefcd3415c9e921d4405f2e346d8bc73/UM/kw26_pa_gesundheit_cannabis_bild.jpg"
+                          width="100%"
+                        />
+                      </Dev>
+                      <Overview>
+                        <Row>
+                          <Col xs={24} sm={24} lg={22}>
+                            <Title>{procedure.title}</Title>
+                          </Col>
+                          <Col xs={24} sm={24} lg={2}>
+                            <ActivityIndex>{procedure.activityIndex.activityIndex}</ActivityIndex>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xs={24} sm={24} lg={22}>
+                            <Dev>
+                              <SubjectGroups>
+                                {procedure.subjectGroups.map(group => (
+                                  <Demicon type={group} tooltip={group} />
+                                ))}
+                              </SubjectGroups>
+                            </Dev>
+                          </Col>
+                          <Col xs={24} sm={24} lg={2}>
+                            <Dev>{procedure.voteDate}</Dev>
+                          </Col>
+                        </Row>
+                      </Overview>
+                    </WhiteCol>
+                    <GrayCol>{procedure.tags.join(', ')}</GrayCol>
+                    <WhiteCol>
+                      <Collapse
+                        defaultActiveKey={['details', 'documents', 'status', 'results']}
+                        bordered={false}
+                      >
+                        <Panel header="Details" key="details">
+                          <Row>
+                            <Col xs={24} sm={24} lg={12}>
+                              <DetailHead>Sachgebiete</DetailHead>
+                              <br />
+                              {subjectGroups(procedure.subjectGroups)}
+                              <br />
+                              <DetailHead>Aktueller Stand</DetailHead>
+                              <br />
+                              {procedure.currentStatus}
+                              <br />
+                              <br />
+                            </Col>
+                            <Col xs={24} sm={24} lg={12}>
+                              <Row>
+                                <ColDetail>
+                                  <DetailHead>Typ</DetailHead>
+                                </ColDetail>
+                                <Col xs={24} sm={24} lg={6}>
+                                  {procedure.type}
+                                </Col>
+                              </Row>
+                              <Row>
+                                <ColDetail>
+                                  <DetailHead>Vorgang</DetailHead>
+                                </ColDetail>
+                                <Col xs={24} sm={24} lg={6}>
+                                  {procedure.procedureId}
+                                </Col>
+                              </Row>
+                              <Row>
+                                <ColDetail>
+                                  <DetailHead>erstellt am</DetailHead>
+                                </ColDetail>
+                                <Col xs={24} sm={24} lg={6}>
+                                  {procedure.submissionDate}
+                                </Col>
+                              </Row>
+                              <Row>
+                                <ColDetail>
+                                  <DetailHead>Abstimmung</DetailHead>
+                                </ColDetail>
+                                <Col xs={24} sm={24} lg={6}>
+                                  {procedure.voteDate ? procedure.voteDate : 'N/A'}
+                                </Col>
+                              </Row>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col xs={24} sm={24} lg={24}>
+                              <DetailHead>Inhalt</DetailHead>
+                              <br />
+                              {procedure.abstract}
+                            </Col>
+                          </Row>
+                        </Panel>
+                        <Panel header="Dokumente" key="documents">
+                          {procedure.importantDocuments.map(({ editor, type, url, number }, i) => (
+                            <div key={i}>
+                              <Icon type="file-text" />
+                              &nbsp;&nbsp;
+                              <Link href={url} external primary>
+                                {`${type} (${editor} ${number})`}
+                              </Link>
+                            </div>
+                          ))}
+                        </Panel>
+                        <Panel header="Gesetzesstand" key="status">
+                          <Timeline>
+                            {procedure.currentStatusHistory.map(status => (
+                              <Timeline.Item>{status}</Timeline.Item>
+                            ))}
+                          </Timeline>
+                        </Panel>
+                        <Panel header="Ergebnisse" key="results">
+                          <Dev>##PiechartBundestag ##PiechartCommunity</Dev>
+                        </Panel>
+                      </Collapse>
+                    </WhiteCol>
+                    <WhiteColPad>
+                      <Collapse
+                        defaultActiveKey={['vote']}
+                        onChange={key => console.log(key)}
+                        bordered={false}
+                      >
+                        <Panel header="AppStimmen" key="vote">
+                          <Dev>
+                            <Icon type="tool" />
+                            <Icon type="tool" />
+                            <Icon type="tool" />
+                            <H3>
+                              Um mitzustimmen, lade Dir bitte das <b>10X-Improvement</b>
+                              <br />
+                              <Link href="https://www.democracy-deutschland.de/" external primary>
+                                für unsere Demokratie
+                              </Link>
+                              &nbsp;herunter
+                            </H3>
+                            <Icon type="tool" />
+                            <Icon type="tool" />
+                          </Dev>
+                        </Panel>
+                      </Collapse>
+                    </WhiteColPad>
+                  </Row>
+                </ContentSection>
+              </Col>
+              <Col xs={24} sm={24} md={24} lg={4}>
+                <ASide>
+                  <Dev>
+                    <Menu
+                      onClick={data => console.log(data)}
+                      defaultSelectedKeys={['antrag']}
+                      defaultOpenKeys={['antrag']}
+                      mode="inline"
+                    >
+                      <SubMenu key="antrag" title={<span>##1. Antrag - 232645</span>}>
+                        <Menu.Item key="details">Details</Menu.Item>
+                        <Menu.Item key="documents">Dokumente</Menu.Item>
+                        <Menu.Item key="status">Gesetzesstand</Menu.Item>
+                        <Menu.Item key="results">Ergebnisse</Menu.Item>
+                      </SubMenu>
+                      <SubMenu key="vote" title="2. AppStimmen" />
+                    </Menu>
+                  </Dev>
+                </ASide>
+              </Col>
+            </Row>
+          </>
         );
       }}
     </Query>
