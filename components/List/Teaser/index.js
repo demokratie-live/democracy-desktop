@@ -5,7 +5,7 @@ import styled from 'styled-components';
 // Components
 import { Card as CardComponent, Row, Col } from 'antd';
 
-import SubjectIcon from './SubjectIcon';
+import SubjectIcon from './../../shared/SubjectIcon';
 import Ribbon from './Ribbon';
 import Time from './Time';
 import Link from 'Components/shared/Link';
@@ -22,7 +22,9 @@ const SubjectGroups = styled.div`
   padding-right: ${({ theme }) => theme.space(1)}px;
 `;
 
-const Card = styled(CardComponent)``;
+const Card = styled(CardComponent)`
+  height: 600px;
+`;
 
 const ImageContainer = styled.div`
   display: block;
