@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import { Row, Col, Icon } from 'antd';
+import { Row, Col } from 'antd';
 
 import Dev from 'Components/shared/Dev';
 import Link from 'Components/shared/Link';
+import Icon from 'Components/shared/Icon';
 import SelectComponent from 'Components/shared/Select';
 import ListLink from './ListLink';
 import Search from './Search';
