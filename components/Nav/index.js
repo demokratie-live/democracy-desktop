@@ -51,6 +51,12 @@ const Img = styled.img`
   width: 50px;
 `;
 
+const HeartIcon = styled(Icon).attrs({
+  type: 'heart-filled',
+})`
+  color: #d0021b;
+`;
+
 const Header = () => (
   <Nav>
     <Row>
@@ -77,7 +83,7 @@ const Header = () => (
           </Col>
           <Col xs={24} sm={24} lg={10}>
             <MenuLink href="https://www.democracy-deutschland.de/#!donate" secondary external>
-              <Icon type="heart" /> Unterstützen
+              <HeartIcon /> Unterstützen
             </MenuLink>
           </Col>
         </Row>
