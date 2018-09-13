@@ -11,9 +11,7 @@ const Wrapper = styled.div`
 
 const Icon = styled(IconComponent).attrs({
   fontSize: 50,
-})`
-  font-size: ${({ theme }) => theme.fontSizes.huge};
-`;
+})``;
 
 const Text = styled.div`
   margin-top: -${({ theme }) => theme.space(2)}px;

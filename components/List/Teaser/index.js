@@ -5,7 +5,7 @@ import styled from 'styled-components';
 // Components
 import { Card as CardComponent, Row, Col } from 'antd';
 
-import SubjectIcon from './SubjectIcon';
+import SubjectIcon from './../../shared/SubjectIcon';
 import Ribbon from './Ribbon';
 import Time from './Time';
 import Link from 'Components/shared/Link';

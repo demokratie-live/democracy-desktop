@@ -30,7 +30,7 @@ const descriptions = {
 
 const ListDescription = ({
   router: {
-    query: { listType },
+    query: { listType = 'in-abstimmung' },
   },
 }) => {
   const text = titleByUrlParam(listType);

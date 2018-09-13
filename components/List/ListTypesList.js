@@ -74,7 +74,7 @@ class ListTypesList extends Component {
   render() {
     const {
       router: {
-        query: { listType },
+        query: { listType = 'in-abstimmung' },
       },
     } = this.props;
     return (
