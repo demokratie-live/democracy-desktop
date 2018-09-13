@@ -9,19 +9,21 @@ const Icon = styled.i.attrs({})`
   }
 `;
 
-const IconComponent = ({ type, fontSize, className }) => {
-  return <Icon className={`icon-${type} ${className}`} fontSize={fontSize} />;
+const IconComponent = ({ type, fontSize, className, style }) => {
+  return <Icon className={`icon-${type} ${className}`} fontSize={fontSize} style={style} />;
 };
 
 IconComponent.propTypes = {
   type: PropTypes.string.isRequired,
   fontSize: PropTypes.number,
   className: PropTypes.string,
+  style: PropTypes.shape,
 };
 
 IconComponent.defaultProps = {
   fontSize: 22,
   className: '',
+  style: {},
 };
 
 export default IconComponent;

@@ -1,5 +1,5 @@
 import { withRouter } from 'next/router';
-import { Row, Col, Menu, Icon, Collapse, Timeline } from 'antd';
+import { Row, Col, Menu, Collapse, Timeline, Anchor } from 'antd';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 
@@ -9,6 +9,7 @@ import ActivityIndex from 'Components/shared/ActivityIndex';
 import SubjectIcon from './../shared/SubjectIcon';
 import Link from 'Components/shared/Link';
 import VoteButton from './VoteButton';
+import Icon from 'Components/shared/Icon';
 
 // GraphQL
 import PROCEDURE from 'GraphQl/queries/procedure';
@@ -16,6 +17,7 @@ import PROCEDURE from 'GraphQl/queries/procedure';
 // Helpers
 import { getImage } from 'Helpers/subjectGroupToIcon';
 
+const AnchorLink = Anchor.Link;
 const SubMenu = Menu.SubMenu;
 const PanelComponent = Collapse.Panel;
 
@@ -277,7 +279,7 @@ const Details = ({ router: { pathname, query } }) => (
                       <Panel header="Dokumente" key="documents">
                         {procedure.importantDocuments.map(({ editor, type, url, number }, i) => (
                           <div key={i}>
-                            <Icon type="file-text" />
+                            <Icon type="document" />
                             &nbsp;&nbsp;
                             <Link href={url} external primary>
                               {`${type} (${editor} ${number})`}
@@ -285,13 +287,15 @@ const Details = ({ router: { pathname, query } }) => (
                           </div>
                         ))}
                       </Panel>
-                      <Panel header="Gesetzesstand" key="status">
-                        <Timeline>
-                          {procedure.currentStatusHistory.map(status => (
-                            <Timeline.Item key={status}>{status}</Timeline.Item>
-                          ))}
-                        </Timeline>
-                      </Panel>
+                      {procedure.currentStatusHistory.length > 0 && (
+                        <Panel header="Gesetzesstand" key="status">
+                          <Timeline>
+                            {procedure.currentStatusHistory.map(status => (
+                              <Timeline.Item key={status}>{status}</Timeline.Item>
+                            ))}
+                          </Timeline>
+                        </Panel>
+                      )}
                       <Panel header="Ergebnisse" key="results">
                         <Dev>##PiechartBundestag ##PiechartCommunity</Dev>
                       </Panel>
@@ -310,7 +314,7 @@ const Details = ({ router: { pathname, query } }) => (
                             <VoteButton type="thumb-up" />
                           </Col>
                           <Col xs={24} sm={24} lg={4} style={{ textAlign: 'center' }}>
-                            <VoteButton type="thumb-mid" />
+                            <VoteButton type="thumb-left" />
                           </Col>
                           <Col xs={24} sm={24} lg={4} style={{ textAlign: 'center' }}>
                             <VoteButton type="thumb-down" />
@@ -329,13 +333,13 @@ const Details = ({ router: { pathname, query } }) => (
                             </H3>
                           </Col>
                         </Row>
-                        <Row style={{ marginTop: '15px' }}>
+                        <Row style={{ marginTop: '25px', marginBottom: '25px' }}>
                           <Col xs={24} sm={24} lg={7} />
                           <Col xs={24} sm={24} lg={5} style={{ textAlign: 'center' }}>
-                            <Icon type="tool" />
+                            <Icon type="appstore" fontSize="75" />
                           </Col>
                           <Col xs={24} sm={24} lg={5} style={{ textAlign: 'center' }}>
-                            <Icon type="tool" />
+                            <Icon type="playstore" fontSize="75" />
                           </Col>
                           <Col xs={24} sm={24} lg={7} />
                         </Row>
@@ -348,7 +352,7 @@ const Details = ({ router: { pathname, query } }) => (
             <Col xs={24} sm={24} md={24} lg={4}>
               <ASide>
                 <Dev>
-                  <Menu
+                  {/*<Menu
                     onClick={data => console.log(data)}
                     defaultSelectedKeys={['antrag']}
                     defaultOpenKeys={['antrag']}
@@ -361,7 +365,16 @@ const Details = ({ router: { pathname, query } }) => (
                       <Menu.Item key="results">Ergebnisse</Menu.Item>
                     </SubMenu>
                     <SubMenu key="vote" title="2. AppStimmen" />
-                  </Menu>
+                  </Menu>*/}
+                  <Anchor>
+                    <AnchorLink href="#components-anchor-demo-basic" title={<span>1. {procedure.type} - {procedure.procedureId}</span>}>
+                      <AnchorLink href="#Anchor-Props" title="Details" />
+                      <AnchorLink href="#Documents" title="Dokumente" />
+                      <AnchorLink href="#Link-Props" title="Gesetzesstand" />
+                      <AnchorLink href="#Link-Props" title="Ergebnisse" />
+                    </AnchorLink>
+                    <AnchorLink href="#components-anchor-demo-fixed" title="2. AppStimmen" />
+                  </Anchor>
                 </Dev>
               </ASide>
             </Col>
