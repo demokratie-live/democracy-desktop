@@ -3,13 +3,18 @@ import { Row, Col, Menu, Icon, Collapse, Timeline } from 'antd';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 
+// Components
 import Dev from 'Components/shared/Dev';
 import ActivityIndex from 'Components/shared/ActivityIndex';
-import Demicon from 'Components/shared/Demicon';
+import SubjectIcon from './../shared/SubjectIcon';
 import Link from 'Components/shared/Link';
+import VoteButton from './VoteButton';
 
 // GraphQL
 import PROCEDURE from 'GraphQl/queries/procedure';
+
+// Helpers
+import { getImage } from 'Helpers/subjectGroupToIcon';
 
 const SubMenu = Menu.SubMenu;
 const PanelComponent = Collapse.Panel;
@@ -150,6 +155,15 @@ const H3 = styled.h3`
   text-align: center;
 `;
 
+const ImageCol = styled.div`
+  height: 550px;
+  overflow: hidden;
+`;
+
+const Image = styled.img`
+  width: 100%;
+`;
+
 const Details = ({ router: { pathname, query } }) => (
   <Section>
     {/* Query is empty in first call... */}
@@ -168,14 +182,13 @@ const Details = ({ router: { pathname, query } }) => (
             <Col xs={24} sm={24} md={24} lg={16}>
               <ContentSection>
                 <Row>
+                  <ImageCol>
+                    <Image
+                      src={getImage(procedure.subjectGroups[0])}
+                      alt={procedure.subjectGroups[0]}
+                    />
+                  </ImageCol>
                   <WhiteCol>
-                    <Dev>
-                      <img
-                        alt="example"
-                        src="https://www.bundestag.de/image/558288/16x9/750/422/aefcd3415c9e921d4405f2e346d8bc73/UM/kw26_pa_gesundheit_cannabis_bild.jpg"
-                        width="100%"
-                      />
-                    </Dev>
                     <Overview>
                       <Row>
                         <Col xs={24} sm={24} lg={22}>
@@ -187,18 +200,14 @@ const Details = ({ router: { pathname, query } }) => (
                       </Row>
                       <Row>
                         <Col xs={24} sm={24} lg={22}>
-                          <Dev>
-                            <SubjectGroups>
-                              {procedure.subjectGroups.map(group => (
-                                <Demicon type={group} tooltip={group} />
-                              ))}
-                            </SubjectGroups>
-                          </Dev>
+                          <SubjectGroups>
+                            {procedure.subjectGroups.map(group => (
+                              <SubjectIcon key={group} group={group} />
+                            ))}
+                          </SubjectGroups>
                         </Col>
                         <Col xs={24} sm={24} lg={2}>
-                          <Dev>
-                            {procedure.voteDate}
-                          </Dev>
+                          <Dev>{procedure.voteDate}</Dev>
                         </Col>
                       </Row>
                     </Overview>
@@ -244,7 +253,7 @@ const Details = ({ router: { pathname, query } }) => (
                                 <DetailHead>erstellt am</DetailHead>
                               </ColDetail>
                               <Col xs={24} sm={24} lg={6}>
-                              {procedure.submissionDate}
+                                {procedure.submissionDate}
                               </Col>
                             </Row>
                             <Row>
@@ -279,35 +288,57 @@ const Details = ({ router: { pathname, query } }) => (
                       <Panel header="Gesetzesstand" key="status">
                         <Timeline>
                           {procedure.currentStatusHistory.map(status => (
-                            <Timeline.Item>{status}</Timeline.Item>
+                            <Timeline.Item key={status}>{status}</Timeline.Item>
                           ))}
                         </Timeline>
                       </Panel>
                       <Panel header="Ergebnisse" key="results">
-                        <Dev>
-                          ##PiechartBundestag ##PiechartCommunity
-                        </Dev>
+                        <Dev>##PiechartBundestag ##PiechartCommunity</Dev>
                       </Panel>
                     </Collapse>
                   </WhiteCol>
                   <WhiteColPad>
-                    <Collapse defaultActiveKey={['vote']} onChange={key => console.log(key)} bordered={false}>
+                    <Collapse
+                      defaultActiveKey={['vote']}
+                      onChange={key => console.log(key)}
+                      bordered={false}
+                    >
                       <Panel header="AppStimmen" key="vote">
-                        <Dev>
-                          <Icon type="tool" />
-                          <Icon type="tool" />
-                          <Icon type="tool" />
-                          <H3>
-                            Um mitzustimmen, lade Dir bitte das <b>10X-Improvement</b>
-                            <br />
-                            <Link href="https://www.democracy-deutschland.de/" external primary>
-                              für unsere Demokratie
-                            </Link>
-                            &nbsp;herunter
-                          </H3>
-                          <Icon type="tool" />
-                          <Icon type="tool" />
-                        </Dev>
+                        <Row style={{ marginTop: '35px' }}>
+                          <Col xs={24} sm={24} lg={6} />
+                          <Col xs={24} sm={24} lg={4} style={{ textAlign: 'center' }}>
+                            <VoteButton type="thumb-up" />
+                          </Col>
+                          <Col xs={24} sm={24} lg={4} style={{ textAlign: 'center' }}>
+                            <VoteButton type="thumb-mid" />
+                          </Col>
+                          <Col xs={24} sm={24} lg={4} style={{ textAlign: 'center' }}>
+                            <VoteButton type="thumb-down" />
+                          </Col>
+                          <Col xs={24} sm={24} lg={6} />
+                        </Row>
+                        <Row style={{ marginTop: '35px' }}>
+                          <Col xs={24} sm={24} lg={24}>
+                            <H3>
+                              Um mitzustimmen, lade Dir bitte das <b>10X-Improvement</b>
+                              <br />
+                              <Link href="https://www.democracy-deutschland.de/" external primary>
+                                für unsere Demokratie
+                              </Link>
+                              &nbsp;herunter
+                            </H3>
+                          </Col>
+                        </Row>
+                        <Row style={{ marginTop: '15px' }}>
+                          <Col xs={24} sm={24} lg={7} />
+                          <Col xs={24} sm={24} lg={5} style={{ textAlign: 'center' }}>
+                            <Icon type="tool" />
+                          </Col>
+                          <Col xs={24} sm={24} lg={5} style={{ textAlign: 'center' }}>
+                            <Icon type="tool" />
+                          </Col>
+                          <Col xs={24} sm={24} lg={7} />
+                        </Row>
                       </Panel>
                     </Collapse>
                   </WhiteColPad>
