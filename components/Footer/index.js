@@ -13,7 +13,7 @@ const FooterElem = styled.footer`
   font-size: ${({ theme }) => theme.fontSizes.default};
 `;
 
-const Footer = props => {
+const Footer = () => {
   return (
     <FooterElem>
       <Link href="https://www.democracy-deutschland.de" external>

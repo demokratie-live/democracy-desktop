@@ -4,7 +4,7 @@ import { withRouter } from 'next/router';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 
-import Dev from 'Components/shared/Dev';
+// Components
 import SelectComponent from 'Components/shared/Select';
 import TeaserList from './TeaserList';
 
@@ -87,27 +87,23 @@ class ListTypesList extends Component {
               <>
                 <Row>
                   <Col xs={24} sm={24} lg={6}>
-                    <Dev>
-                      <ListDesctiption />
-                    </Dev>
+                    <ListDesctiption />
                   </Col>
                   <Col xs={24} sm={24} lg={12} />
                   <Col xs={24} sm={24} lg={6}>
-                    <Dev>
-                      {state.sorters[listType].all.length > 0 && (
-                        <Select
-                          value={state.sorters[listType].sortBy}
-                          onChange={sort => changeSort({ listType, sort })}
-                          prefix="\E619"
-                        >
-                          {state.sorters[listType].all.map(({ title, value }) => (
-                            <Option key={`${listType}-${value}`} value={value}>
-                              {title}
-                            </Option>
-                          ))}
-                        </Select>
-                      )}
-                    </Dev>
+                    {state.sorters[listType].all.length > 0 && (
+                      <Select
+                        value={state.sorters[listType].sortBy}
+                        onChange={sort => changeSort({ listType, sort })}
+                        prefix="\f126"
+                      >
+                        {state.sorters[listType].all.map(({ title, value }) => (
+                          <Option key={`${listType}-${value}`} value={value}>
+                            {title}
+                          </Option>
+                        ))}
+                      </Select>
+                    )}
                   </Col>
                 </Row>
                 <Query

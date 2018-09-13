@@ -31,10 +31,12 @@ app
 
     server.listen(PORT, err => {
       if (err) throw err;
+      // eslint-disable-next-line
       console.log(`> Ready on http://localhost:${PORT}`);
     });
   })
   .catch(ex => {
+    // eslint-disable-next-line
     console.error(ex.stack);
     process.exit(1);
   });

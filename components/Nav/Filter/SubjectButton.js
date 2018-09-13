@@ -32,6 +32,8 @@ const SubjectButton = ({ group, onClick, active }) => (
 
 SubjectButton.propTypes = {
   group: PropTypes.oneOf(Object.keys(subjectGroups)).isRequired,
+  onClick: PropTypes.func.isRequired,
+  active: PropTypes.bool.isRequired,
 };
 
 export default SubjectButton;

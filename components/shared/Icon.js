@@ -16,10 +16,12 @@ const IconComponent = ({ type, fontSize, className }) => {
 IconComponent.propTypes = {
   type: PropTypes.string.isRequired,
   fontSize: PropTypes.number,
+  className: PropTypes.string,
 };
 
 IconComponent.defaultProps = {
   fontSize: 22,
+  className: '',
 };
 
 export default IconComponent;

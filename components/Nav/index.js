@@ -62,16 +62,12 @@ const Header = () => (
         </Link>
       </Col>
       <Col xs={24} sm={24} lg={12}>
-        <Dev>
-          <Search />
-        </Dev>
+        <Search />
       </Col>
       <Col xs={24} sm={24} lg={6}>
         <Row>
           <Col xs={24} sm={24} lg={4}>
-            <Dev>
-              <Filter />
-            </Dev>
+            <Filter />
           </Col>
           <Col xs={24} sm={24} lg={10}>
             <MenuLink href="https://www.democracy-deutschland.de" secondary external>
@@ -98,22 +94,20 @@ const Header = () => (
         </Dev>
       </Col>
       <Col xs={24} sm={24} lg={12}>
-        <Dev>
-          <Row>
-            <Col xs={24} sm={24} lg={6}>
-              <ListLink listType="in-abstimmung">in Abstimmung</ListLink>
-            </Col>
-            <Col xs={24} sm={24} lg={6}>
-              <ListLink listType="vergangen">Vergangen</ListLink>
-            </Col>
-            <Col xs={24} sm={24} lg={6}>
-              <ListLink listType="in-vorbereitung">in Vorbereitung</ListLink>
-            </Col>
-            <Col xs={24} sm={24} lg={6}>
-              <ListLink listType="whats-hot">What's Hot</ListLink>
-            </Col>
-          </Row>
-        </Dev>
+        <Row>
+          <Col xs={24} sm={24} lg={6}>
+            <ListLink listType="in-abstimmung">in Abstimmung</ListLink>
+          </Col>
+          <Col xs={24} sm={24} lg={6}>
+            <ListLink listType="vergangen">Vergangen</ListLink>
+          </Col>
+          <Col xs={24} sm={24} lg={6}>
+            <ListLink listType="in-vorbereitung">in Vorbereitung</ListLink>
+          </Col>
+          <Col xs={24} sm={24} lg={6}>
+            <ListLink listType="whats-hot">What's Hot</ListLink>
+          </Col>
+        </Row>
       </Col>
       <Col xs={24} sm={24} lg={6} />
     </Row>

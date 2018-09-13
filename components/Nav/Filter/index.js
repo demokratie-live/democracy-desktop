@@ -46,7 +46,6 @@ class Filter extends Component {
   };
   render() {
     const { visible } = this.state;
-    console.log({ visible });
     return (
       <>
         <Button onClick={this.toggleVisibility}>

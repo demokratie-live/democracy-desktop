@@ -1,6 +1,6 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Router from 'next/router';
 
 // Components
 import Modal from 'Components/shared/Modal';
@@ -25,8 +25,6 @@ const FilterGroup = styled.div`
   display: flex;
   flex-direction: row;
 `;
-
-const FilterGroupTitle = styled;
 
 const SubjectGroups = styled.div`
   display: flex;
@@ -70,5 +68,10 @@ class FilterBox extends Component {
     );
   }
 }
+
+FilterBox.propTypes = {
+  visible: PropTypes.bool.isRequired,
+  handleVisibleChange: PropTypes.func.isRequired,
+};
 
 export default FilterBox;

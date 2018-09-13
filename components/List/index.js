@@ -13,7 +13,6 @@ class List extends Component {
           if (!consumerProps) return null;
           const { term } = consumerProps;
 
-          console.log(term);
           if (term.trim()) {
             return <SearchList term={term} />;
           } else {
