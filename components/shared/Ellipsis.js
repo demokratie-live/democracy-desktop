@@ -9,7 +9,7 @@ class EllipsisComponent extends PureComponent {
     const tag = props.tag;
     this.Ellipsis = styled(tag)`
       overflow: hidden;
-      text-overflow: ellipsis;
+      text-overflow: ellipsis-word;
       display: -webkit-box;
       line-height: 1.5em; /* fallback */
       height: ${({ lines }) => `${lines * 1.5}em`}; /* fallback */

@@ -114,14 +114,19 @@ class List extends Component {
                   <Col xs={24} sm={24} lg={12} />
                   <Col xs={24} sm={24} lg={6}>
                     <Dev>
-                      <Select
-                        defaultValue="##Nach Restzeit sortieren"
-                        onChange={sort => changeSort({ listType, sort })}
-                        prefix="\E619"
-                      >
-                        <Option value="lastUpdateDate">##Nach Restzeit sortieren</Option>
-                        <Option value="activities">##Nach Aktivitäten sortieren</Option>
-                      </Select>
+                      {state.sorters[listType].all.length > 0 && (
+                        <Select
+                          value={state.sorters[listType].sortBy}
+                          onChange={sort => changeSort({ listType, sort })}
+                          prefix="\E619"
+                        >
+                          {state.sorters[listType].all.map(({ title, value }) => (
+                            <Option key={`${listType}-${value}`} value={value}>
+                              {title}
+                            </Option>
+                          ))}
+                        </Select>
+                      )}
                     </Dev>
                   </Col>
                 </Row>

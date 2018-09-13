@@ -32,7 +32,6 @@ const SubjectGroups = styled.div`
   display: flex;
   flex: 1;
   flex-wrap: wrap;
-  justify-content: space-between;
 `;
 
 class FilterBox extends Component {

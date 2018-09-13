@@ -19,7 +19,7 @@ const Container = styled.div`
 const SubjectButton = ({ group, onClick, active }) => (
   <Container>
     <Button
-      style={{ marginLeft: 6 }}
+      style={{}}
       type={active ? 'primary' : 'dashed'}
       shape="circle"
       size="large"
