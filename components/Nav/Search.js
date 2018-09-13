@@ -18,14 +18,19 @@ const Input = styled(AntInput)`
 
 const Suche = () => (
   <SearchConsumer>
-    {({ term, changeSearchTerm }) => (
-      <Input
-        placeholder="Suche"
-        onChange={({ target: { value } }) => changeSearchTerm(value)}
-        value={term}
-        prefix={<Icon type="search" />}
-      />
-    )}
+    {consumerProps => {
+      if (!consumerProps) return null;
+      const { term, changeSearchTerm } = consumerProps;
+
+      return (
+        <Input
+          placeholder="Suche"
+          onChange={({ target: { value } }) => changeSearchTerm(value)}
+          value={term}
+          prefix={<Icon type="search" />}
+        />
+      );
+    }}
   </SearchConsumer>
 );
 

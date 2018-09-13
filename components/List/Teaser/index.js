@@ -81,9 +81,9 @@ Teaser.propTypes = {
   title: PropTypes.string.isRequired,
   procedureId: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  activityIndex: PropTypes.number.isRequired,
+  activityIndex: PropTypes.shape().isRequired,
   voteDate: PropTypes.string,
-  subjectGroups: PropTypes.string.isRequired,
+  subjectGroups: PropTypes.array.isRequired,
 };
 
 export default Teaser;

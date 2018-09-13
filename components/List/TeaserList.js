@@ -47,7 +47,7 @@ const TeaserList = ({ loadMore, procedures, hasMore }) => {
 
 TeaserList.propTypes = {
   loadMore: PropTypes.func.isRequired,
-  procedures: PropTypes.shape().isRequired,
+  procedures: PropTypes.array.isRequired,
   hasMore: PropTypes.bool.isRequired,
 };
 
