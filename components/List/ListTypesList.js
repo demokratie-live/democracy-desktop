@@ -110,7 +110,7 @@ class ListTypesList extends Component {
                   query={PROCEDURES}
                   variables={{
                     listTypes: [getListType(listType)],
-                    filter: { subjectGroups: state.subjectGroups },
+                    filter: { subjectGroups: state.subjectGroups, type: state.types },
                     pageSize: PAGE_SIZE,
                     sort: state.sorters[listType].sortBy,
                   }}
