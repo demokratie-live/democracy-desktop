@@ -189,6 +189,7 @@ const Details = ({ router: { query } }) => (
                       alt={procedure.subjectGroups[0]}
                     />
                   </ImageCol>
+                  <Link href="#info">#</Link>
                   <WhiteCol>
                     <Overview>
                       <Row>
@@ -219,6 +220,7 @@ const Details = ({ router: { query } }) => (
                       defaultActiveKey={['details', 'documents', 'status', 'results']}
                       bordered={false}
                     >
+                      <Link href="#details">#</Link>
                       <Panel header="Details" key="details">
                         <Row>
                           <Col xs={24} sm={24} lg={12}>
@@ -275,6 +277,7 @@ const Details = ({ router: { query } }) => (
                           </Col>
                         </Row>
                       </Panel>
+                      <Link href="#documents">#</Link>
                       <Panel header="Dokumente" key="documents">
                         {procedure.importantDocuments.map(({ editor, type, url, number }, i) => (
                           <div key={i}>
@@ -287,14 +290,18 @@ const Details = ({ router: { query } }) => (
                         ))}
                       </Panel>
                       {procedure.currentStatusHistory.length > 0 && (
-                        <Panel header="Gesetzesstand" key="status">
-                          <Timeline>
-                            {procedure.currentStatusHistory.map(status => (
-                              <Timeline.Item key={status}>{status}</Timeline.Item>
-                            ))}
-                          </Timeline>
-                        </Panel>
+                        <>
+                          <Link href="#history">#</Link>
+                          <Panel header="Gesetzesstand" key="status">
+                            <Timeline>
+                              {procedure.currentStatusHistory.map(status => (
+                                <Timeline.Item key={status}>{status}</Timeline.Item>
+                              ))}
+                            </Timeline>
+                          </Panel>
+                        </>
                       )}
+                      <Link href="#results">#</Link>
                       <Panel header="Ergebnisse" key="results">
                         <Dev>##PiechartBundestag ##PiechartCommunity</Dev>
                       </Panel>
@@ -306,6 +313,7 @@ const Details = ({ router: { query } }) => (
                       onChange={key => console.log(key)}
                       bordered={false}
                     >
+                      <Link href="#vote">#</Link>
                       <Panel header="AppStimmen" key="vote">
                         <Row style={{ marginTop: '35px' }}>
                           <Col xs={24} sm={24} lg={6} />
@@ -335,10 +343,22 @@ const Details = ({ router: { query } }) => (
                         <Row style={{ marginTop: '25px', marginBottom: '25px' }}>
                           <Col xs={24} sm={24} lg={7} />
                           <Col xs={24} sm={24} lg={5} style={{ textAlign: 'center' }}>
-                            <Icon type="appstore" fontSize="75" />
+                            <Link
+                              href="https://www.democracy-deutschland.de/"
+                              external
+                              style={{ color: 'rgb(74,74,74)' }}
+                            >
+                              <Icon type="appstore" fontSize="75" />
+                            </Link>
                           </Col>
                           <Col xs={24} sm={24} lg={5} style={{ textAlign: 'center' }}>
-                            <Icon type="playstore" fontSize="75" />
+                            <Link
+                              href="https://www.democracy-deutschland.de/"
+                              external
+                              style={{ color: 'rgb(74,74,74)' }}
+                            >
+                              <Icon type="playstore" fontSize="75" />
+                            </Link>
                           </Col>
                           <Col xs={24} sm={24} lg={7} />
                         </Row>
@@ -366,13 +386,20 @@ const Details = ({ router: { query } }) => (
                     <SubMenu key="vote" title="2. AppStimmen" />
                   </Menu>*/}
                   <Anchor>
-                    <AnchorLink href="#components-anchor-demo-basic" title={<span>1. {procedure.type} - {procedure.procedureId}</span>}>
-                      <AnchorLink href="#Anchor-Props" title="Details" />
-                      <AnchorLink href="#Documents" title="Dokumente" />
-                      <AnchorLink href="#Link-Props" title="Gesetzesstand" />
-                      <AnchorLink href="#Link-Props" title="Ergebnisse" />
+                    <AnchorLink
+                      href="#info"
+                      title={
+                        <span>
+                          1. {procedure.type} - {procedure.procedureId}
+                        </span>
+                      }
+                    >
+                      <AnchorLink href="#details" title="Details" />
+                      <AnchorLink href="#documents" title="Dokumente" />
+                      <AnchorLink href="#history" title="Gesetzesstand" />
+                      <AnchorLink href="#results" title="Ergebnisse" />
                     </AnchorLink>
-                    <AnchorLink href="#components-anchor-demo-fixed" title="2. AppStimmen" />
+                    <AnchorLink href="#vote" title="2. AppStimmen" />
                   </Anchor>
                 </Dev>
               </ASide>
