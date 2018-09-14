@@ -9,6 +9,7 @@ import ActivityIndex from 'Components/shared/ActivityIndex';
 import SubjectIcon from './../shared/SubjectIcon';
 import Link from 'Components/shared/Link';
 import VoteButton from './VoteButton';
+import ShareButton from './ShareButton';
 import Icon from 'Components/shared/Icon';
 
 // GraphQL
@@ -176,9 +177,29 @@ const Details = ({ router: { query } }) => (
         return (
           <Row>
             <Col xs={24} sm={24} md={24} lg={4}>
-              <Dev>
-                <ASide>##Facebook ##Twitter ##EMail</ASide>
-              </Dev>
+              <ASide>
+                <Row>
+                  <Col xs={24} sm={24} md={24} lg={24}>
+                    <Link href="https://www.democracy-deutschland.de/" external>
+                      <ShareButton type="facebook" />
+                    </Link>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={24} sm={24} md={24} lg={24}>
+                    <Link href="https://www.democracy-deutschland.de/" external>
+                      <ShareButton type="twitter" />
+                    </Link>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={24} sm={24} md={24} lg={24}>
+                    <Link href="https://www.democracy-deutschland.de/" external>
+                      <ShareButton type="mail" />
+                    </Link>
+                  </Col>
+                </Row>
+              </ASide>
             </Col>
             <Col xs={24} sm={24} md={24} lg={16}>
               <ContentSection>
