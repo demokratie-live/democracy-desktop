@@ -2,7 +2,7 @@ import Theme from '../ThemeProvider';
 import Nav from 'Components/Nav';
 import Footer from 'Components/Footer';
 
-export default ({ children }) => (
+const LayoutDefault = ({ children }) => (
   <main>
     <Theme>
       <>
@@ -13,3 +13,5 @@ export default ({ children }) => (
     </Theme>
   </main>
 );
+
+export default LayoutDefault;

@@ -10,7 +10,7 @@ import apolloClient from '../lib/init-apollo';
 // GraphQl
 import PROCECURE_URL_DATA from 'GraphQl/queries/procedureUrlData';
 
-export default class DetailsLayout extends Component {
+class DetailsLayout extends Component {
   static async getInitialProps(ctx) {
     /**
      * Check correct URL only on server side
@@ -41,6 +41,7 @@ export default class DetailsLayout extends Component {
         });
         res.end();
       }
+      return { title };
     }
     return {};
   }
@@ -64,3 +65,5 @@ DetailsLayout.propTypes = {
 DetailsLayout.defaultProps = {
   statusCode: false,
 };
+
+export default DetailsLayout;

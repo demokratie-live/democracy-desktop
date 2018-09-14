@@ -22,9 +22,7 @@ const SubjectGroups = styled.div`
   padding-right: ${({ theme }) => theme.space(1)}px;
 `;
 
-const Card = styled(CardComponent)`
-  height: 600px;
-`;
+const Card = styled(CardComponent)``;
 
 const ImageContainer = styled.div`
   display: block;
@@ -47,7 +45,7 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
         hoverable
         cover={
           <>
-            <Time>{voteDate ? voteDate : 'N/A'}</Time>
+            {voteDate && <Time>{voteDate}</Time>}
             <ImageContainer>
               <Image src={getImage(subjectGroups[0])} alt={subjectGroups[0]} />
             </ImageContainer>
@@ -83,9 +81,9 @@ Teaser.propTypes = {
   title: PropTypes.string.isRequired,
   procedureId: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  activityIndex: PropTypes.number.isRequired,
+  activityIndex: PropTypes.shape().isRequired,
   voteDate: PropTypes.string,
-  subjectGroups: PropTypes.string.isRequired,
+  subjectGroups: PropTypes.array.isRequired,
 };
 
 export default Teaser;

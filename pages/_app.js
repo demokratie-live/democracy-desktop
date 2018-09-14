@@ -5,6 +5,7 @@ import { ApolloProvider } from 'react-apollo';
 
 // Context
 import { Provider as FilterProvider } from 'Context/filter';
+import { Provider as SearchProvider } from 'Context/search';
 
 class MyApp extends App {
   render() {
@@ -13,7 +14,9 @@ class MyApp extends App {
       <Container>
         <ApolloProvider client={apolloClient}>
           <FilterProvider>
-            <Component {...pageProps} />
+            <SearchProvider>
+              <Component {...pageProps} />
+            </SearchProvider>
           </FilterProvider>
         </ApolloProvider>
       </Container>

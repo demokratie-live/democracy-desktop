@@ -43,7 +43,7 @@ const VoteButton = ({ type }) => (
   >
     <Icon
       type="thumb-up"
-      fontSize="75"
+      fontSize={75}
       style={{
         width: '125px',
         height: '125px',

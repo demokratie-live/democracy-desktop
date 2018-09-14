@@ -166,14 +166,13 @@ const Image = styled.img`
   width: 100%;
 `;
 
-const Details = ({ router: { pathname, query } }) => (
+const Details = ({ router: { query } }) => (
   <Section>
     {/* Query is empty in first call... */}
     <Query query={PROCEDURE} variables={{ id: query.id }}>
       {({ loading, error, data: { procedure } }) => {
         if (loading) return <p>Loading...</p>;
         if (error) return <p>Error :(</p>;
-        console.log(procedure);
         return (
           <Row>
             <Col xs={24} sm={24} md={24} lg={4}>
