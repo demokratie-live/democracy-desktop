@@ -1,5 +1,5 @@
 import { withRouter } from 'next/router';
-import { Row, Col, Menu, Collapse, Timeline, Anchor } from 'antd';
+import { Row, Col, Collapse, Timeline, Anchor as AnchorComponent } from 'antd';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 
@@ -18,9 +18,26 @@ import PROCEDURE from 'GraphQl/queries/procedure';
 // Helpers
 import { getImage } from 'Helpers/subjectGroupToIcon';
 
-const AnchorLink = Anchor.Link;
-const SubMenu = Menu.SubMenu;
+const AnchorLink = AnchorComponent.Link;
 const PanelComponent = Collapse.Panel;
+
+const Anchor = styled(AnchorComponent)`
+  .ant-anchor-link a {
+    font-size: 18px;
+    background-color: transparent;
+    color: rgb(143, 142, 148);
+    padding: 10px;
+    border-radius: 3px 0 0 3px;
+  }
+  .ant-anchor > .ant-anchor-link:first-of-type > a,
+  .ant-anchor > .ant-anchor-link:last-of-type > a {
+    background-color: rgb(244, 243, 243);
+  }
+  .ant-anchor-link.ant-anchor-link-active > a {
+    background-color: rgb(68, 148, 211) !important;
+    color: rgb(255, 255, 255);
+  }
+`;
 
 const Section = styled.section`
   background-color: ${({ theme }) => theme.backgrounds.secondary};
@@ -210,7 +227,6 @@ const Details = ({ router: { query } }) => (
                       alt={procedure.subjectGroups[0]}
                     />
                   </ImageCol>
-                  <Link href="#info">#</Link>
                   <WhiteCol>
                     <Overview>
                       <Row>
@@ -241,8 +257,7 @@ const Details = ({ router: { query } }) => (
                       defaultActiveKey={['details', 'documents', 'status', 'results']}
                       bordered={false}
                     >
-                      <Link href="#details">#</Link>
-                      <Panel header="Details" key="details">
+                      <Panel header="Details" key="details" id="details">
                         <Row>
                           <Col xs={24} sm={24} lg={12}>
                             <DetailHead>Sachgebiete</DetailHead>
@@ -298,8 +313,7 @@ const Details = ({ router: { query } }) => (
                           </Col>
                         </Row>
                       </Panel>
-                      <Link href="#documents">#</Link>
-                      <Panel header="Dokumente" key="documents">
+                      <Panel header="Dokumente" key="documents" id="documents">
                         {procedure.importantDocuments.map(({ editor, type, url, number }, i) => (
                           <div key={i}>
                             <Icon type="document" />
@@ -311,31 +325,22 @@ const Details = ({ router: { query } }) => (
                         ))}
                       </Panel>
                       {procedure.currentStatusHistory.length > 0 && (
-                        <>
-                          <Link href="#history">#</Link>
-                          <Panel header="Gesetzesstand" key="status">
-                            <Timeline>
-                              {procedure.currentStatusHistory.map(status => (
-                                <Timeline.Item key={status}>{status}</Timeline.Item>
-                              ))}
-                            </Timeline>
-                          </Panel>
-                        </>
+                        <Panel header="Gesetzesstand" key="status" id="status">
+                          <Timeline>
+                            {procedure.currentStatusHistory.map(status => (
+                              <Timeline.Item key={status}>{status}</Timeline.Item>
+                            ))}
+                          </Timeline>
+                        </Panel>
                       )}
-                      <Link href="#results">#</Link>
-                      <Panel header="Ergebnisse" key="results">
+                      <Panel header="Ergebnisse" key="results" id="results">
                         <Dev>##PiechartBundestag ##PiechartCommunity</Dev>
                       </Panel>
                     </Collapse>
                   </WhiteCol>
                   <WhiteColPad>
-                    <Collapse
-                      defaultActiveKey={['vote']}
-                      onChange={key => console.log(key)}
-                      bordered={false}
-                    >
-                      <Link href="#vote">#</Link>
-                      <Panel header="AppStimmen" key="vote">
+                    <Collapse defaultActiveKey={['vote']} bordered={false}>
+                      <Panel header="AppStimmen" key="vote" id="vote">
                         <Row style={{ marginTop: '35px' }}>
                           <Col xs={24} sm={24} lg={6} />
                           <Col xs={24} sm={24} lg={4} style={{ textAlign: 'center' }}>
@@ -391,38 +396,22 @@ const Details = ({ router: { query } }) => (
             </Col>
             <Col xs={24} sm={24} md={24} lg={4}>
               <ASide>
-                <Dev>
-                  {/*<Menu
-                    onClick={data => console.log(data)}
-                    defaultSelectedKeys={['antrag']}
-                    defaultOpenKeys={['antrag']}
-                    mode="inline"
+                <Anchor affix={true} style={{ backgroundColor: 'transparent' }}>
+                  <AnchorLink
+                    href="#top"
+                    title={
+                      <>
+                        <b>1. {procedure.type}</b> - {procedure.procedureId}
+                      </>
+                    }
                   >
-                    <SubMenu key="antrag" title={<span>##1. Antrag - 232645</span>}>
-                      <Menu.Item key="details">Details</Menu.Item>
-                      <Menu.Item key="documents">Dokumente</Menu.Item>
-                      <Menu.Item key="status">Gesetzesstand</Menu.Item>
-                      <Menu.Item key="results">Ergebnisse</Menu.Item>
-                    </SubMenu>
-                    <SubMenu key="vote" title="2. AppStimmen" />
-                  </Menu>*/}
-                  <Anchor>
-                    <AnchorLink
-                      href="#info"
-                      title={
-                        <span>
-                          1. {procedure.type} - {procedure.procedureId}
-                        </span>
-                      }
-                    >
-                      <AnchorLink href="#details" title="Details" />
-                      <AnchorLink href="#documents" title="Dokumente" />
-                      <AnchorLink href="#history" title="Gesetzesstand" />
-                      <AnchorLink href="#results" title="Ergebnisse" />
-                    </AnchorLink>
-                    <AnchorLink href="#vote" title="2. AppStimmen" />
-                  </Anchor>
-                </Dev>
+                    <AnchorLink href="#details" title="Details" />
+                    <AnchorLink href="#documents" title="Dokumente" />
+                    <AnchorLink href="#status" title="Gesetzesstand" />
+                    <AnchorLink href="#results" title="Ergebnisse" />
+                  </AnchorLink>
+                  <AnchorLink href="#vote" title={<b>2. AppStimmen</b>} />
+                </Anchor>
               </ASide>
             </Col>
           </Row>

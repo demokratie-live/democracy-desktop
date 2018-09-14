@@ -3,7 +3,7 @@ import Nav from 'Components/Nav';
 import Footer from 'Components/Footer';
 
 const LayoutDefault = ({ children }) => (
-  <main>
+  <main id="top">
     <Theme>
       <>
         <Nav />
