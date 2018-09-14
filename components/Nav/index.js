@@ -1,28 +1,12 @@
 import styled from 'styled-components';
 import { Row, Col } from 'antd';
 
-import Dev from 'Components/shared/Dev';
 import Link from 'Components/shared/Link';
 import Icon from 'Components/shared/Icon';
-import SelectComponent from 'Components/shared/Select';
 import ListLink from './ListLink';
 import Search from './Search';
 import Filter from './Filter';
-
-const Option = styled(SelectComponent.Option)`
-  padding-left: ${({ theme }) => theme.space(4)}px;
-  background-color: ${({ theme }) => theme.backgrounds.primary};
-  height: 50px !important;
-`;
-const Select = styled(SelectComponent)`
-  margin-left: -${({ theme }) => theme.space(4)}px;
-  padding-left: ${({ theme }) => theme.space(4)}px;
-  margin-bottom: ${({ theme }) => theme.space(0.5)}px;
-
-  .ant-select-selection__rendered {
-    margin-left: 0;
-  }
-`;
+import PeriodSelector from './PeriodSelector';
 
 const H1 = styled.h1`
   font-family: edosz;
@@ -91,14 +75,7 @@ const Header = () => (
     </Row>
     <Row>
       <Col xs={24} sm={24} lg={6}>
-        <Dev>
-          <Select
-            defaultValue="19. Bundestag (2017-2021)"
-            dropdownClassName="select-dropdown-period"
-          >
-            <Option value="19">19. Bundestag (2017-2021)</Option>
-          </Select>
-        </Dev>
+        <PeriodSelector />
       </Col>
       <Col xs={24} sm={24} lg={12}>
         <Row>
