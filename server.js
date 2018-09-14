@@ -1,6 +1,7 @@
-import 'dotenv/config';
-import express from 'express';
-import next from 'next';
+require('dotenv/config');
+require('@babel/polyfill');
+const express = require('express');
+const next = require('next');
 
 // Process Environments
 const { PORT, NODE_ENV } = process.env;
