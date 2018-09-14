@@ -63,14 +63,25 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
           </Col>
         </Row>
         <Row>
-          <Col xs={24} sm={24} lg={24}>
+          <div style={{ display: 'flex' }}>
             <Ribbon>{type}</Ribbon>
-            <SubjectGroups>
-              {subjectGroups.map(group => (
-                <SubjectIcon key={group} group={group} />
-              ))}
+            <SubjectGroups
+              style={{
+                display: 'flex',
+                alignSelf: 'center',
+                overflow: 'hidden',
+                height: '40px',
+                flex: 1,
+                justifyContent: 'flex-end',
+              }}
+            >
+              <div>
+                {subjectGroups.map(group => (
+                  <SubjectIcon key={group} group={group} />
+                ))}
+              </div>
             </SubjectGroups>
-          </Col>
+          </div>
         </Row>
       </Card>
     </article>
