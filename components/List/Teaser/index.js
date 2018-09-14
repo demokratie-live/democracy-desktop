@@ -68,7 +68,6 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
             <SubjectGroups
               style={{
                 display: 'flex',
-                alignSelf: 'center',
                 overflow: 'hidden',
                 height: '40px',
                 flex: 1,

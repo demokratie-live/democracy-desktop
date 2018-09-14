@@ -1,19 +1,15 @@
 import styled from 'styled-components';
+
+// Components
 import { Row, Col } from 'antd';
 
-import Link from 'Components/shared/Link';
 import Icon from 'Components/shared/Icon';
 import ListLink from './ListLink';
 import Search from './Search';
 import Filter from './Filter';
 import PeriodSelector from './PeriodSelector';
-
-const H1 = styled.h1`
-  font-family: edosz;
-  font-size: ${({ theme }) => theme.fontSizes.large};
-  margin-bottom: ${({ theme }) => theme.space(2)}px;
-  margin-top: -${({ theme }) => theme.space(2)}px;
-`;
+import Logo from './Logo';
+import Link from 'Components/shared/Link';
 
 const Nav = styled.nav`
   background-color: ${({ theme }) => theme.backgrounds.primary};
@@ -31,10 +27,6 @@ const MenuLink = styled(Link)`
   }
 `;
 
-const Img = styled.img`
-  width: 50px;
-`;
-
 const HeartIcon = styled(Icon).attrs({
   type: 'heart-filled',
 })`
@@ -45,12 +37,7 @@ const Header = () => (
   <Nav>
     <Row>
       <Col xs={24} sm={24} lg={6}>
-        <Link href="/" secondary>
-          <H1>
-            <Img alt="DEMOCRACY Deutschland" src="/static/images/Bubble.png" />
-            &nbsp;DEMOCRACY
-          </H1>
-        </Link>
+        <Logo />
       </Col>
       <Col xs={24} sm={24} lg={12}>
         <Search />
