@@ -24,7 +24,10 @@ const Text = styled.span`
 
 const ExternalLink = styled.a`
   display: flex;
+  width: 100%;
+  height: 100%;
   align-items: center;
+  justify-content: center;
   color: rgba(0, 0, 0, 0.65);
 `;
 

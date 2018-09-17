@@ -59,7 +59,7 @@ class Suche extends Component {
                     />
                   }
                 >
-                  <Icon type="lens" />
+                  <Icon type="lens" top={0} />
                 </Mobile>
               </>
             );

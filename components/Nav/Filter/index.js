@@ -75,7 +75,7 @@ class Filter extends Component {
         </Desktop>
 
         <Mobile dropDownContent={<FilterBox />}>
-          <Icon type="funnel" />
+          <Icon type="funnel" top={0} />
         </Mobile>
       </Wrapper>
     );
