@@ -3,35 +3,51 @@ import styled from 'styled-components';
 // Components
 import Link from 'Components/shared/Link';
 
-const H1 = styled.h1`
-  font-family: edosz;
-  font-size: ${({ theme }) => theme.fontSizes.large};
-  vertical-align: center;
-  @media (min-width: 992px) {
-    font-size: 3.5vw;
+const Wrapper = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    max-width: 256px;
   }
-  @media (min-width: 1400px) {
-    font-size: ${({ theme }) => theme.fontSizes.large};
+`;
+
+const WrapperLink = styled(Link)`
+  display: flex;
+  flex: 1;
+  height: 50px;
+  width: 50px;
+  justify-content: center;
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    justify-content: flex-start;
+    padding-left: ${({ theme }) => theme.space(1)}px;
   }
 `;
 
 const Img = styled.img`
+  margin-right: ${({ theme }) => theme.space(1)}px;
+  height: 50px;
   width: 50px;
-  @media (min-width: 992px) {
-    width: 3.5vw;
-  }
-  @media (min-width: 1400px) {
-    width: 50px;
+`;
+
+const H1 = styled.h1`
+  display: none;
+  margin: 0;
+  font-family: edosz;
+
+  font-size: 30px;
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    display: block;
   }
 `;
 
 const Logo = () => (
-  <Link href="/" secondary>
-    <H1>
+  <Wrapper>
+    <WrapperLink href="/" secondary>
       <Img alt="DEMOCRACY Deutschland" src="/static/images/Bubble.png" />
-      &nbsp;DEMOCRACY
-    </H1>
-  </Link>
+      <H1>DEMOCRACY</H1>
+    </WrapperLink>
+  </Wrapper>
 );
 
 export default Logo;

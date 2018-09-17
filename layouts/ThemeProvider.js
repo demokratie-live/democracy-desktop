@@ -7,6 +7,7 @@ const defaultTheme = {
     tertiary: 'rgb(239,239,244)',
     link: '#0076ff',
     highlight: 'rgb(68,148,211)',
+    lightBlue: 'rgba(68,148,211, 0.1)',
     disabled: 'rgb(216,216,216)',
     inactive: 'rgb(143,142,148)',
     divider: 'rgb(188,187,193)',
@@ -23,6 +24,9 @@ const defaultTheme = {
     medium: '30px',
     large: '50px',
     huge: '80px',
+  },
+  responsive: {
+    mobileWidth: '768px',
   },
   space: multi => multi * 10,
 };

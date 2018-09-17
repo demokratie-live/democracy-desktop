@@ -8,25 +8,51 @@ import subjectGroupIconHelper, { subjectGroups, getDisplayTitle } from 'Helpers/
 import Button from 'Components/shared/Button';
 
 const Container = styled.div`
+  width: 50%;
+  padding-right: ${({ theme }) => theme.space(0.5)}px;
+  padding-bottom: ${({ theme }) => theme.space(0.5)}px;
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    width: 120px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.lightBlue};
+  border-radius: 20px;
   align-items: center;
-  width: 120px;
-  min-height: 130px;
-  text-align: center;
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    flex-direction: column;
+    background-color: transparent;
+    min-height: 130px;
+    text-align: center;
+  }
+`;
+
+const ButtonIconWrapper = styled.div`
+  padding-right: 5px;
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    padding-right: 0;
+  }
 `;
 
 const SubjectButton = ({ group, onClick, active }) => (
   <Container>
-    <Button
-      style={{}}
-      type={active ? 'primary' : 'dashed'}
-      shape="circle"
-      size="large"
-      onClick={onClick}
-      icon={subjectGroupIconHelper(group)}
-    />
-    {getDisplayTitle(group)}
+    <ButtonWrapper onClick={onClick}>
+      <ButtonIconWrapper>
+        <Button
+          style={{}}
+          type={active ? 'primary' : 'dashed'}
+          shape="circle"
+          size="large"
+          icon={subjectGroupIconHelper(group)}
+        />
+      </ButtonIconWrapper>
+      {getDisplayTitle(group)}
+    </ButtonWrapper>
   </Container>
 );
 

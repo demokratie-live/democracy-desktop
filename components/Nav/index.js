@@ -3,63 +3,50 @@ import styled from 'styled-components';
 // Components
 import { Row, Col } from 'antd';
 
-import Icon from 'Components/shared/Icon';
 import ListLink from './ListLink';
 import Search from './Search';
 import Filter from './Filter';
 import PeriodSelector from './PeriodSelector';
 import Logo from './Logo';
-import Link from 'Components/shared/Link';
+import Download from './Download';
+import Donate from './Donate';
 
 const Nav = styled.nav`
   background-color: ${({ theme }) => theme.backgrounds.primary};
-  padding-left: ${({ theme }) => theme.space(4)}px;
-  padding-right: ${({ theme }) => theme.space(4)}px;
-  padding-top: ${({ theme }) => theme.space(2)}px;
-  padding-bottom: ${({ theme }) => theme.space(0)}px;
 `;
 
-const MenuLink = styled(Link)`
-  font-size: ${({ theme }) => theme.fontSizes.default};
-
-  .anticon {
-    font-size: ${({ theme }) => theme.fontSizes.medium};
+const FirstRow = styled.div`
+  display: flex;
+  height: 60px;
+  border-bottom-color: ${({ theme }) => theme.backgrounds.secondary};
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  > div:not(:last-child) {
+    border-right-color: ${({ theme }) => theme.backgrounds.secondary};
+    border-right-width: 1px;
+    border-right-style: solid;
   }
-`;
 
-const HeartIcon = styled(Icon).attrs({
-  type: 'heart-filled',
-})`
-  color: #d0021b;
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    border: 0;
+    > div:not(:last-child) {
+      border: 0;
+    }
+  }
 `;
 
 const Header = () => (
   <Nav>
-    <Row>
-      <Col xs={24} sm={24} lg={6}>
-        <Logo />
-      </Col>
-      <Col xs={24} sm={24} lg={12}>
-        <Search />
-      </Col>
-      <Col xs={24} sm={24} lg={6}>
-        <Row>
-          <Col xs={24} sm={24} lg={4}>
-            <Filter />
-          </Col>
-          <Col xs={24} sm={24} lg={10}>
-            <MenuLink href="https://www.democracy-deutschland.de" secondary external>
-              <Icon type="mobile" /> App Downloaden
-            </MenuLink>
-          </Col>
-          <Col xs={24} sm={24} lg={10}>
-            <MenuLink href="https://www.democracy-deutschland.de/#!donate" secondary external>
-              <HeartIcon /> Unterstützen
-            </MenuLink>
-          </Col>
-        </Row>
-      </Col>
-    </Row>
+    <FirstRow>
+      <Logo />
+      <Search />
+      <Filter />
+      <Download />
+      <Donate />
+      {/*<MenuLink href="https://www.democracy-deutschland.de/#!donate" secondary external>
+        <HeartIcon /> Unterstützen
+      </MenuLink> */}
+    </FirstRow>
     <Row>
       <Col xs={24} sm={24} lg={6}>
         <PeriodSelector />

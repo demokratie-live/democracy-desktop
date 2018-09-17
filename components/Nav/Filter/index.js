@@ -2,10 +2,21 @@ import { Component } from 'react';
 import styled from 'styled-components';
 
 // Components
+import Modal from 'Components/shared/Modal';
 import Icon from 'Components/shared/Icon';
 import ButtonComponent from 'Components/shared/Button';
 import RenderToBody from 'Components/shared/RenderToBody';
 import FilterBox from './FilterBox';
+import { Desktop, Mobile } from '../Responsive';
+
+const Wrapper = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    max-width: 70px;
+  }
+`;
 
 const Button = styled(ButtonComponent)`
   border: 0;
@@ -47,18 +58,26 @@ class Filter extends Component {
   render() {
     const { visible } = this.state;
     return (
-      <>
-        <Button onClick={this.toggleVisibility}>
-          <Icon type="funnel" />
-          <ArrowIconWrapper>
-            <ArrowIcon type="arrow" />
-          </ArrowIconWrapper>
-        </Button>
+      <Wrapper>
+        <Desktop>
+          <Button onClick={this.toggleVisibility}>
+            <Icon type="funnel" />
+            <ArrowIconWrapper>
+              <ArrowIcon type="arrow" />
+            </ArrowIconWrapper>
+          </Button>
 
-        <RenderToBody id="FilterBox">
-          <FilterBox visible={visible} handleVisibleChange={this.handleVisibleChange} />
-        </RenderToBody>
-      </>
+          <RenderToBody id="FilterBox">
+            <Modal visible={visible} handleVisibleChange={this.handleVisibleChange}>
+              <FilterBox />
+            </Modal>
+          </RenderToBody>
+        </Desktop>
+
+        <Mobile dropDownContent={<FilterBox />}>
+          <Icon type="funnel" />
+        </Mobile>
+      </Wrapper>
     );
   }
 }
