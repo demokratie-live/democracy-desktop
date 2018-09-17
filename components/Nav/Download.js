@@ -32,7 +32,7 @@ class Download extends Component {
   render() {
     return (
       <Wrapper>
-        <ExternalLink href="http://google.de">
+        <ExternalLink href="https://www.democracy-deutschland.de">
           <Icon type="mobile" top={0} /> <Text>App Downloaden</Text>
         </ExternalLink>
       </Wrapper>
