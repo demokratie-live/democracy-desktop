@@ -9,8 +9,8 @@ const Icon = styled.i.attrs({})`
   }
 `;
 
-const IconComponent = ({ type, fontSize, top, className }) => {
-  return <Icon className={`icon-${type} ${className}`} fontSize={fontSize} top={top} />;
+const IconComponent = ({ type, fontSize, className, top, style }) => {
+  return <Icon className={`icon-${type} ${className}`} fontSize={fontSize} top={top} style={style} />;
 };
 
 IconComponent.propTypes = {
@@ -18,12 +18,14 @@ IconComponent.propTypes = {
   fontSize: PropTypes.number,
   className: PropTypes.string,
   top: PropTypes.number,
+  style: PropTypes.shape,
 };
 
 IconComponent.defaultProps = {
   fontSize: 22,
-  className: '',
   top: 4,
+  className: '',
+  style: {},
 };
 
 export default IconComponent;

@@ -10,8 +10,16 @@ import Icon from 'Components/shared/Icon';
 
 const SubjectIcon = ({ group }) => (
   <Tooltip placement="bottom" title={group}>
-    <Button style={{ marginLeft: 6 }} type="primary" shape="circle" size="large">
-      <Icon type={subjectGroupIconHelper(group)} />
+    <Button style={{ marginLeft: 6, border: 0 }} type="primary" shape="circle" size="large">
+      <Icon
+        type={subjectGroupIconHelper(group)}
+        style={{
+          width: '39px',
+          height: '40px',
+          display: 'block',
+          paddingTop: '5px',
+        }}
+      />
     </Button>
   </Tooltip>
 );
