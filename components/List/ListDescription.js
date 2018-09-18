@@ -11,10 +11,15 @@ import { titleByUrlParam } from '../../lib/helpers/listTypeConvert';
 const Tag = styled(AntTag)`
   background-color: ${({ theme }) => theme.backgrounds.tertiary};
   font-size: ${({ theme }) => theme.fontSizes.default};
-  padding-top: 5px;
-  padding-bottom: 5px;
-  height: 35px;
+  height: 30px;
   border: 0;
+`;
+
+const Text = styled.span`
+  display: none;
+  @media (min-width: 406px) {
+    display: inline-block;
+  }
 `;
 
 const descriptions = {
@@ -37,7 +42,7 @@ const ListDescription = ({
   return (
     <Tooltip title={descriptions[listType]} placement="bottomLeft">
       <Tag>
-        <Icon type="info" /> {text}
+        <Icon type="info" /> <Text>{text}</Text>
       </Tag>
     </Tooltip>
   );

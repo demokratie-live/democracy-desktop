@@ -15,6 +15,13 @@ import ActivityIndex from 'Components/shared/ActivityIndex';
 // Helpers
 import { getImage } from 'Helpers/subjectGroupToIcon';
 
+const TitleRow = styled.div`
+  display: flex;
+  > h2 {
+    flex: 1;
+  }
+`;
+
 const SubjectGroups = styled.div`
   float: right;
   margin-top: ${({ theme }) => theme.space(5)}px;
@@ -52,16 +59,13 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
           </>
         }
       >
-        <Row>
-          <Col xs={24} sm={24} lg={20}>
-            <Title tag={'h2'} lines={2}>
-              {title}
-            </Title>
-          </Col>
-          <Col xs={24} sm={24} lg={4}>
-            <ActivityIndex>{activityIndex.activityIndex}</ActivityIndex>
-          </Col>
-        </Row>
+        <TitleRow>
+          <Title tag={'h2'} lines={2}>
+            {title}
+          </Title>
+          <ActivityIndex>{activityIndex.activityIndex}</ActivityIndex>
+        </TitleRow>
+
         <Row>
           <div style={{ display: 'flex' }}>
             <Ribbon>{type}</Ribbon>

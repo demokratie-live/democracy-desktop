@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { Row, Col } from 'antd';
 import { withRouter } from 'next/router';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
@@ -19,14 +18,19 @@ import PROCEDURES from 'GraphQl/queries/procedures';
 import ListDesctiption from './ListDescription';
 const PAGE_SIZE = 15;
 
-const Option = SelectComponent.Option;
-
 const Section = styled.section`
   background-color: ${({ theme }) => theme.backgrounds.secondary};
-  padding-left: ${({ theme }) => theme.space(4)}px;
-  padding-right: ${({ theme }) => theme.space(4)}px;
-  padding-top: ${({ theme }) => theme.space(2)}px;
-  padding-bottom: ${({ theme }) => theme.space(4)}px;
+  padding-left: ${({ theme }) => theme.space(1)}px;
+  padding-right: ${({ theme }) => theme.space(1)}px;
+  padding-top: ${({ theme }) => theme.space(0.5)}px;
+  padding-bottom: ${({ theme }) => theme.space(1)}px;
+
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    padding-left: ${({ theme }) => theme.space(4)}px;
+    padding-right: ${({ theme }) => theme.space(4)}px;
+    padding-top: ${({ theme }) => theme.space(2)}px;
+    padding-bottom: ${({ theme }) => theme.space(4)}px;
+  }
 `;
 
 const Select = styled(SelectComponent)`
@@ -35,6 +39,8 @@ const Select = styled(SelectComponent)`
     background-color: ${({ theme }) => theme.backgrounds.tertiary};
   }
 `;
+
+const Option = styled(SelectComponent.Option)``;
 
 class ListTypesList extends Component {
   state = {
@@ -85,27 +91,20 @@ class ListTypesList extends Component {
             const { state, changeSort } = filterConsumer;
             return (
               <>
-                <Row>
-                  <Col xs={24} sm={24} lg={6}>
-                    <ListDesctiption />
-                  </Col>
-                  <Col xs={24} sm={24} lg={12} />
-                  <Col xs={24} sm={24} lg={6}>
-                    {state.sorters[listType].all.length > 0 && (
-                      <Select
-                        value={state.sorters[listType].sortBy}
-                        onChange={sort => changeSort({ listType, sort })}
-                        prefix="\f126"
-                      >
-                        {state.sorters[listType].all.map(({ title, value }) => (
-                          <Option key={`${listType}-${value}`} value={value}>
-                            {title}
-                          </Option>
-                        ))}
-                      </Select>
-                    )}
-                  </Col>
-                </Row>
+                <ListDesctiption />
+                {state.sorters[listType].all.length > 0 && (
+                  <Select
+                    value={state.sorters[listType].sortBy}
+                    onChange={sort => changeSort({ listType, sort })}
+                    prefix="\f126"
+                  >
+                    {state.sorters[listType].all.map(({ title, value }) => (
+                      <Option key={`${listType}-${value}`} value={value}>
+                        {title}
+                      </Option>
+                    ))}
+                  </Select>
+                )}
                 <Query
                   query={PROCEDURES}
                   variables={{
