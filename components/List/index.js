@@ -1,4 +1,6 @@
 import { Component } from 'react';
+
+// Components
 import ListTypesList from './ListTypesList';
 import SearchList from './SearchList';
 
