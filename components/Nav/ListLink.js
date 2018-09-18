@@ -5,10 +5,14 @@ import styled from 'styled-components';
 import LinkComponent from 'Components/shared/Link';
 
 const Link = styled(LinkComponent)`
-  font-size: ${({ theme }) => theme.fontSizes.default};
+  font-size: 3.5vw;
 
   .anticon {
     font-size: ${({ theme }) => theme.fontSizes.medium};
+  }
+
+  @media (min-width: 550px) {
+    font-size: ${({ theme }) => theme.fontSizes.default};
   }
 `;
 

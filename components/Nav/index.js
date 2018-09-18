@@ -12,11 +12,15 @@ import Download from './Download';
 import Donate from './Donate';
 
 const Nav = styled.nav`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: ${({ theme }) => theme.backgrounds.primary};
 `;
 
 const FirstRow = styled.div`
   display: flex;
+  align-self: stretch;
   height: 60px;
   border-bottom-color: ${({ theme }) => theme.backgrounds.secondary};
   border-bottom-width: 1px;
@@ -35,6 +39,20 @@ const FirstRow = styled.div`
   }
 `;
 
+const ListRow = styled.div`
+  display: flex;
+  align-self: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 600px;
+  height: 30px;
+  > a {
+    flex: 1;
+    text-align: center;
+  }
+`;
+
 const Header = () => (
   <Nav>
     <FirstRow>
@@ -47,28 +65,12 @@ const Header = () => (
         <HeartIcon /> Unterstützen
       </MenuLink> */}
     </FirstRow>
-    <Row>
-      <Col xs={24} sm={24} lg={6}>
-        <PeriodSelector />
-      </Col>
-      <Col xs={24} sm={24} lg={12}>
-        <Row>
-          <Col xs={24} sm={24} lg={6}>
-            <ListLink listType="in-abstimmung">in Abstimmung</ListLink>
-          </Col>
-          <Col xs={24} sm={24} lg={6}>
-            <ListLink listType="vergangen">Vergangen</ListLink>
-          </Col>
-          <Col xs={24} sm={24} lg={6}>
-            <ListLink listType="in-vorbereitung">in Vorbereitung</ListLink>
-          </Col>
-          <Col xs={24} sm={24} lg={6}>
-            <ListLink listType="whats-hot">What's Hot</ListLink>
-          </Col>
-        </Row>
-      </Col>
-      <Col xs={24} sm={24} lg={6} />
-    </Row>
+    <ListRow>
+      <ListLink listType="in-abstimmung">in Abstimmung</ListLink>
+      <ListLink listType="vergangen">Vergangen</ListLink>
+      <ListLink listType="in-vorbereitung">in Vorbereitung</ListLink>
+      <ListLink listType="whats-hot">What's Hot</ListLink>
+    </ListRow>
   </Nav>
 );
 
