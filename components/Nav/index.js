@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 
 // Components
-import { Row, Col } from 'antd';
-
 import ListLink from './ListLink';
 import Search from './Search';
 import Filter from './Filter';
-import PeriodSelector from './PeriodSelector';
 import Logo from './Logo';
 import Download from './Download';
 import Donate from './Donate';

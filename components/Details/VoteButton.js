@@ -55,7 +55,7 @@ const VoteButton = ({ type }) => (
 );
 
 VoteButton.propTypes = {
-  type: PropTypes.oneOf(Object.keys(voteOptions)).isRequired,
+  type: PropTypes.oneOf(voteOptions).isRequired,
 };
 
 export default VoteButton;

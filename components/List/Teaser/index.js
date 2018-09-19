@@ -3,7 +3,7 @@ import speakingurl from 'speakingurl';
 import styled from 'styled-components';
 
 // Components
-import { Card as CardComponent, Row, Col } from 'antd';
+import { Card as CardComponent, Row } from 'antd';
 
 import SubjectIcon from './../../shared/SubjectIcon';
 import Ribbon from './Ribbon';
