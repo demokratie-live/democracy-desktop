@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Button from 'Components/shared/Button';
 import Icon from 'Components/shared/Icon';
 
-const voteOptions = ['thumb-up', 'thumb-down', 'thumb-left'];
+const shareTypes = ['facebook', 'twitter', 'mail'];
 
 const ShareButton = ({ type }) => (
   <Button
@@ -35,7 +35,7 @@ const ShareButton = ({ type }) => (
 );
 
 ShareButton.propTypes = {
-  type: PropTypes.oneOf(Object.keys(voteOptions)).isRequired,
+  type: PropTypes.oneOf(shareTypes).isRequired,
 };
 
 export default ShareButton;
