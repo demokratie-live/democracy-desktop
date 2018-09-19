@@ -191,6 +191,10 @@ class Details extends Component {
       router: { query },
     } = this.props;
 
+    if (!query.id) {
+      return null;
+    }
+
     return (
       <Section>
         {/* Query is empty in first call... */}
