@@ -39,7 +39,7 @@ const ButtonIconWrapper = styled.div`
   }
 `;
 
-const SubjectButton = ({ group, onClick, active }) => (
+const SubjectButton = ({ group, onClick, active, icon, title }) => (
   <Container>
     <ButtonWrapper onClick={onClick}>
       <ButtonIconWrapper>
@@ -48,18 +48,25 @@ const SubjectButton = ({ group, onClick, active }) => (
           type={active ? 'primary' : 'dashed'}
           shape="circle"
           size="large"
-          icon={subjectGroupIconHelper(group)}
+          icon={icon || subjectGroupIconHelper(group)}
         />
       </ButtonIconWrapper>
-      {getDisplayTitle(group)}
+      {title || getDisplayTitle(group)}
     </ButtonWrapper>
   </Container>
 );
 
 SubjectButton.propTypes = {
-  group: PropTypes.oneOf(Object.keys(subjectGroups)).isRequired,
+  group: PropTypes.oneOf(Object.keys(subjectGroups)),
   onClick: PropTypes.func.isRequired,
   active: PropTypes.bool.isRequired,
+  icon: PropTypes.string,
+  title: PropTypes.string,
+};
+
+SubjectButton.defaultProps = {
+  icon: '',
+  title: '',
 };
 
 export default SubjectButton;

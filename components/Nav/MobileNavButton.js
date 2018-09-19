@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import PropTypesStyle from 'react-style-proptype';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -66,7 +67,7 @@ class MobileNavButton extends Component {
   };
 
   render() {
-    const { children, dropDownContent, onClick, className } = this.props;
+    const { children, dropDownContent, onClick, className, dropDownContentStyle } = this.props;
     return (
       <Wrapper className={className}>
         <Button innerRef={this.setButtonRef} onClick={onClick || this.toggleDropdown}>
@@ -75,7 +76,9 @@ class MobileNavButton extends Component {
 
         {dropDownContent &&
           this.state.opened && (
-            <OpenedConent innerRef={this.setWrapperRef}>{dropDownContent}</OpenedConent>
+            <OpenedConent style={dropDownContentStyle} innerRef={this.setWrapperRef}>
+              {dropDownContent}
+            </OpenedConent>
           )}
       </Wrapper>
     );
@@ -85,6 +88,7 @@ class MobileNavButton extends Component {
 MobileNavButton.propTypes = {
   onClick: PropTypes.any,
   dropDownContent: PropTypes.any,
+  dropDownContentStyle: PropTypesStyle,
 };
 
 MobileNavButton.defaultProps = {

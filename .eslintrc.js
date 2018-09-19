@@ -10,7 +10,7 @@ module.exports = {
 
     // REACT
       "react/react-in-jsx-scope": 0,
-      "react/prop-types": [2, { ignore: ['theme', 'children', 'router', 'className'] }],
+      "react/prop-types": [2, { ignore: ['theme', 'children', 'router', 'className', 'style'] }],
       "react/no-unescaped-entities": 0,
   },
   globals: {

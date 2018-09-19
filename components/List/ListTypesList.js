@@ -96,7 +96,7 @@ class ListTypesList extends Component {
                   <Select
                     value={state.sorters[listType].sortBy}
                     onChange={sort => changeSort({ listType, sort })}
-                    prefix="\f126"
+                    prefix="\f128"
                   >
                     {state.sorters[listType].all.map(({ title, value }) => (
                       <Option key={`${listType}-${value}`} value={value}>
