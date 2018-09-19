@@ -11,6 +11,7 @@ import Link from 'Components/shared/Link';
 import VoteButton from './VoteButton';
 import ShareButton from './ShareButton';
 import Icon from 'Components/shared/Icon';
+import DateTime from 'Components/shared/DateTime';
 
 // GraphQL
 import PROCEDURE from 'GraphQl/queries/procedure';
@@ -245,8 +246,14 @@ const Details = ({ router: { query } }) => (
                             ))}
                           </SubjectGroups>
                         </Col>
-                        <Col xs={24} sm={24} lg={2}>
-                          <Dev>{procedure.voteDate}</Dev>
+                        <Col xs={24} sm={24} lg={2} style={{ textAlign: 'center' }}>
+                          <DateTime
+                            date={procedure.voteDate}
+                            style={{
+                              color: 'rgb(254,56,36)',
+                              fontSize: '20px',
+                            }}
+                          />
                         </Col>
                       </Row>
                     </Overview>
@@ -292,7 +299,7 @@ const Details = ({ router: { query } }) => (
                                 <DetailHead>erstellt am</DetailHead>
                               </ColDetail>
                               <Col xs={24} sm={24} lg={6}>
-                                {procedure.submissionDate}
+                                <DateTime date={procedure.submissionDate} />
                               </Col>
                             </Row>
                             <Row>
@@ -300,7 +307,7 @@ const Details = ({ router: { query } }) => (
                                 <DetailHead>Abstimmung</DetailHead>
                               </ColDetail>
                               <Col xs={24} sm={24} lg={6}>
-                                {procedure.voteDate ? procedure.voteDate : 'N/A'}
+                                <DateTime date={procedure.voteDate} fallback="N/A" />
                               </Col>
                             </Row>
                           </Col>
