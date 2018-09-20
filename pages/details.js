@@ -36,6 +36,10 @@ class DetailsLayout extends Component {
       }
       const { title, type } = data.procedure;
       if (speakingurl(title) !== params.title || speakingurl(type) !== params.type) {
+        console.log(
+          `${speakingurl(title)} !== ${params.title} || ${speakingurl(type)} !== ${params.type}`,
+          speakingurl(title) !== params.title || speakingurl(type) !== params.type,
+        );
         res.writeHead(302, {
           Location: `/${speakingurl(type)}/${params.id}/${speakingurl(title)}`,
         });
