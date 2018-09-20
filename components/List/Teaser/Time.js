@@ -9,13 +9,13 @@ const Wrapper = styled.div`
   right: 0;
   top: 36px;
   width: auto;
-  padding: 5px;
+  padding: 5px 7px;
   z-index: 1;
 `;
 
 const Text = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.small};
-  margin: 5px 12px;
+  margin: 5px 5px;
   color: ${({ theme }) => theme.colors.default};
   vertical-align: middle;
 `;
@@ -23,7 +23,7 @@ const Text = styled.span`
 const Time = ({ children }) => {
   return (
     <Wrapper>
-      <Icon type="clock-circle-o" />
+      <Icon type="clock-circle-o" style={{ verticalAlign: 'middle', marginTop: '1px' }} />
       <Text>{children}</Text>
     </Wrapper>
   );
