@@ -28,10 +28,12 @@ const formatDate = date => {
   return null;
 };
 
-const Text = styled.text``;
+const Time = styled.time``;
 
 const DateTime = ({ date, fallback, style }) => (
-  <Text style={style}>{date ? formatDate(new Date(date)) : fallback}</Text>
+  <Time dateTime={date} style={style}>
+    {date ? formatDate(new Date(date)) : fallback}
+  </Time>
 );
 
 DateTime.propTypes = {
