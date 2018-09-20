@@ -12,6 +12,7 @@ import Link from 'Components/shared/Link';
 import VoteButton from './VoteButton';
 import ShareButton from './ShareButton';
 import Icon from 'Components/shared/Icon';
+import DateTime from 'Components/shared/DateTime';
 
 // GraphQL
 import PROCEDURE from 'GraphQl/queries/procedure';
@@ -147,7 +148,7 @@ const SubjectGroups = styled.div`
   height: 100%;
 `;
 
-const DetailHead = styled.text`
+const DetailHead = styled.span`
   color: ${({ theme }) => theme.colors.highlight};
 `;
 
@@ -257,7 +258,13 @@ class Details extends Component {
                               </SubjectGroups>
                             </Col>
                             <Col xs={24} sm={24} lg={2}>
-                              <Dev>{procedure.voteDate}</Dev>
+                              <DateTime
+                                date={procedure.voteDate}
+                                style={{
+                                  color: 'rgb(254,56,36)',
+                                  fontSize: '20px',
+                                }}
+                              />
                             </Col>
                           </Row>
                         </Overview>
@@ -303,7 +310,7 @@ class Details extends Component {
                                     <DetailHead>erstellt am</DetailHead>
                                   </ColDetail>
                                   <Col xs={24} sm={24} lg={6}>
-                                    {procedure.submissionDate}
+                                    <DateTime date={procedure.submissionDate} />
                                   </Col>
                                 </Row>
                                 <Row>
@@ -311,7 +318,7 @@ class Details extends Component {
                                     <DetailHead>Abstimmung</DetailHead>
                                   </ColDetail>
                                   <Col xs={24} sm={24} lg={6}>
-                                    {procedure.voteDate ? procedure.voteDate : 'N/A'}
+                                    <DateTime date={procedure.voteDate} fallback="N/A" />
                                   </Col>
                                 </Row>
                               </Col>

@@ -11,6 +11,7 @@ import Time from './Time';
 import Link from 'Components/shared/Link';
 import Title from 'Components/shared/Ellipsis';
 import ActivityIndex from 'Components/shared/ActivityIndex';
+import DateTime from 'Components/shared/DateTime';
 
 // Helpers
 import { getImage } from 'Helpers/subjectGroupToIcon';
@@ -52,7 +53,11 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
         hoverable
         cover={
           <>
-            {voteDate && <Time>{voteDate}</Time>}
+            {voteDate && (
+              <Time>
+                <DateTime date={voteDate} />
+              </Time>
+            )}
             <ImageContainer>
               <Image src={getImage(subjectGroups[0])} alt={subjectGroups[0]} />
             </ImageContainer>
