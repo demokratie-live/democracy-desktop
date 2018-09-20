@@ -147,7 +147,7 @@ const SubjectGroups = styled.div`
   height: 100%;
 `;
 
-const DetailHead = styled.text`
+const DetailHead = styled.span`
   color: ${({ theme }) => theme.colors.highlight};
 `;
 
