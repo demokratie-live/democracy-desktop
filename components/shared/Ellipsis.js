@@ -16,7 +16,6 @@ class EllipsisComponent extends PureComponent {
       -webkit-line-clamp: ${({ lines }) => lines}; /* number of lines to show */
       -webkit-box-orient: vertical;
       font-size: ${({ theme }) => theme.fontSizes.default};
-      font-weight: bold;
     `;
   }
 
