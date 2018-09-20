@@ -13,7 +13,7 @@
     "build": "next build",
     "build:fonts": "icon-font-generator assets/fontSvgs/*.svg -o static/fonts/democracy/ --normalize",
     "prebuild": "npm run clear && npm run build:fonts",
-    "start": "NODE_ENV=production server/index.js",
+    "start": "NODE_ENV=production node server/index.js",
     "lint": "eslint ."
   },
   "dependencies": {
