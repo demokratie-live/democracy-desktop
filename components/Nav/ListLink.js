@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import LinkComponent from 'Components/shared/Link';
 
 const Link = styled(LinkComponent)`
-  font-size: 3.5vw;
+  font-size: 3vw;
 
   .anticon {
     font-size: ${({ theme }) => theme.fontSizes.medium};

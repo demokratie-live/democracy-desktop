@@ -38,6 +38,7 @@ const nextConfig = {
     // Will only be available on the server side
     PORT: process.env.PORT,
     NODE_ENV: process.env.NODE_ENV,
+    GRAPHQL_URL_SERVER: process.env.GRAPHQL_URL_SERVER,
   },
   publicRuntimeConfig: {
     // Will be available on both server and client
