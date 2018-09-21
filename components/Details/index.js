@@ -10,9 +10,12 @@ import ActivityIndex from 'Components/shared/ActivityIndex';
 import SubjectIcon from './../shared/SubjectIcon';
 import Link from 'Components/shared/Link';
 import VoteButton from './VoteButton';
-import ShareButton from './ShareButton';
+import ShareButtons from './ShareButtons';
 import Icon from 'Components/shared/Icon';
 import DateTime from 'Components/shared/DateTime';
+import Overview from './Overview';
+import Tags from './Tags';
+import DetailsPanel from './Panels/Details';
 
 // GraphQL
 import PROCEDURE from 'GraphQl/queries/procedure';
@@ -22,6 +25,31 @@ import { getImage } from 'Helpers/subjectGroupToIcon';
 
 const AnchorLink = AnchorComponent.Link;
 const PanelComponent = Collapse.Panel;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const AsideLeft = styled.div`
+  min-width: 55px;
+  background-color: red;
+`;
+
+const AsideRight = styled.div`
+  display: none;
+  background-color: green;
+
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    display: block;
+  }
+`;
+
+const ContentSection = styled.section`
+  flex: 1;
+  background-color: ${({ theme }) => theme.backgrounds.secondary};
+  background-color: yellow;
+`;
 
 const Anchor = styled(AnchorComponent)`
   .ant-anchor-link a {
@@ -46,10 +74,9 @@ const Section = styled.section`
   padding-top: ${({ theme }) => theme.space(3)}px;
 `;
 
-const ContentSection = styled.section`
-  background-color: ${({ theme }) => theme.backgrounds.secondary};
-  padding-left: ${({ theme }) => theme.space(3)}px;
-  padding-right: ${({ theme }) => theme.space(3)}px;
+const ShareAside = styled.aside`
+  position: sticky;
+  top: ${({ theme }) => theme.space(3)}px;
 `;
 
 const ASide = styled.aside`
@@ -132,13 +159,6 @@ const Panel = styled(PanelComponent)`
   }
 `;
 
-const Overview = styled.div`
-  padding-left: ${({ theme }) => theme.space(4)}px;
-  padding-right: ${({ theme }) => theme.space(4)}px;
-  padding-top: ${({ theme }) => theme.space(5)}px;
-  padding-bottom: ${({ theme }) => theme.space(4)}px;
-`;
-
 const Title = styled.h2`
   font-size: ${({ theme }) => theme.fontSizes.medium};
 `;
@@ -178,7 +198,7 @@ const H3 = styled.h3`
 `;
 
 const ImageCol = styled.div`
-  height: 550px;
+  max-height: 550px;
   overflow: hidden;
 `;
 
@@ -204,221 +224,132 @@ class Details extends Component {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>Error :(</p>;
             return (
-              <Row>
-                <Col xs={24} sm={24} md={24} lg={4}>
-                  <ASide>
-                    <Row>
-                      <Col xs={24} sm={24} md={24} lg={24}>
-                        <Link href="https://www.democracy-deutschland.de/" external>
-                          <ShareButton type="facebook" />
-                        </Link>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col xs={24} sm={24} md={24} lg={24}>
-                        <Link href="https://www.democracy-deutschland.de/" external>
-                          <ShareButton type="twitter" />
-                        </Link>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col xs={24} sm={24} md={24} lg={24}>
-                        <Link href="https://www.democracy-deutschland.de/" external>
-                          <ShareButton type="mail" />
-                        </Link>
-                      </Col>
-                    </Row>
-                  </ASide>
-                </Col>
-                <Col xs={24} sm={24} md={24} lg={16}>
-                  <ContentSection>
-                    <Row>
-                      <ImageCol>
-                        <Image
-                          src={getImage(procedure.subjectGroups[0])}
-                          alt={procedure.subjectGroups[0]}
-                        />
-                      </ImageCol>
-                      <WhiteCol>
-                        <Overview>
-                          <Row>
-                            <Col xs={24} sm={24} lg={22}>
-                              <Title>{procedure.title}</Title>
-                            </Col>
-                            <Col xs={24} sm={24} lg={2}>
-                              <ActivityIndex>{procedure.activityIndex.activityIndex}</ActivityIndex>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col xs={24} sm={24} lg={22}>
-                              <SubjectGroups>
-                                {procedure.subjectGroups.map(group => (
-                                  <SubjectIcon key={group} group={group} />
-                                ))}
-                              </SubjectGroups>
-                            </Col>
-                            <Col xs={24} sm={24} lg={2}>
-                              <DateTime
-                                date={procedure.voteDate}
-                                style={{
-                                  color: 'rgb(254,56,36)',
-                                  fontSize: '20px',
-                                }}
-                              />
-                            </Col>
-                          </Row>
-                        </Overview>
-                      </WhiteCol>
-                      <GrayCol>{procedure.tags.join(', ')}</GrayCol>
-                      <WhiteCol>
-                        <Collapse
-                          defaultActiveKey={['details', 'documents', 'status', 'results']}
-                          bordered={false}
+              <Wrapper>
+                <AsideLeft>
+                  <ShareAside>
+                    <ShareButtons />
+                  </ShareAside>
+                </AsideLeft>
+                <ContentSection>
+                  <ImageCol>
+                    <Image
+                      src={getImage(procedure.subjectGroups[0])}
+                      alt={procedure.subjectGroups[0]}
+                    />
+                  </ImageCol>
+                  <Overview
+                    title={procedure.title}
+                    activityIndex={procedure.activityIndex.activityIndex}
+                    subjectGroups={procedure.subjectGroups}
+                    voteDate={procedure.voteDate}
+                  />
+                  <Tags tags={procedure.tags} />
+
+                  <Collapse
+                    defaultActiveKey={['details', 'documents', 'status', 'results']}
+                    bordered={false}
+                  >
+                    <Panel header="Details" key="details" id="details">
+                      <DetailsPanel subjectGroups={procedure.subjectGroups} />
+                      {/* <DetailHead>Sachgebiete</DetailHead>
+                      <br />
+                      {subjectGroups(procedure.subjectGroups)}
+                      <br />
+                      <DetailHead>Aktueller Stand</DetailHead>
+                      <br />
+                      {procedure.currentStatus}
+                      <br />
+                      <br />
+
+                      <ColDetail>
+                        <DetailHead>Typ</DetailHead>
+                      </ColDetail>
+                      {procedure.type}
+
+                      <ColDetail>
+                        <DetailHead>Vorgang</DetailHead>
+                      </ColDetail>
+
+                      {procedure.procedureId}
+
+                      <ColDetail>
+                        <DetailHead>erstellt am</DetailHead>
+                      </ColDetail>
+
+                      <DateTime date={procedure.submissionDate} />
+
+                      <ColDetail>
+                        <DetailHead>Abstimmung</DetailHead>
+                      </ColDetail>
+
+                      <DateTime date={procedure.voteDate} fallback="N/A" />
+
+                      <DetailHead>Inhalt</DetailHead>
+                      <br />
+                      {procedure.abstract} */}
+                    </Panel>
+
+                    {/* <Panel header="Dokumente" key="documents" id="documents">
+                      {procedure.importantDocuments.map(({ editor, type, url, number }, i) => (
+                        <div key={i}>
+                          <Icon type="document" />
+                          &nbsp;&nbsp;
+                          <Link href={url} external primary>
+                            {`${type} (${editor} ${number})`}
+                          </Link>
+                        </div>
+                      ))}
+                    </Panel>
+                    {procedure.currentStatusHistory.length > 0 && (
+                      <Panel header="Gesetzesstand" key="status" id="status">
+                        <Timeline>
+                          {procedure.currentStatusHistory.map(status => (
+                            <Timeline.Item key={status}>{status}</Timeline.Item>
+                          ))}
+                        </Timeline>
+                      </Panel>
+                    )}
+                    <Panel header="Ergebnisse" key="results" id="results">
+                      <Dev>##PiechartBundestag ##PiechartCommunity</Dev>
+                    </Panel> */}
+                  </Collapse>
+                  {/* <WhiteColPad>
+                    <Collapse defaultActiveKey={['vote']} bordered={false}>
+                      <Panel header="AppStimmen" key="vote" id="vote">
+                        <VoteButton type="thumb-left" />
+
+                        <VoteButton type="thumb-down" />
+
+                        <H3>
+                          Um mitzustimmen, lade Dir bitte das <b>10X-Improvement</b>
+                          <br />
+                          <Link href="https://www.democracy-deutschland.de/" external primary>
+                            für unsere Demokratie
+                          </Link>
+                          &nbsp;herunter
+                        </H3>
+
+                        <Link
+                          href="https://www.democracy-deutschland.de/"
+                          external
+                          style={{ color: 'rgb(74,74,74)' }}
                         >
-                          <Panel header="Details" key="details" id="details">
-                            <Row>
-                              <Col xs={24} sm={24} lg={12}>
-                                <DetailHead>Sachgebiete</DetailHead>
-                                <br />
-                                {subjectGroups(procedure.subjectGroups)}
-                                <br />
-                                <DetailHead>Aktueller Stand</DetailHead>
-                                <br />
-                                {procedure.currentStatus}
-                                <br />
-                                <br />
-                              </Col>
-                              <Col xs={24} sm={24} lg={12}>
-                                <Row>
-                                  <ColDetail>
-                                    <DetailHead>Typ</DetailHead>
-                                  </ColDetail>
-                                  <Col xs={24} sm={24} lg={6}>
-                                    {procedure.type}
-                                  </Col>
-                                </Row>
-                                <Row>
-                                  <ColDetail>
-                                    <DetailHead>Vorgang</DetailHead>
-                                  </ColDetail>
-                                  <Col xs={24} sm={24} lg={6}>
-                                    {procedure.procedureId}
-                                  </Col>
-                                </Row>
-                                <Row>
-                                  <ColDetail>
-                                    <DetailHead>erstellt am</DetailHead>
-                                  </ColDetail>
-                                  <Col xs={24} sm={24} lg={6}>
-                                    <DateTime date={procedure.submissionDate} />
-                                  </Col>
-                                </Row>
-                                <Row>
-                                  <ColDetail>
-                                    <DetailHead>Abstimmung</DetailHead>
-                                  </ColDetail>
-                                  <Col xs={24} sm={24} lg={6}>
-                                    <DateTime date={procedure.voteDate} fallback="N/A" />
-                                  </Col>
-                                </Row>
-                              </Col>
-                            </Row>
-                            <Row>
-                              <Col xs={24} sm={24} lg={24}>
-                                <DetailHead>Inhalt</DetailHead>
-                                <br />
-                                {procedure.abstract}
-                              </Col>
-                            </Row>
-                          </Panel>
-                          <Panel header="Dokumente" key="documents" id="documents">
-                            {procedure.importantDocuments.map(
-                              ({ editor, type, url, number }, i) => (
-                                <div key={i}>
-                                  <Icon type="document" />
-                                  &nbsp;&nbsp;
-                                  <Link href={url} external primary>
-                                    {`${type} (${editor} ${number})`}
-                                  </Link>
-                                </div>
-                              ),
-                            )}
-                          </Panel>
-                          {procedure.currentStatusHistory.length > 0 && (
-                            <Panel header="Gesetzesstand" key="status" id="status">
-                              <Timeline>
-                                {procedure.currentStatusHistory.map(status => (
-                                  <Timeline.Item key={status}>{status}</Timeline.Item>
-                                ))}
-                              </Timeline>
-                            </Panel>
-                          )}
-                          <Panel header="Ergebnisse" key="results" id="results">
-                            <Dev>##PiechartBundestag ##PiechartCommunity</Dev>
-                          </Panel>
-                        </Collapse>
-                      </WhiteCol>
-                      <WhiteColPad>
-                        <Collapse defaultActiveKey={['vote']} bordered={false}>
-                          <Panel header="AppStimmen" key="vote" id="vote">
-                            <Row style={{ marginTop: '35px' }}>
-                              <Col xs={24} sm={24} lg={6} />
-                              <Col xs={24} sm={24} lg={4} style={{ textAlign: 'center' }}>
-                                <VoteButton type="thumb-up" />
-                              </Col>
-                              <Col xs={24} sm={24} lg={4} style={{ textAlign: 'center' }}>
-                                <VoteButton type="thumb-left" />
-                              </Col>
-                              <Col xs={24} sm={24} lg={4} style={{ textAlign: 'center' }}>
-                                <VoteButton type="thumb-down" />
-                              </Col>
-                              <Col xs={24} sm={24} lg={6} />
-                            </Row>
-                            <Row style={{ marginTop: '35px' }}>
-                              <Col xs={24} sm={24} lg={24}>
-                                <H3>
-                                  Um mitzustimmen, lade Dir bitte das <b>10X-Improvement</b>
-                                  <br />
-                                  <Link
-                                    href="https://www.democracy-deutschland.de/"
-                                    external
-                                    primary
-                                  >
-                                    für unsere Demokratie
-                                  </Link>
-                                  &nbsp;herunter
-                                </H3>
-                              </Col>
-                            </Row>
-                            <Row style={{ marginTop: '25px', marginBottom: '25px' }}>
-                              <Col xs={24} sm={24} lg={7} />
-                              <Col xs={24} sm={24} lg={5} style={{ textAlign: 'center' }}>
-                                <Link
-                                  href="https://www.democracy-deutschland.de/"
-                                  external
-                                  style={{ color: 'rgb(74,74,74)' }}
-                                >
-                                  <Icon type="appstore" fontSize={75} />
-                                </Link>
-                              </Col>
-                              <Col xs={24} sm={24} lg={5} style={{ textAlign: 'center' }}>
-                                <Link
-                                  href="https://www.democracy-deutschland.de/"
-                                  external
-                                  style={{ color: 'rgb(74,74,74)' }}
-                                >
-                                  <Icon type="playstore" fontSize={75} />
-                                </Link>
-                              </Col>
-                              <Col xs={24} sm={24} lg={7} />
-                            </Row>
-                          </Panel>
-                        </Collapse>
-                      </WhiteColPad>
-                    </Row>
-                  </ContentSection>
-                </Col>
-                <Col xs={24} sm={24} md={24} lg={4}>
+                          <Icon type="appstore" fontSize={75} />
+                        </Link>
+
+                        <Link
+                          href="https://www.democracy-deutschland.de/"
+                          external
+                          style={{ color: 'rgb(74,74,74)' }}
+                        >
+                          <Icon type="playstore" fontSize={75} />
+                        </Link>
+                      </Panel>
+                    </Collapse>
+                  </WhiteColPad> */}
+                </ContentSection>
+
+                <AsideRight>
                   <ASide>
                     <Anchor affix={true} style={{ backgroundColor: 'transparent' }}>
                       <AnchorLink
@@ -437,8 +368,8 @@ class Details extends Component {
                       <AnchorLink href="#vote" title={<b>2. AppStimmen</b>} />
                     </Anchor>
                   </ASide>
-                </Col>
-              </Row>
+                </AsideRight>
+              </Wrapper>
             );
           }}
         </Query>
