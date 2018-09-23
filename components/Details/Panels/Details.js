@@ -1,57 +1,79 @@
 import styled from 'styled-components';
 
+// Components
+import DateTime from 'Components/shared/DateTime';
+
+const DefinitionLists = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  @media (min-width: 555px) {
+    flex-direction: row;
+  }
+`;
+
 const DefinitionList = styled.dl``;
 
 const DT = styled.dt`
   color: ${({ theme }) => theme.colors.highlight};
+  padding-right: ${({ theme }) => theme.space(1)}px;
 `;
 
-const DD = styled.dd``;
+const DD = styled.dd`
+  margin: 0;
+`;
 
-const DetailsPanel = ({ subjectGroups }) => (
+const DR = styled.div`
+  display: flex;
+`;
+
+const DetailsPanel = ({
+  subjectGroups,
+  currentStatus,
+  type,
+  procedureId,
+  submissionDate,
+  voteDate,
+  abstract,
+}) => (
   <>
-    <DefinitionList>
-      <DT>Sachgebiete</DT>
-      {subjectGroups.map(subjectGroup => (
-        <DD key={subjectGroup}>{subjectGroup}</DD>
-      ))}
-    </DefinitionList>
-    {/* <DetailHead>Sachgebiete</DetailHead>
-                      <br />
-                      {subjectGroups(procedure.subjectGroups)}
-                      <br />
-                      <DetailHead>Aktueller Stand</DetailHead>
-                      <br />
-                      {procedure.currentStatus}
-                      <br />
-                      <br />
+    <DefinitionLists>
+      <DefinitionList>
+        <DT>Sachgebiete</DT>
+        {subjectGroups.map(subjectGroup => (
+          <DD key={subjectGroup}>{subjectGroup}</DD>
+        ))}
+        <DT>Aktueller Stand</DT>
+        <DD>{currentStatus}</DD>
+      </DefinitionList>
+      <DefinitionList horizontal>
+        <DR>
+          <DT>Typ</DT>
+          <DD>{type}</DD>
+        </DR>
+        <DR>
+          <DT>Vorgang</DT>
+          <DD>{procedureId}</DD>
+        </DR>
+        <DR>
+          <DT>erstellt am</DT>
+          <DD>
+            <DateTime date={submissionDate} />
+          </DD>
+        </DR>
+        {voteDate && (
+          <DR>
+            <DT>Abstimmung</DT>
+            <DD>
+              <DateTime date={voteDate} />
+            </DD>
+          </DR>
+        )}
+      </DefinitionList>
+    </DefinitionLists>
 
-                      <ColDetail>
-                        <DetailHead>Typ</DetailHead>
-                      </ColDetail>
-                      {procedure.type}
-
-                      <ColDetail>
-                        <DetailHead>Vorgang</DetailHead>
-                      </ColDetail>
-
-                      {procedure.procedureId}
-
-                      <ColDetail>
-                        <DetailHead>erstellt am</DetailHead>
-                      </ColDetail>
-
-                      <DateTime date={procedure.submissionDate} />
-
-                      <ColDetail>
-                        <DetailHead>Abstimmung</DetailHead>
-                      </ColDetail>
-
-                      <DateTime date={procedure.voteDate} fallback="N/A" />
-
-                      <DetailHead>Inhalt</DetailHead>
-                      <br />
-                      {procedure.abstract} */}
+    <h4>Inhalt</h4>
+    {abstract}
   </>
 );
 

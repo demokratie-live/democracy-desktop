@@ -16,6 +16,9 @@ import DateTime from 'Components/shared/DateTime';
 import Overview from './Overview';
 import Tags from './Tags';
 import DetailsPanel from './Panels/Details';
+import DocumentsPanel from './Panels/Documents';
+import VoteResultsPanel from './Panels/VoteResults';
+import AppStimmen from './AppStimmen';
 
 // GraphQL
 import PROCEDURE from 'GraphQl/queries/procedure';
@@ -33,12 +36,10 @@ const Wrapper = styled.div`
 
 const AsideLeft = styled.div`
   min-width: 55px;
-  background-color: red;
 `;
 
 const AsideRight = styled.div`
   display: none;
-  background-color: green;
 
   @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
     display: block;
@@ -48,7 +49,6 @@ const AsideRight = styled.div`
 const ContentSection = styled.section`
   flex: 1;
   background-color: ${({ theme }) => theme.backgrounds.secondary};
-  background-color: yellow;
 `;
 
 const Anchor = styled(AnchorComponent)`
@@ -250,55 +250,19 @@ class Details extends Component {
                     bordered={false}
                   >
                     <Panel header="Details" key="details" id="details">
-                      <DetailsPanel subjectGroups={procedure.subjectGroups} />
-                      {/* <DetailHead>Sachgebiete</DetailHead>
-                      <br />
-                      {subjectGroups(procedure.subjectGroups)}
-                      <br />
-                      <DetailHead>Aktueller Stand</DetailHead>
-                      <br />
-                      {procedure.currentStatus}
-                      <br />
-                      <br />
-
-                      <ColDetail>
-                        <DetailHead>Typ</DetailHead>
-                      </ColDetail>
-                      {procedure.type}
-
-                      <ColDetail>
-                        <DetailHead>Vorgang</DetailHead>
-                      </ColDetail>
-
-                      {procedure.procedureId}
-
-                      <ColDetail>
-                        <DetailHead>erstellt am</DetailHead>
-                      </ColDetail>
-
-                      <DateTime date={procedure.submissionDate} />
-
-                      <ColDetail>
-                        <DetailHead>Abstimmung</DetailHead>
-                      </ColDetail>
-
-                      <DateTime date={procedure.voteDate} fallback="N/A" />
-
-                      <DetailHead>Inhalt</DetailHead>
-                      <br />
-                      {procedure.abstract} */}
+                      <DetailsPanel
+                        subjectGroups={procedure.subjectGroups}
+                        currentStatus={procedure.currentStatus}
+                        type={procedure.type}
+                        procedureId={procedure.rocedureId}
+                        submissionDate={procedure.submissionDate}
+                        voteDate={procedure.voteDate}
+                        abstract={procedure.abstract}
+                      />
                     </Panel>
 
-                    {/* <Panel header="Dokumente" key="documents" id="documents">
-                      {procedure.importantDocuments.map(({ editor, type, url, number }, i) => (
-                        <div key={i}>
-                          <Icon type="document" />
-                          &nbsp;&nbsp;
-                          <Link href={url} external primary>
-                            {`${type} (${editor} ${number})`}
-                          </Link>
-                        </div>
-                      ))}
+                    <Panel header="Dokumente" key="documents" id="documents">
+                      <DocumentsPanel documents={procedure.importantDocuments} />
                     </Panel>
                     {procedure.currentStatusHistory.length > 0 && (
                       <Panel header="Gesetzesstand" key="status" id="status">
@@ -310,43 +274,16 @@ class Details extends Component {
                       </Panel>
                     )}
                     <Panel header="Ergebnisse" key="results" id="results">
-                      <Dev>##PiechartBundestag ##PiechartCommunity</Dev>
-                    </Panel> */}
+                      <VoteResultsPanel />
+                    </Panel>
                   </Collapse>
-                  {/* <WhiteColPad>
+                  <WhiteColPad>
                     <Collapse defaultActiveKey={['vote']} bordered={false}>
                       <Panel header="AppStimmen" key="vote" id="vote">
-                        <VoteButton type="thumb-left" />
-
-                        <VoteButton type="thumb-down" />
-
-                        <H3>
-                          Um mitzustimmen, lade Dir bitte das <b>10X-Improvement</b>
-                          <br />
-                          <Link href="https://www.democracy-deutschland.de/" external primary>
-                            für unsere Demokratie
-                          </Link>
-                          &nbsp;herunter
-                        </H3>
-
-                        <Link
-                          href="https://www.democracy-deutschland.de/"
-                          external
-                          style={{ color: 'rgb(74,74,74)' }}
-                        >
-                          <Icon type="appstore" fontSize={75} />
-                        </Link>
-
-                        <Link
-                          href="https://www.democracy-deutschland.de/"
-                          external
-                          style={{ color: 'rgb(74,74,74)' }}
-                        >
-                          <Icon type="playstore" fontSize={75} />
-                        </Link>
+                        <AppStimmen />
                       </Panel>
                     </Collapse>
-                  </WhiteColPad> */}
+                  </WhiteColPad>
                 </ContentSection>
 
                 <AsideRight>
