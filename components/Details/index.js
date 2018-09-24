@@ -21,6 +21,7 @@ import PROCEDURE from 'GraphQl/queries/procedure';
 
 // Helpers
 import { getImage } from 'Helpers/subjectGroupToIcon';
+import { titleByProcedureListType } from '../../lib/helpers/listTypeConvert';
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -212,14 +213,23 @@ class Details extends Component {
             return (
               <>
                 <Head>
-                  <title>{`${procedure.currentStatus}: ${procedure.title}`}</title>
+                  <title>{`${titleByProcedureListType({
+                    listType: procedure.listType,
+                    completed: procedure.completed,
+                  })}: ${procedure.title}`}</title>
                   <meta
                     property="og:title"
-                    content={`${procedure.currentStatus}: ${procedure.title}`}
+                    content={`${titleByProcedureListType({
+                      listType: procedure.listType,
+                      completed: procedure.completed,
+                    })}: ${procedure.title}`}
                   />
                   <meta
                     name="page-topic"
-                    content={`${procedure.currentStatus}: ${procedure.title}`}
+                    content={`${titleByProcedureListType({
+                      listType: procedure.listType,
+                      completed: procedure.completed,
+                    })}: ${procedure.title}`}
                   />
 
                   <meta name="description" content={procedure.abstract} />
