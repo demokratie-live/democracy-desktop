@@ -22,9 +22,9 @@ import PROCEDURE from 'GraphQl/queries/procedure';
 // Helpers
 import { getImage } from 'Helpers/subjectGroupToIcon';
 
-const { serverRuntimeConfig } = getConfig();
+const { publicRuntimeConfig } = getConfig();
 
-const { DOMAIN_DESKTOP } = serverRuntimeConfig;
+const { DOMAIN_DESKTOP } = publicRuntimeConfig;
 
 const AnchorLink = AnchorComponent.Link;
 const PanelComponent = Collapse.Panel;
@@ -212,9 +212,15 @@ class Details extends Component {
             return (
               <>
                 <Head>
-                  <title>{procedure.title}</title>
-                  <meta property="og:title" content={procedure.title} />
-                  <meta name="page-topic" content={procedure.title} />
+                  <title>{`${procedure.currentStatus}: ${procedure.title}`}</title>
+                  <meta
+                    property="og:title"
+                    content={`${procedure.currentStatus}: ${procedure.title}`}
+                  />
+                  <meta
+                    name="page-topic"
+                    content={`${procedure.currentStatus}: ${procedure.title}`}
+                  />
 
                   <meta name="description" content={procedure.abstract} />
                   <meta name="DC.Description" content={procedure.abstract} />

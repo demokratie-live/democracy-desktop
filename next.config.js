@@ -44,6 +44,7 @@ const nextConfig = {
     // Will be available on both server and client
     GRAPHQL_URL: process.env.GRAPHQL_URL,
     PAGE_TITLE: process.env.PAGE_TITLE,
+    DOMAIN_DESKTOP: process.env.DOMAIN_DESKTOP,
   },
 };
 
