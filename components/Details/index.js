@@ -233,7 +233,7 @@ class Details extends Component {
                 <ContentSection>
                   <ImageCol>
                     <Image
-                      src={getImage(procedure.subjectGroups[0])}
+                      src={`${getImage(procedure.subjectGroups[0])}_1920.jpg`}
                       alt={procedure.subjectGroups[0]}
                     />
                   </ImageCol>
