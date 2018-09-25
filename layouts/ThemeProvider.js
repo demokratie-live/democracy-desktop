@@ -5,7 +5,7 @@ const defaultTheme = {
     default: '#000',
     primary: '#4494d3',
     tertiary: 'rgb(239,239,244)',
-    link: '#0076ff',
+    link: '#4494d3',
     highlight: 'rgb(68,148,211)',
     lightBlue: 'rgba(68,148,211, 0.1)',
     disabled: 'rgb(216,216,216)',
@@ -50,7 +50,6 @@ const ThemeProviderWrapper = ({ children }) => (
           font-family: helvetica;
         }
         body {
-          background-color: ${props => props.theme.color}
           margin: 0;
           padding: 0;
         }

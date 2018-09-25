@@ -5,6 +5,7 @@ const path = require("path")
 
 const withPlugins = require('next-compose-plugins');
 const withCss = require('@zeit/next-css');
+const withLess = require('@zeit/next-less');
 const withSourceMaps = require('@zeit/next-source-maps');
 
 // fix: prevents error when .css files are required by node
@@ -48,7 +49,12 @@ const nextConfig = {
 };
 
 module.exports = withPlugins([
-  [withCss],
+  // [withCss],
+  [withLess, {
+    lessLoaderOptions: {
+      javascriptEnabled: true,
+    },
+  }],
   [withSourceMaps],
 ], nextConfig);
 
