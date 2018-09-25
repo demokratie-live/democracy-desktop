@@ -65,7 +65,7 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
         }
       >
         <TitleRow>
-          <Title tag={'h2'} lines={2}>
+          <Title tag={'h2'} lines={3}>
             {title}
           </Title>
           <ActivityIndex>{activityIndex.activityIndex}</ActivityIndex>
