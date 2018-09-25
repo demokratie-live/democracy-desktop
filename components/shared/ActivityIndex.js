@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   color: ${({ theme }) => theme.colors.inactive};
   text-align: center;
   padding: 0;
+  margin-top: -10px;
 `;
 
 const Icon = styled(IconComponent).attrs({
