@@ -20,7 +20,7 @@ const Box = styled.div`
   border-radius: 5px;
   @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
     padding: 20px;
-    margin: 90px auto;
+    margin: 100px auto;
     width: 80%;
   }
 `;

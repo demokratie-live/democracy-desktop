@@ -43,7 +43,7 @@ const ListRow = styled.div`
   width: 100%;
   box-sizing: border-box;
   max-width: 600px;
-  height: 30px;
+  height: 40px;
   > a {
     flex: 1;
     text-align: center;
