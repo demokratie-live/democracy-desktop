@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   flex: 1;
   align-items: center;
   @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    min-width: 256px;
     max-width: 256px;
   }
 `;
@@ -15,8 +16,9 @@ const Wrapper = styled.div`
 const WrapperLink = styled(Link)`
   display: flex;
   flex: 1;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
+  align-items: center;
   justify-content: center;
   @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
     justify-content: flex-start;
@@ -26,8 +28,8 @@ const WrapperLink = styled(Link)`
 
 const Img = styled.img`
   margin-right: ${({ theme }) => theme.space(1)}px;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
 `;
 
 const H1 = styled.h1`
@@ -35,7 +37,7 @@ const H1 = styled.h1`
   margin: 0;
   font-family: edosz;
 
-  font-size: 30px;
+  font-size: 35px;
   @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
     display: block;
   }
