@@ -6,6 +6,7 @@ import subjectGroupIconHelper, { subjectGroups, getDisplayTitle } from 'Helpers/
 
 // Components
 import Button from 'Components/shared/Button';
+import Icon from 'Components/shared/Icon';
 
 const Container = styled.div`
   width: 50%;
@@ -43,13 +44,9 @@ const SubjectButton = ({ group, onClick, active, icon, title }) => (
   <Container>
     <ButtonWrapper onClick={onClick}>
       <ButtonIconWrapper>
-        <Button
-          style={{}}
-          type={active ? 'primary' : 'dashed'}
-          shape="circle"
-          size="large"
-          icon={icon || subjectGroupIconHelper(group)}
-        />
+        <Button style={{}} type={active ? 'primary' : 'dashed'} shape="circle" size="large">
+          <Icon type={icon || subjectGroupIconHelper(group)} top={3} />
+        </Button>
       </ButtonIconWrapper>
       {title || getDisplayTitle(group)}
     </ButtonWrapper>
