@@ -59,7 +59,7 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
               </Time>
             )}
             <ImageContainer>
-              <Image src={getImage(subjectGroups[0])} alt={subjectGroups[0]} />
+              <Image src={`${getImage(subjectGroups[0])}_640.jpg`} alt={subjectGroups[0]} />
             </ImageContainer>
           </>
         }
