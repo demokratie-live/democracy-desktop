@@ -4,13 +4,13 @@ import Footer from 'Components/Footer';
 
 import '../../assets/styles/styles.less';
 
-const LayoutDefault = ({ children }) => (
+const LayoutDefault = ({ children, stickyFooter }) => (
   <main id="top">
     <Theme>
       <>
         <Nav />
         {children}
-        <Footer />
+        <Footer stickyFooter={stickyFooter} />
       </>
     </Theme>
   </main>
