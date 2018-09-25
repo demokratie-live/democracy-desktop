@@ -32,7 +32,7 @@ const TeaserList = ({ loadMore, procedures, hasMore }) => {
       pageStart={0}
       loadMore={loadMore}
       hasMore={hasMore}
-      loader={<Spin size="large" key="spinner" />}
+      loader={<Spin size="large" key="spinner" tip="Lädt mehr…" />}
     >
       <TeaserRow>
         {procedures.map(({ procedureId, ...rest }) => (

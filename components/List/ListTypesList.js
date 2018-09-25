@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { withRouter } from 'next/router';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
+import { Spin as AntSpin } from 'antd';
 
 // Components
 import SelectComponent from 'Components/shared/Select';
@@ -41,6 +42,13 @@ const Select = styled(SelectComponent)`
 `;
 
 const Option = styled(SelectComponent.Option)``;
+
+const SpinWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+`;
+const Spin = styled(AntSpin)``;
 
 class ListTypesList extends Component {
   state = {
@@ -115,7 +123,12 @@ class ListTypesList extends Component {
                   }}
                 >
                   {({ loading, error, data: { procedures }, fetchMore }) => {
-                    if (loading) return <p>Loading...</p>;
+                    if (loading)
+                      return (
+                        <SpinWrapper>
+                          <Spin size="large" tip="Lädt…" />
+                        </SpinWrapper>
+                      );
                     if (error) return <p>Error :(</p>;
                     return (
                       <TeaserList
