@@ -10,6 +10,9 @@ const Wrapper = styled.div`
   display: inline-block;
   height: ${({ theme }) => theme.space(4)}px;
   top: 50px;
+  &:hover {
+    background-color: rgba(68, 148, 211, 0.8);
+  }
 `;
 
 const Text = styled.span`
@@ -33,9 +36,9 @@ const Text = styled.span`
   }
 `;
 
-const Ribbon = ({ children }) => {
+const Ribbon = ({ children, onClick }) => {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <Text>{children}</Text>
     </Wrapper>
   );

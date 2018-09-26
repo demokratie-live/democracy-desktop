@@ -13,6 +13,9 @@ import Title from 'Components/shared/Ellipsis';
 import ActivityIndex from 'Components/shared/ActivityIndex';
 import DateTime from 'Components/shared/DateTime';
 
+// Context
+import { Consumer as FilterConsumer } from 'Context/filter';
+
 // Helpers
 import { getImage } from 'Helpers/subjectGroupToIcon';
 
@@ -72,7 +75,18 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
 
         <Row>
           <div style={{ display: 'flex' }}>
-            <Ribbon>{type}</Ribbon>
+            <FilterConsumer>
+              {({ selectType }) => (
+                <Ribbon
+                  onClick={e => {
+                    e.preventDefault();
+                    selectType(type);
+                  }}
+                >
+                  {type}
+                </Ribbon>
+              )}
+            </FilterConsumer>
             <SubjectGroups
               style={{
                 display: 'flex',
@@ -83,9 +97,20 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
               }}
             >
               <div>
-                {subjectGroups.map(group => (
-                  <SubjectIcon key={group} group={group} />
-                ))}
+                <FilterConsumer>
+                  {({ selectSubjectGroup }) => {
+                    return subjectGroups.map(group => (
+                      <SubjectIcon
+                        key={group}
+                        group={group}
+                        onClick={e => {
+                          e.preventDefault();
+                          selectSubjectGroup(group);
+                        }}
+                      />
+                    ));
+                  }}
+                </FilterConsumer>
               </div>
             </SubjectGroups>
           </div>
