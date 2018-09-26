@@ -10,7 +10,8 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
-    max-width: 130px;
+    width: 145px;
+    max-width: 145px;
   }
 `;
 
