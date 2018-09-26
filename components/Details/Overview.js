@@ -9,6 +9,7 @@ import SubjectIcon from './../shared/SubjectIcon';
 
 const Wrapper = styled.div`
   padding: ${({ theme }) => theme.space(1)}px;
+  background-color: ${({ theme }) => theme.backgrounds.primary};
 `;
 
 const TitleRow = styled.div`
@@ -43,7 +44,11 @@ const Overview = ({ title, activityIndex, subjectGroups, voteDate }) => (
       >
         <div>
           {subjectGroups.map(group => (
-            <SubjectIcon key={group} group={group} />
+            <SubjectIcon
+              key={group}
+              group={group}
+              style={{ marginRight: '6px', marginLeft: '0' }}
+            />
           ))}
         </div>
       </SubjectGroups>
