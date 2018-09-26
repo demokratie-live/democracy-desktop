@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import IconComponent from 'Components/shared/Icon';
 
 const Wrapper = styled.div`
-  font-size: ${({ theme }) => theme.fontSizes.medium};
+  font-size: 25px;
   color: ${({ theme }) => theme.colors.inactive};
   text-align: center;
   padding: 0;
@@ -12,11 +12,11 @@ const Wrapper = styled.div`
 `;
 
 const Icon = styled(IconComponent).attrs({
-  fontSize: 50,
+  fontSize: 40,
 })``;
 
 const Text = styled.div`
-  margin-top: -${({ theme }) => theme.space(2)}px;
+  margin-top: -${({ theme }) => theme.space(1.4)}px;
 `;
 
 const ActivityIndex = ({ children }) => (
