@@ -28,7 +28,7 @@ const Footer = ({ stickyFooter }) => {
         Impressum
       </Link>
       &nbsp; <Icon type="minus" /> &nbsp;
-      <Link href="https://www.democracy-deutschland.de/#!agbs" external>
+      <Link href="https://www.democracy-deutschland.de/#!nutzungsbedingungen" external>
         Nutzungsbedingungen
       </Link>
       &nbsp; <Icon type="minus" /> &nbsp;
