@@ -3,6 +3,11 @@ import Error from 'next/error';
 import speakingurl from 'speakingurl';
 import PropTypes from 'prop-types';
 
+// Context
+import { Consumer as SearchConsumer } from 'Context/search';
+
+// Components
+import SearchList from '../components/List/SearchList';
 import LayoutDefault from '../layouts/LayoutDefault';
 import Details from '../components/Details';
 import apolloClient from '../lib/init-apollo';
@@ -52,7 +57,18 @@ class DetailsLayout extends Component {
 
     return (
       <LayoutDefault>
-        <Details />
+        <SearchConsumer>
+          {consumerProps => {
+            if (!consumerProps) return null;
+            const { term } = consumerProps;
+
+            if (term.trim()) {
+              return <SearchList term={term} />;
+            } else {
+              return <Details />;
+            }
+          }}
+        </SearchConsumer>
       </LayoutDefault>
     );
   }
