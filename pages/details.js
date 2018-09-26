@@ -56,7 +56,7 @@ class DetailsLayout extends Component {
     }
 
     return (
-      <LayoutDefault>
+      <LayoutDefault page="detail">
         <SearchConsumer>
           {consumerProps => {
             if (!consumerProps) return null;

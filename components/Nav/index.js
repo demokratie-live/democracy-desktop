@@ -50,12 +50,12 @@ const ListRow = styled.div`
   }
 `;
 
-const Header = () => (
+const Header = ({ page }) => (
   <Nav>
     <FirstRow>
       <Logo />
       <Search />
-      <Filter />
+      {page !== 'detail' && <Filter />}
       <Download />
       <Donate />
       {/*<MenuLink href="https://www.democracy-deutschland.de/#!donate" secondary external>
