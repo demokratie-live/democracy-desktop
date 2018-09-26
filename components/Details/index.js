@@ -128,6 +128,7 @@ const Panel = styled(PanelComponent)`
 
     .arrow {
       right: 16px;
+      top: 15px !important;
       left: auto !important;
       color: ${({ theme }) => theme.colors.arrow};
       font-size: ${({ theme }) => theme.fontSizes.small} !important;
@@ -139,7 +140,7 @@ const Panel = styled(PanelComponent)`
   }
 
   .ant-collapse-header[aria-expanded='true'] .arrow {
-    transform: rotate(-90deg) !important;
+    transform: rotate(-180deg) !important;
   }
 
   .ant-collapse-content {
@@ -184,8 +185,8 @@ class Details extends Component {
         {/* Query is empty in first call... */}
         <Query query={PROCEDURE} variables={{ id: query.id }}>
           {({ loading, error, data: { procedure } }) => {
-            if (loading) return <p>Loading...</p>;
-            if (error) return <p>Error :(</p>;
+            if (loading) return <p>Lädt...</p>;
+            if (error) return <p>Fehler :(</p>;
             return (
               <>
                 <Head>
