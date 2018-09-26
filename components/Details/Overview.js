@@ -44,7 +44,11 @@ const Overview = ({ title, activityIndex, subjectGroups, voteDate }) => (
       >
         <div>
           {subjectGroups.map(group => (
-            <SubjectIcon key={group} group={group} />
+            <SubjectIcon
+              key={group}
+              group={group}
+              style={{ marginRight: '6px', marginLeft: '0' }}
+            />
           ))}
         </div>
       </SubjectGroups>

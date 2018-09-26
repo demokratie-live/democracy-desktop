@@ -8,9 +8,14 @@ import subjectGroupIconHelper, { subjectGroups } from 'Helpers/subjectGroupToIco
 import Button from 'Components/shared/Button';
 import Icon from 'Components/shared/Icon';
 
-const SubjectIcon = ({ group }) => (
+const SubjectIcon = ({ group, style }) => (
   <Tooltip placement="bottom" title={group}>
-    <Button style={{ marginLeft: 6, border: 0 }} type="primary" shape="circle" size="large">
+    <Button
+      style={{ marginLeft: 6, border: 0, ...style }}
+      type="primary"
+      shape="circle"
+      size="large"
+    >
       <Icon
         type={subjectGroupIconHelper(group)}
         style={{
