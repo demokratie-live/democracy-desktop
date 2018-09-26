@@ -32,6 +32,11 @@ const SubjectIcon = ({ group, style, onClick }) => (
 
 SubjectIcon.propTypes = {
   group: PropTypes.oneOf(Object.keys(subjectGroups)).isRequired,
+  onClick: PropTypes.func,
+};
+
+SubjectIcon.defaultProps = {
+  onClick: () => {},
 };
 
 export default SubjectIcon;

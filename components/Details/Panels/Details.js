@@ -58,28 +58,30 @@ const DetailsPanel = ({
         <DD>{currentStatus}</DD>
       </DefinitionList>
       <Table>
-        <TR>
-          <TH>Typ</TH>
-          <TD>{type}</TD>
-        </TR>
-        <TR>
-          <TH>Vorgang</TH>
-          <TD>{procedureId}</TD>
-        </TR>
-        <TR>
-          <TH>erstellt am</TH>
-          <TD>
-            <DateTime date={submissionDate} />
-          </TD>
-        </TR>
-        {voteDate && (
+        <tbody>
           <TR>
-            <TH>Abstimmung</TH>
+            <TH>Typ</TH>
+            <TD>{type}</TD>
+          </TR>
+          <TR>
+            <TH>Vorgang</TH>
+            <TD>{procedureId}</TD>
+          </TR>
+          <TR>
+            <TH>erstellt am</TH>
             <TD>
-              <DateTime date={voteDate} />
+              <DateTime date={submissionDate} />
             </TD>
           </TR>
-        )}
+          {voteDate && (
+            <TR>
+              <TH>Abstimmung</TH>
+              <TD>
+                <DateTime date={voteDate} />
+              </TD>
+            </TR>
+          )}
+        </tbody>
       </Table>
     </DefinitionLists>
 

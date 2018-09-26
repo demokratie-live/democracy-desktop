@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types';
+
+// Components
 import Theme from '../ThemeProvider';
 import Nav from 'Components/Nav';
 import Footer from 'Components/Footer';
@@ -15,5 +18,15 @@ const LayoutDefault = ({ children, stickyFooter, page }) => (
     </Theme>
   </main>
 );
+
+LayoutDefault.propTypes = {
+  stickyFooter: PropTypes.bool,
+  page: PropTypes.string,
+};
+
+LayoutDefault.defaultProps = {
+  stickyFooter: false,
+  page: '',
+};
 
 export default LayoutDefault;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { darken } from 'polished';
 
 const Wrapper = styled.div`
@@ -45,5 +46,9 @@ const Ribbon = ({ children, onClick }) => {
 };
 
 Ribbon.displayName = 'Ribbon';
+
+Ribbon.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Ribbon;

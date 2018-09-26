@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 // Components
 import ListLink from './ListLink';
@@ -70,5 +71,13 @@ const Header = ({ page }) => (
     </ListRow>
   </Nav>
 );
+
+Header.propTypes = {
+  page: PropTypes.string,
+};
+
+Header.defaultProps = {
+  page: '',
+};
 
 export default Header;

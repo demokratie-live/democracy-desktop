@@ -59,6 +59,7 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
         >
           <article>
             <Card
+              onClick={() => changeSearchTerm('')}
               hoverable
               cover={
                 <>

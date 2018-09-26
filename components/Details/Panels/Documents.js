@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 // Components
 import Icon from 'Components/shared/Icon';
@@ -29,5 +30,9 @@ const DocumentsPanel = ({ documents }) => (
     ))}
   </Wrapper>
 );
+
+DocumentsPanel.propTypes = {
+  documents: PropTypes.arrayOf(PropTypes.shape()),
+};
 
 export default DocumentsPanel;

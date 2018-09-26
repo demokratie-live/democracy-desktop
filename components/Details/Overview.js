@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 // Components
-import Title from 'Components/shared/Ellipsis';
 import ActivityIndex from 'Components/shared/ActivityIndex';
 import DateTime from 'Components/shared/DateTime';
 import SubjectIcon from './../shared/SubjectIcon';
@@ -64,6 +63,7 @@ Overview.propTypes = {
   activityIndex: PropTypes.number.isRequired,
   subjectGroups: PropTypes.array.isRequired,
   voteDate: PropTypes.string.isRequired,
+  currentStatus: PropTypes.string.isRequired,
 };
 
 export default Overview;

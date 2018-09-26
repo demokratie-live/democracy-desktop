@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Link from 'Components/shared/Link';
 import ShareButtonComponent from './ShareButton';
 
 const Wrapper = styled.div`

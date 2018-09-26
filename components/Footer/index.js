@@ -1,4 +1,5 @@
 import { withRouter } from 'next/router';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Icon } from 'antd';
 
@@ -37,6 +38,14 @@ const Footer = ({ stickyFooter }) => {
       </Link>
     </FooterElem>
   );
+};
+
+Footer.propTypes = {
+  stickyFooter: PropTypes.bool,
+};
+
+Footer.defaultProps = {
+  stickyFooter: false,
 };
 
 export default withRouter(Footer);
