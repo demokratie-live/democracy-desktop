@@ -32,16 +32,25 @@ const PanelComponent = Collapse.Panel;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
 `;
 
 const AsideLeft = styled.div`
-  min-width: 55px;
+  display: none;
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    display: flex;
+    justify-content: center;
+    padding-left: ${({ theme }) => theme.space(1)}px;
+    padding-right: ${({ theme }) => theme.space(1)}px;
+  }
 `;
 
 const AsideRight = styled.div`
   display: none;
+  padding-left: ${({ theme }) => theme.space(1)}px;
+  padding-right: ${({ theme }) => theme.space(1)}px;
 
-  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+  @media (min-width: 855px) {
     display: block;
   }
 `;
@@ -49,6 +58,11 @@ const AsideRight = styled.div`
 const ContentSection = styled.section`
   flex: 1;
   background-color: ${({ theme }) => theme.backgrounds.secondary};
+
+  @media (min-width: 1024px) {
+    max-width: 70vw;
+    min-width: 500px;
+  }
 `;
 
 const Anchor = styled(AnchorComponent)`
@@ -76,7 +90,9 @@ const Section = styled.section`
 
 const ShareAside = styled.aside`
   position: sticky;
+  align-self: flex-start;
   top: ${({ theme }) => theme.space(3)}px;
+  width: 55px;
 `;
 
 const ASide = styled.aside`
@@ -137,12 +153,20 @@ const Panel = styled(PanelComponent)`
 `;
 
 const ImageCol = styled.div`
-  max-height: 550px;
+  width: 100%;
+  /* min-height: 200px; */
+  height: 40vw;
+  max-height: 450px;
   overflow: hidden;
+  margin: 0;
+  position: relative;
 `;
 
 const Image = styled.img`
-  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 100%;
 `;
 
 class Details extends Component {
