@@ -196,7 +196,7 @@ class Details extends Component {
                   <meta property="og:url" content={`${DOMAIN_DESKTOP}${asPath}`} />
                   <meta
                     property="og:image"
-                    content={`${DOMAIN_DESKTOP}${getImage(procedure.subjectGroups[0])}`}
+                    content={`${DOMAIN_DESKTOP}${getImage(procedure.subjectGroups[0])}_1920.jpg`}
                   />
                 </Head>
                 <Wrapper>
