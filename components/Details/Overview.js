@@ -54,13 +54,7 @@ const Overview = ({ title, activityIndex, subjectGroups, voteDate, currentStatus
           {currentStatus}
         </div>
       </SubjectGroups>
-      <DateTime
-        date={voteDate}
-        style={{
-          color: 'rgb(254,56,36)',
-          fontSize: '20px',
-        }}
-      />
+      <DateTime date={voteDate} />
     </div>
   </Wrapper>
 );

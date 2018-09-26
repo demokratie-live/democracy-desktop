@@ -2,6 +2,8 @@ import { Icon } from 'antd';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
   background-color: ${({ theme }) => theme.backgrounds.primary};
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -15,7 +17,7 @@ const Wrapper = styled.div`
 
 const Text = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.small};
-  margin: 5px 5px;
+  margin: 0 5px;
   color: ${({ theme }) => theme.colors.default};
   vertical-align: middle;
 `;

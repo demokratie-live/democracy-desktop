@@ -28,10 +28,23 @@ const formatDate = date => {
   return null;
 };
 
-const Time = styled.time``;
+const Time = styled.time`
+  color: ${({ dateTime, soon }) => {
+    if (soon) {
+      return '#f5a623';
+    } else if (new Date(dateTime) > new Date()) {
+      return '#20a736';
+    }
+    return 'red';
+  }};
+`;
 
 const DateTime = ({ date, fallback, style }) => (
-  <Time dateTime={date} style={style}>
+  <Time
+    dateTime={date}
+    style={style}
+    soon={formatDate(new Date(date)) === 'morgen' || formatDate(new Date(date)).indexOf(':') !== -1}
+  >
     {date ? formatDate(new Date(date)) : fallback}
   </Time>
 );
