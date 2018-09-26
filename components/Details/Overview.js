@@ -24,7 +24,7 @@ const SubjectGroups = styled.div`
   height: 100%;
 `;
 
-const Overview = ({ title, activityIndex, subjectGroups, voteDate }) => (
+const Overview = ({ title, activityIndex, subjectGroups, voteDate, currentStatus }) => (
   <Wrapper>
     <TitleRow>
       <Title tag={'h2'} lines={3}>
@@ -50,6 +50,7 @@ const Overview = ({ title, activityIndex, subjectGroups, voteDate }) => (
               style={{ marginRight: '6px', marginLeft: '0' }}
             />
           ))}
+          {currentStatus}
         </div>
       </SubjectGroups>
       <DateTime
