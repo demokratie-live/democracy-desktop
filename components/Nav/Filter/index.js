@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Consumer as FilterConsumer } from 'Context/filter';
 
 // Components
+import { Badge } from 'antd';
 import Modal from 'Components/shared/Modal';
 import IconComponent from 'Components/shared/Icon';
 import ButtonComponent from 'Components/shared/Button';
@@ -42,9 +43,8 @@ const Icon = styled(IconComponent)`
 
 const ArrowIcon = styled(Icon)`
   &:before {
-    top: 2px;
+    top: -4px;
     font-size: 12px;
-    color: ${({ theme, active }) => (active ? theme.colors.highlight : theme.colors.inactive)};
   }
 `;
 
@@ -77,7 +77,9 @@ class Filter extends Component {
             <Wrapper>
               <Desktop>
                 <Button onClick={this.toggleVisibility}>
-                  <Icon type="funnel" active={!state.allTypes || !state.allSubjectGroups} />
+                  <Badge dot={!state.allTypes || !state.allSubjectGroups} offset={[3, -3]}>
+                    <Icon type="funnel" active={!state.allTypes || !state.allSubjectGroups} />
+                  </Badge>
                   <ArrowIconWrapper>
                     <ArrowIcon type="arrow" active={!state.allTypes || !state.allSubjectGroups} />
                   </ArrowIconWrapper>
