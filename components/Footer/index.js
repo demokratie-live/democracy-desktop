@@ -6,12 +6,12 @@ import Link from 'Components/shared/Link';
 
 const FooterElem = styled.footer`
   text-align: center;
-  padding-top: ${({ stickyFooter }) => (stickyFooter ? '0' : '30px')};
-  padding-bottom: ${({ stickyFooter }) => (stickyFooter ? '0' : '30px')};
+  padding-top: ${({ stickyFooter, theme }) => (stickyFooter ? '0' : `${theme.space(1)}px`)};
+  padding-bottom: ${({ stickyFooter, theme }) => (stickyFooter ? '0' : `${theme.space(1)}px`)};
   background-color: ${({ stickyFooter, theme }) =>
     stickyFooter ? 'rgba(255,255,255,0.7)' : theme.backgrounds.primary};
   color: ${({ theme }) => theme.colors.link};
-  font-size: ${({ theme, stickyFooter }) => (stickyFooter ? '15px' : theme.fontSizes.default)};
+  font-size: ${({ theme, stickyFooter }) => (stickyFooter ? '15px' : theme.fontSizes.small)};
   position: ${({ stickyFooter }) => (stickyFooter ? 'fixed' : 'static')};
   bottom: ${({ stickyFooter }) => (stickyFooter ? '0' : 'auto')};
   width: ${({ stickyFooter }) => (stickyFooter ? '100%' : 'auto')};
