@@ -10,6 +10,9 @@ import SubjectIcon from './../shared/SubjectIcon';
 const Wrapper = styled.div`
   padding: ${({ theme }) => theme.space(1)}px;
   background-color: ${({ theme }) => theme.backgrounds.primary};
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    padding: ${({ theme }) => theme.space(3)}px;
+  }
 `;
 
 const TitleRow = styled.div`
