@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { withRouter } from 'next/router';
-import { Col, Collapse, Timeline, Anchor as AnchorComponent } from 'antd';
+import { Collapse, Timeline, Anchor as AnchorComponent } from 'antd';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import getConfig from 'next/config';
@@ -36,12 +36,26 @@ const Wrapper = styled.div`
 `;
 
 const AsideLeft = styled.div`
-  display: none;
+  display: flex;
+  position: absolute;
+  top: 130;
+  left: 0;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 130px;
+  padding-top: ${({ theme }) => theme.space(1)}px;
+  padding-left: ${({ theme }) => theme.space(1)}px;
+  padding-bottom: ${({ theme }) => theme.space(1)}px;
+  border-bottom-right-radius: 5px;
   @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    position: static;
     display: flex;
     justify-content: center;
+    width: auto;
     padding-left: ${({ theme }) => theme.space(1)}px;
     padding-right: ${({ theme }) => theme.space(1)}px;
+    padding-top: ${({ theme }) => theme.space(0)}px;
+    padding-bottom: ${({ theme }) => theme.space(0)}px;
   }
 `;
 
@@ -85,7 +99,9 @@ const Anchor = styled(AnchorComponent)`
 
 const Section = styled.section`
   background-color: ${({ theme }) => theme.backgrounds.secondary};
-  padding-top: ${({ theme }) => theme.space(3)}px;
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    padding-top: ${({ theme }) => theme.space(3)}px;
+  }
 `;
 
 const ShareAside = styled.aside`

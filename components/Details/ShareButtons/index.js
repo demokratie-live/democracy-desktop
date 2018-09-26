@@ -1,11 +1,19 @@
 import styled from 'styled-components';
 import Link from 'Components/shared/Link';
-import ShareButton from './ShareButton';
+import ShareButtonComponent from './ShareButton';
 
 const Wrapper = styled.div`
   display: flex;
-  width: 50px;
-  flex-direction: column;
+  flex-direction: row;
+  height: 100%;
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    width: 50px;
+    flex-direction: column;
+  }
+`;
+
+const ShareButton = styled(ShareButtonComponent)`
+  margin-right: ${({ theme }) => theme.space(1)}px;
 `;
 
 const ShareButtons = () => (
