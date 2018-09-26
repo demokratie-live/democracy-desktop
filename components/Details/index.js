@@ -242,6 +242,7 @@ class Details extends Component {
                       activityIndex={procedure.activityIndex.activityIndex}
                       subjectGroups={procedure.subjectGroups}
                       voteDate={procedure.voteDate}
+                      currentStatus={procedure.currentStatus}
                     />
                     <Tags tags={procedure.tags} />
 
