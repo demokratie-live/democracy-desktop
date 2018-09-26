@@ -70,30 +70,34 @@ class Filter extends Component {
     const { visible } = this.state;
     return (
       <FilterConsumer>
-        {({ state }) => (
-          <Wrapper>
-            <Desktop>
-              <Button onClick={this.toggleVisibility}>
-                <Icon type="funnel" active={!state.allTypes || !state.allSubjectGroups} />
-                <ArrowIconWrapper>
-                  <ArrowIcon type="arrow" active={!state.allTypes || !state.allSubjectGroups} />
-                </ArrowIconWrapper>
-              </Button>
+        {consumerProps => {
+          if (!consumerProps) return null;
+          const { state } = consumerProps;
+          return (
+            <Wrapper>
+              <Desktop>
+                <Button onClick={this.toggleVisibility}>
+                  <Icon type="funnel" active={!state.allTypes || !state.allSubjectGroups} />
+                  <ArrowIconWrapper>
+                    <ArrowIcon type="arrow" active={!state.allTypes || !state.allSubjectGroups} />
+                  </ArrowIconWrapper>
+                </Button>
 
-              <RenderToBody id="FilterBox">
-                <Modal visible={visible} handleVisibleChange={this.handleVisibleChange}>
-                  <Desktop>
-                    <FilterBox />
-                  </Desktop>
-                </Modal>
-              </RenderToBody>
-            </Desktop>
+                <RenderToBody id="FilterBox">
+                  <Modal visible={visible} handleVisibleChange={this.handleVisibleChange}>
+                    <Desktop>
+                      <FilterBox />
+                    </Desktop>
+                  </Modal>
+                </RenderToBody>
+              </Desktop>
 
-            <Mobile dropDownContent={<FilterBox />} dropDownContentStyle={{}}>
-              <Icon type="funnel" top={0} />
-            </Mobile>
-          </Wrapper>
-        )}
+              <Mobile dropDownContent={<FilterBox />} dropDownContentStyle={{}}>
+                <Icon type="funnel" top={0} />
+              </Mobile>
+            </Wrapper>
+          );
+        }}
       </FilterConsumer>
     );
   }
