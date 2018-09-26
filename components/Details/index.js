@@ -99,17 +99,6 @@ const ASide = styled.aside`
   padding-top: ${({ theme }) => theme.space(3)}px;
 `;
 
-const WhiteColPad = styled(Col).attrs({
-  xs: 24,
-  sm: 24,
-  md: 24,
-  lg: 24,
-})`
-  background-color: ${({ theme }) => theme.backgrounds.primary};
-  margin-top: ${({ theme }) => theme.space(3)}px;
-  margin-bottom: ${({ theme }) => theme.space(4)}px;
-`;
-
 const Panel = styled(PanelComponent)`
   font-size: ${({ theme }) => theme.fontSizes.default};
   padding: 0;
@@ -265,7 +254,7 @@ class Details extends Component {
                       <Panel header="Dokumente" key="documents" id="documents">
                         <DocumentsPanel documents={procedure.importantDocuments} />
                       </Panel>
-                      {procedure.currentStatusHistory.length > 0 && (
+                      {procedure.currentStatusHistory.length > 1 && (
                         <Panel header="Gesetzesstand" key="status" id="status">
                           <Timeline>
                             {procedure.currentStatusHistory.map(status => (
@@ -278,13 +267,11 @@ class Details extends Component {
                         <VoteResultsPanel />
                       </Panel>
                     </Collapse>
-                    <WhiteColPad>
-                      <Collapse defaultActiveKey={['vote']} bordered={false}>
-                        <Panel header="AppStimmen" key="vote" id="vote">
-                          <AppStimmen />
-                        </Panel>
-                      </Collapse>
-                    </WhiteColPad>
+                    <Collapse defaultActiveKey={['vote']} bordered={false}>
+                      <Panel header="AppStimmen" key="vote" id="vote">
+                        <AppStimmen />
+                      </Panel>
+                    </Collapse>
                   </ContentSection>
 
                   <AsideRight>
@@ -300,7 +287,9 @@ class Details extends Component {
                         >
                           <AnchorLink href="#details" title="Details" />
                           <AnchorLink href="#documents" title="Dokumente" />
-                          <AnchorLink href="#status" title="Gesetzesstand" />
+                          {procedure.currentStatusHistory.length > 1 && (
+                            <AnchorLink href="#status" title="Gesetzesstand" />
+                          )}
                           <AnchorLink href="#results" title="Ergebnisse" />
                         </AnchorLink>
                         <AnchorLink href="#vote" title={<b>2. AppStimmen</b>} />

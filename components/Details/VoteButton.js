@@ -1,19 +1,20 @@
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 // Components
-import Button from 'Components/shared/Button';
-import Icon from 'Components/shared/Icon';
+import ButtonComponent from 'Components/shared/Button';
+import IconComponent from 'Components/shared/Icon';
 
 const voteOptions = ['thumb-up', 'thumb-down', 'thumb-left'];
 
-const backgroundColor = ({ type }) => {
+const backgroundColor = ({ type, oppacity = 1 }) => {
   switch (type) {
     case 'thumb-up':
-      return 'rgb(21,192,99)';
+      return `rgba(21,192,99,${oppacity})`;
     case 'thumb-down':
-      return 'rgb(236,62,49)';
+      return `rgba(236,62,49,${oppacity})`;
     default:
-      return 'rgb(40,130,228)';
+      return `rgba(40,130,228,${oppacity})`;
   }
 };
 
@@ -28,29 +29,36 @@ const rotate = ({ type }) => {
   }
 };
 
+const Button = styled(ButtonComponent)`
+  min-width: 100px;
+  min-height: 100px;
+  background-color: ${({ type }) => backgroundColor({ type })};
+  transform: ${({ type }) => rotate({ type })};
+  border: 0;
+
+  &:hover {
+    background-color: ${({ type }) => backgroundColor({ type, oppacity: 0.7 })};
+  }
+
+  &:active,
+  &:focus,
+  &:visited {
+    background-color: ${({ type }) => backgroundColor({ type })};
+  }
+`;
+
+const Icon = styled(IconComponent)`
+  width: 10vw;
+  height: 10vw;
+  color: #fff;
+  &:before {
+    font-size: 60px;
+  }
+`;
+
 const VoteButton = ({ type }) => (
-  <Button
-    style={{
-      height: '125px',
-      width: '125px',
-      backgroundColor: backgroundColor({ type }),
-      transform: rotate({ type }),
-      border: 0,
-    }}
-    type="primary"
-    shape="circle"
-    size="large"
-  >
-    <Icon
-      type="thumb-up"
-      fontSize={75}
-      style={{
-        width: '125px',
-        height: '125px',
-        display: 'block',
-        paddingTop: '20px',
-      }}
-    />
+  <Button type={type} shape="circle" size="large">
+    <Icon type="thumb-up" />
   </Button>
 );
 

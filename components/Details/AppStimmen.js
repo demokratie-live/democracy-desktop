@@ -3,32 +3,51 @@ import styled from 'styled-components';
 // components
 import VoteButton from './VoteButton';
 import Link from 'Components/shared/Link';
-import Icon from 'Components/shared/Icon';
+import IconComponent from 'Components/shared/Icon';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const H3 = styled.h3`
-  font-size: ${({ theme }) => theme.fontSizes.medium};
+  font-size: 27px;
   text-align: center;
 `;
 
 const VoteButtons = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  min-width: 320px;
+  width: 80vw;
+  max-width: 400px;
+  padding-bottom: ${({ theme }) => theme.space(2)}px;
+`;
+
+const StoreLink = styled.div`
+  display: flex;
+  width: 100%;
+  max-width: 400px;
+  align-items: center;
+  flex-direction: column;
   @media (min-width: 555px) {
     flex-direction: row;
     justify-content: space-between;
   }
 `;
 
-const StoreLink = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media (min-width: 555px) {
-    flex-direction: row;
-    justify-content: space-between;
+const AppStoreIcon = styled(IconComponent)`
+  &:before {
+    font-size: 60px;
+  }
+
+  &:hover {
+    &:before {
+      color: black;
+    }
   }
 `;
 
@@ -39,7 +58,6 @@ const AppStimmen = () => (
       <VoteButton type="thumb-left" />
       <VoteButton type="thumb-down" />
     </VoteButtons>
-
     <H3>
       Um mitzustimmen, lade Dir bitte das <b>10X-Improvement</b>
       <br />
@@ -54,7 +72,7 @@ const AppStimmen = () => (
         external
         style={{ color: 'rgb(74,74,74)' }}
       >
-        <Icon type="appstore" fontSize={75} />
+        <AppStoreIcon type="appstore" />
       </Link>
 
       <Link
@@ -62,7 +80,7 @@ const AppStimmen = () => (
         external
         style={{ color: 'rgb(74,74,74)' }}
       >
-        <Icon type="playstore" fontSize={75} />
+        <AppStoreIcon type="playstore" />
       </Link>
     </StoreLink>
   </Wrapper>
