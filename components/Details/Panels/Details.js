@@ -10,6 +10,9 @@ const DefinitionLists = styled.div`
   @media (min-width: 555px) {
     flex-direction: row;
   }
+  dt:not(:first-child) {
+    padding-top: ${({ theme }) => theme.space(1)}px;
+  }
 `;
 
 const DefinitionList = styled.dl``;
@@ -23,9 +26,18 @@ const DD = styled.dd`
   margin: 0;
 `;
 
-const DR = styled.div`
-  display: flex;
+const Table = styled.table``;
+
+const TR = styled.tr``;
+
+const TH = styled.th`
+  font-weight: normal;
+  text-align: right;
+  color: ${({ theme }) => theme.colors.highlight};
+  padding-right: ${({ theme }) => theme.space(1)}px;
 `;
+
+const TD = styled.td``;
 
 const DetailsPanel = ({
   subjectGroups,
@@ -46,30 +58,30 @@ const DetailsPanel = ({
         <DT>Aktueller Stand</DT>
         <DD>{currentStatus}</DD>
       </DefinitionList>
-      <DefinitionList horizontal>
-        <DR>
-          <DT>Typ</DT>
-          <DD>{type}</DD>
-        </DR>
-        <DR>
-          <DT>Vorgang</DT>
-          <DD>{procedureId}</DD>
-        </DR>
-        <DR>
-          <DT>erstellt am</DT>
-          <DD>
+      <Table>
+        <TR>
+          <TH>Typ</TH>
+          <TD>{type}</TD>
+        </TR>
+        <TR>
+          <TH>Vorgang</TH>
+          <TD>{procedureId}</TD>
+        </TR>
+        <TR>
+          <TH>erstellt am</TH>
+          <TD>
             <DateTime date={submissionDate} />
-          </DD>
-        </DR>
+          </TD>
+        </TR>
         {voteDate && (
-          <DR>
-            <DT>Abstimmung</DT>
-            <DD>
+          <TR>
+            <TH>Abstimmung</TH>
+            <TD>
               <DateTime date={voteDate} />
-            </DD>
-          </DR>
+            </TD>
+          </TR>
         )}
-      </DefinitionList>
+      </Table>
     </DefinitionLists>
 
     <h4>Inhalt</h4>
