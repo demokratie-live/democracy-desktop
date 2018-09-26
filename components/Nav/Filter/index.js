@@ -1,9 +1,12 @@
 import { Component } from 'react';
 import styled from 'styled-components';
 
+// Context
+import { Consumer as FilterConsumer } from 'Context/filter';
+
 // Components
 import Modal from 'Components/shared/Modal';
-import Icon from 'Components/shared/Icon';
+import IconComponent from 'Components/shared/Icon';
 import ButtonComponent from 'Components/shared/Button';
 import RenderToBody from 'Components/shared/RenderToBody';
 import FilterBox from './FilterBox';
@@ -20,6 +23,7 @@ const Wrapper = styled.div`
 
 const Button = styled(ButtonComponent)`
   border: 0;
+  box-shadow: none;
 `;
 
 const ArrowIconWrapper = styled.div.attrs({
@@ -30,10 +34,17 @@ const ArrowIconWrapper = styled.div.attrs({
   margin-left: 3px;
 `;
 
+const Icon = styled(IconComponent)`
+  &:before {
+    color: ${({ theme, active }) => (active ? theme.colors.highlight : theme.colors.inactive)};
+  }
+`;
+
 const ArrowIcon = styled(Icon)`
   &:before {
     top: 2px;
     font-size: 12px;
+    color: ${({ theme, active }) => (active ? theme.colors.highlight : theme.colors.inactive)};
   }
 `;
 
@@ -58,28 +69,32 @@ class Filter extends Component {
   render() {
     const { visible } = this.state;
     return (
-      <Wrapper>
-        <Desktop>
-          <Button onClick={this.toggleVisibility}>
-            <Icon type="funnel" />
-            <ArrowIconWrapper>
-              <ArrowIcon type="arrow" />
-            </ArrowIconWrapper>
-          </Button>
+      <FilterConsumer>
+        {({ state }) => (
+          <Wrapper>
+            <Desktop>
+              <Button onClick={this.toggleVisibility}>
+                <Icon type="funnel" active={!state.allTypes || !state.allSubjectGroups} />
+                <ArrowIconWrapper>
+                  <ArrowIcon type="arrow" active={!state.allTypes || !state.allSubjectGroups} />
+                </ArrowIconWrapper>
+              </Button>
 
-          <RenderToBody id="FilterBox">
-            <Modal visible={visible} handleVisibleChange={this.handleVisibleChange}>
-              <Desktop>
-                <FilterBox />
-              </Desktop>
-            </Modal>
-          </RenderToBody>
-        </Desktop>
+              <RenderToBody id="FilterBox">
+                <Modal visible={visible} handleVisibleChange={this.handleVisibleChange}>
+                  <Desktop>
+                    <FilterBox />
+                  </Desktop>
+                </Modal>
+              </RenderToBody>
+            </Desktop>
 
-        <Mobile dropDownContent={<FilterBox />} dropDownContentStyle={{}}>
-          <Icon type="funnel" top={0} />
-        </Mobile>
-      </Wrapper>
+            <Mobile dropDownContent={<FilterBox />} dropDownContentStyle={{}}>
+              <Icon type="funnel" top={0} />
+            </Mobile>
+          </Wrapper>
+        )}
+      </FilterConsumer>
     );
   }
 }
