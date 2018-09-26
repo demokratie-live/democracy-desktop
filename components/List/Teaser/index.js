@@ -27,7 +27,6 @@ const SubjectGroups = styled.div`
   float: right;
   margin-top: ${({ theme }) => theme.space(5)}px;
   height: 100%;
-  padding-right: ${({ theme }) => theme.space(1)}px;
 `;
 
 const Card = styled(CardComponent)``;
