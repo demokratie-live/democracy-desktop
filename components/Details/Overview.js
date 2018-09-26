@@ -9,6 +9,7 @@ import SubjectIcon from './../shared/SubjectIcon';
 
 const Wrapper = styled.div`
   padding: ${({ theme }) => theme.space(1)}px;
+  background-color: ${({ theme }) => theme.backgrounds.primary};
 `;
 
 const TitleRow = styled.div`
