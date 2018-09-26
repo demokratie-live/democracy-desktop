@@ -41,7 +41,13 @@ const StoreLink = styled.div`
 
 const AppStoreIcon = styled(IconComponent)`
   &:before {
-    font-size: 60px;
+    font-size: ${({ type }) => (type === 'appstore' ? '64px' : '60px')};
+  }
+
+  @media (min-width: 555px) {
+    &:before {
+      font-size: 60px;
+    }
   }
 
   &:hover {
