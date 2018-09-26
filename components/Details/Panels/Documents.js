@@ -4,22 +4,30 @@ import styled from 'styled-components';
 import Icon from 'Components/shared/Icon';
 import Link from 'Components/shared/Link';
 
+const Wrapper = styled.div``;
+
+const Document = styled.div`
+  &:not(:first-child) {
+    padding-top: ${({ theme }) => theme.space(1)}px;
+  }
+`;
+
 const DocIcon = styled(Icon)`
   padding-right: ${({ theme }) => theme.space(1)}px;
 `;
 
 const DocumentsPanel = ({ documents }) => (
-  <div>
+  <Wrapper>
     {' '}
     {documents.map(({ editor, type, url, number }, i) => (
-      <div key={i}>
+      <Document key={i}>
         <DocIcon type="document" />
         <Link href={url} external primary>
           {`${type} (${editor} ${number})`}
         </Link>
-      </div>
+      </Document>
     ))}
-  </div>
+  </Wrapper>
 );
 
 export default DocumentsPanel;
