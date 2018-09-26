@@ -15,6 +15,7 @@ import DateTime from 'Components/shared/DateTime';
 
 // Context
 import { Consumer as FilterConsumer } from 'Context/filter';
+import { Consumer as SearchConsumer } from 'Context/search';
 
 // Helpers
 import { getImage } from 'Helpers/subjectGroupToIcon';
@@ -46,78 +47,87 @@ const Image = styled.img`
 `;
 
 const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGroups }) => (
-  <Link
-    as={`/${type.toLowerCase()}/${procedureId}/${speakingurl(title)}`}
-    href={`/details?id=${procedureId}&title=${speakingurl(title)}`}
-  >
-    <article>
-      <Card
-        hoverable
-        cover={
-          <>
-            {voteDate && (
-              <Time>
-                <DateTime date={voteDate} />
-              </Time>
-            )}
-            <ImageContainer>
-              <Image src={`${getImage(subjectGroups[0])}_640.jpg`} alt={subjectGroups[0]} />
-            </ImageContainer>
-          </>
-        }
-      >
-        <TitleRow>
-          <Title tag={'h2'} lines={3}>
-            {title}
-          </Title>
-          <ActivityIndex>{activityIndex.activityIndex}</ActivityIndex>
-        </TitleRow>
-
-        <Row>
-          <div style={{ display: 'flex' }}>
-            <FilterConsumer>
-              {({ selectType }) => (
-                <Ribbon
-                  onClick={e => {
-                    e.preventDefault();
-                    selectType(type);
-                  }}
-                >
-                  {type}
-                </Ribbon>
-              )}
-            </FilterConsumer>
-            <SubjectGroups
-              style={{
-                display: 'flex',
-                overflow: 'hidden',
-                height: '40px',
-                flex: 1,
-                justifyContent: 'flex-end',
-              }}
+  <SearchConsumer>
+    {consumerProps => {
+      if (!consumerProps) return null;
+      const { changeSearchTerm } = consumerProps;
+      return (
+        <Link
+          as={`/${type.toLowerCase()}/${procedureId}/${speakingurl(title)}`}
+          href={`/details?id=${procedureId}&title=${speakingurl(title)}`}
+          onClick={() => changeSearchTerm('')}
+        >
+          <article>
+            <Card
+              hoverable
+              cover={
+                <>
+                  {voteDate && (
+                    <Time>
+                      <DateTime date={voteDate} />
+                    </Time>
+                  )}
+                  <ImageContainer>
+                    <Image src={`${getImage(subjectGroups[0])}_640.jpg`} alt={subjectGroups[0]} />
+                  </ImageContainer>
+                </>
+              }
             >
-              <div>
-                <FilterConsumer>
-                  {({ selectSubjectGroup }) => {
-                    return subjectGroups.map(group => (
-                      <SubjectIcon
-                        key={group}
-                        group={group}
+              <TitleRow>
+                <Title tag={'h2'} lines={3}>
+                  {title}
+                </Title>
+                <ActivityIndex>{activityIndex.activityIndex}</ActivityIndex>
+              </TitleRow>
+
+              <Row>
+                <div style={{ display: 'flex' }}>
+                  <FilterConsumer>
+                    {({ selectType }) => (
+                      <Ribbon
                         onClick={e => {
                           e.preventDefault();
-                          selectSubjectGroup(group);
+                          selectType(type);
                         }}
-                      />
-                    ));
-                  }}
-                </FilterConsumer>
-              </div>
-            </SubjectGroups>
-          </div>
-        </Row>
-      </Card>
-    </article>
-  </Link>
+                      >
+                        {type}
+                      </Ribbon>
+                    )}
+                  </FilterConsumer>
+                  <SubjectGroups
+                    style={{
+                      display: 'flex',
+                      overflow: 'hidden',
+                      height: '40px',
+                      flex: 1,
+                      justifyContent: 'flex-end',
+                    }}
+                  >
+                    <div>
+                      <FilterConsumer>
+                        {({ selectSubjectGroup }) => {
+                          return subjectGroups.map(group => (
+                            <SubjectIcon
+                              key={group}
+                              group={group}
+                              onClick={e => {
+                                e.preventDefault();
+                                selectSubjectGroup(group);
+                              }}
+                            />
+                          ));
+                        }}
+                      </FilterConsumer>
+                    </div>
+                  </SubjectGroups>
+                </div>
+              </Row>
+            </Card>
+          </article>
+        </Link>
+      );
+    }}
+  </SearchConsumer>
 );
 
 Teaser.propTypes = {
