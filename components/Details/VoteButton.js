@@ -53,6 +53,8 @@ const Icon = styled(IconComponent)`
   color: #fff;
   &:before {
     font-size: 60px;
+    top: 0px;
+    left: 0px;
   }
 `;
 
