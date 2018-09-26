@@ -100,7 +100,6 @@ const ASide = styled.aside`
 `;
 
 const Panel = styled(PanelComponent)`
-  font-size: ${({ theme }) => theme.fontSizes.default};
   padding: 0;
 
   .ant-collapse-item {
@@ -112,8 +111,12 @@ const Panel = styled(PanelComponent)`
     border-radius: 0;
     border-bottom: 1px solid ${({ theme }) => theme.colors.divider};
     background-color: ${({ theme }) => theme.backgrounds.primary};
-    padding-left: ${({ theme }) => theme.space(4)}px !important;
+    padding-left: ${({ theme }) => theme.space(1)}px !important;
     padding-right: ${({ theme }) => theme.space(4)}px !important;
+
+    @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+      padding-left: ${({ theme }) => theme.space(3)}px !important;
+    }
 
     .arrow {
       right: 16px;
@@ -134,10 +137,15 @@ const Panel = styled(PanelComponent)`
 
   .ant-collapse-content {
     .ant-collapse-content-box {
-      padding-left: ${({ theme }) => theme.space(4)}px;
-      padding-right: ${({ theme }) => theme.space(4)}px;
-      padding-bottom: ${({ theme }) => theme.space(4)}px;
+      padding-left: ${({ theme }) => theme.space(1)}px;
+      padding-right: ${({ theme }) => theme.space(1)}px;
+      padding-bottom: ${({ theme }) => theme.space(1)}px;
       padding-top: ${({ theme }) => theme.space(1.5)}px !important;
+      @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+        padding-left: ${({ theme }) => theme.space(3)}px;
+        padding-right: ${({ theme }) => theme.space(3)}px;
+        padding-bottom: ${({ theme }) => theme.space(3)}px;
+      }
     }
   }
 `;
@@ -244,7 +252,7 @@ class Details extends Component {
                           subjectGroups={procedure.subjectGroups}
                           currentStatus={procedure.currentStatus}
                           type={procedure.type}
-                          procedureId={procedure.rocedureId}
+                          procedureId={procedure.procedureId}
                           submissionDate={procedure.submissionDate}
                           voteDate={procedure.voteDate}
                           abstract={procedure.abstract}

@@ -6,16 +6,15 @@ import DateTime from 'Components/shared/DateTime';
 const DefinitionLists = styled.div`
   display: flex;
   justify-content: space-between;
-  flex-direction: column;
-  @media (min-width: 555px) {
-    flex-direction: row;
-  }
+  flex-direction: row;
   dt:not(:first-child) {
     padding-top: ${({ theme }) => theme.space(1)}px;
   }
 `;
 
-const DefinitionList = styled.dl``;
+const DefinitionList = styled.dl`
+  flex: 1;
+`;
 
 const DT = styled.dt`
   color: ${({ theme }) => theme.colors.highlight};
