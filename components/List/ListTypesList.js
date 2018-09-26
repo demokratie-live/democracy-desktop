@@ -66,7 +66,7 @@ class ListTypesList extends Component {
     return null;
   }
 
-  loadMore = ({ fetchMore }) => page => {
+  loadMore = ({ fetchMore, setHasMore }) => page => {
     fetchMore({
       variables: {
         offset: PAGE_SIZE * page,
@@ -76,8 +76,9 @@ class ListTypesList extends Component {
           return prev;
         }
         if (fetchMoreResult.procedures.length === 0) {
-          this.setState({ hasMore: false });
+          setHasMore(false);
         }
+
         return Object.assign({}, prev, {
           procedures: [...prev.procedures, ...fetchMoreResult.procedures],
         });
@@ -96,7 +97,7 @@ class ListTypesList extends Component {
         <FilterConsumer>
           {filterConsumer => {
             if (!filterConsumer) return null;
-            const { state, changeSort } = filterConsumer;
+            const { state, changeSort, setHasMore } = filterConsumer;
             return (
               <>
                 <ListDesctiption />
@@ -130,10 +131,17 @@ class ListTypesList extends Component {
                         </SpinWrapper>
                       );
                     if (error) return <p>Error :(</p>;
+                    if (procedures[0]) {
+                      if (procedures[0].procedureId !== this.lastFirstProcedure) {
+                        setHasMore(true);
+                      }
+                      this.lastFirstProcedure = procedures[0].procedureId;
+                    }
                     return (
                       <TeaserList
-                        hasMore={this.state.hasMore}
-                        loadMore={this.loadMore({ fetchMore })}
+                        pageStart={Math.ceil(procedures.length / PAGE_SIZE) - 1}
+                        hasMore={state.hasMore}
+                        loadMore={this.loadMore({ fetchMore, setHasMore })}
                         procedures={procedures}
                       />
                     );

@@ -25,11 +25,11 @@ const TeaserCol = styled(Col).attrs({
   padding-bottom: ${({ theme }) => theme.space(1)}px;
 `;
 
-const TeaserList = ({ loadMore, procedures, hasMore }) => {
+const TeaserList = ({ loadMore, procedures, hasMore, pageStart }) => {
   //
   return (
     <InfiniteScroll
-      pageStart={0}
+      pageStart={pageStart}
       loadMore={loadMore}
       hasMore={hasMore}
       loader={<Spin size="large" key="spinner" tip="Lädt mehr…" />}
@@ -49,6 +49,7 @@ TeaserList.propTypes = {
   loadMore: PropTypes.func.isRequired,
   procedures: PropTypes.array.isRequired,
   hasMore: PropTypes.bool.isRequired,
+  pageStart: PropTypes.number.isRequired,
 };
 
 export default TeaserList;
