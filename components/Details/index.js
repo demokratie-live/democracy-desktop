@@ -287,9 +287,11 @@ class Details extends Component {
                           </Timeline>
                         </Panel>
                       )}
-                      <Panel header="Ergebnisse" key="results" id="results">
-                        <VoteResultsPanel />
-                      </Panel>
+                      {(procedure.voteResults.yes || procedure.voteResults.no) && (
+                        <Panel header="Ergebnisse" key="results" id="results">
+                          <VoteResultsPanel />
+                        </Panel>
+                      )}
                     </Collapse>
                     <Collapse defaultActiveKey={['vote']} bordered={false}>
                       <Panel header="AppStimmen" key="vote" id="vote">
@@ -314,7 +316,10 @@ class Details extends Component {
                           {procedure.currentStatusHistory.length > 1 && (
                             <AnchorLink href="#status" title="Gesetzesstand" />
                           )}
-                          <AnchorLink href="#results" title="Ergebnisse" />
+
+                          {(procedure.voteResults.yes || procedure.voteResults.no) && (
+                            <AnchorLink href="#results" title="Ergebnisse" />
+                          )}
                         </AnchorLink>
                         <AnchorLink href="#vote" title={<b>2. AppStimmen</b>} />
                       </Anchor>

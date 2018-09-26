@@ -17,6 +17,14 @@ export default gql`
       abstract
       currentStatus
       submissionDate
+      voteResults {
+        yes
+        no
+        abstination
+        notVoted
+        decisionText
+        namedVote
+      }
       importantDocuments {
         editor
         type
