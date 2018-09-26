@@ -30,9 +30,7 @@ const SubjectGroups = styled.div`
 const Overview = ({ title, activityIndex, subjectGroups, voteDate, currentStatus }) => (
   <Wrapper>
     <TitleRow>
-      <Title tag={'h2'} lines={3}>
-        {title}
-      </Title>
+      <h2>{title}</h2>
       <ActivityIndex>{activityIndex}</ActivityIndex>
     </TitleRow>
     <div style={{ display: 'flex', alignItems: 'center' }}>
