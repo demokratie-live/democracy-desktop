@@ -29,7 +29,10 @@ const formatDate = date => {
 };
 
 const Time = styled.time`
-  color: ${({ dateTime, soon }) => {
+  color: ${({ dateTime, soon, colored, theme }) => {
+    if(!colored) {
+      return theme.colors.default;
+    }
     if (soon) {
       return '#f5a623';
     } else if (new Date(dateTime) > new Date()) {
@@ -39,11 +42,12 @@ const Time = styled.time`
   }};
 `;
 
-const DateTime = ({ date, fallback, style }) => (
+const DateTime = ({ date, fallback, style, colored }) => (
   <Time
     dateTime={date}
     style={style}
     soon={formatDate(new Date(date)) === 'morgen' || formatDate(new Date(date)).indexOf(':') !== -1}
+    colored={colored}
   >
     {date ? formatDate(new Date(date)) : fallback}
   </Time>
@@ -53,11 +57,13 @@ DateTime.propTypes = {
   date: PropTypes.string.isRequired,
   fallback: PropTypes.string,
   style: PropTypes.shape(),
+  colored: PropTypes.boolean,
 };
 
 DateTime.defaultProps = {
   fallback: '',
   style: {},
+  colored: false
 };
 
 export default DateTime;

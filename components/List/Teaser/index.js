@@ -65,7 +65,7 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
                 <>
                   {voteDate && (
                     <Time>
-                      <DateTime date={voteDate} />
+                      <DateTime colored date={voteDate} />
                     </Time>
                   )}
                   <ImageContainer>

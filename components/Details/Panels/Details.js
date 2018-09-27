@@ -77,7 +77,7 @@ const DetailsPanel = ({
             <TR>
               <TH>Abstimmung</TH>
               <TD>
-                <DateTime date={voteDate} />
+                <DateTime colored date={voteDate} />
               </TD>
             </TR>
           )}
