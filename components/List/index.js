@@ -17,7 +17,7 @@ class List extends Component {
   render() {
     return (
       <>
-        <Head>
+        {/* <Head>
           <meta key="og-title" property="og:title" content={PAGE_TITLE} />
           <meta key="page-topic" name="page-topic" content={PAGE_TITLE} />
           <meta key="og-url" property="og:url" content={DOMAIN_DESKTOP} />
@@ -45,7 +45,7 @@ class List extends Component {
 
           <meta key="page-type" name="page-type" content="website" />
           <meta key="og-type" property="og:type" content="website" />
-        </Head>
+        </Head> */}
         <SearchConsumer>
           {consumerProps => {
             if (!consumerProps) return null;
