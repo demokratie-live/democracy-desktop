@@ -26,7 +26,6 @@ class SearchList extends Component {
       <Section>
         <FilterConsumer>
           {filterConsumer => {
-            if (!filterConsumer) return null;
             return (
               <>
                 <Query

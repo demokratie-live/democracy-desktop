@@ -36,7 +36,6 @@ class Suche extends Component {
       <Wrapper>
         <SearchConsumer>
           {consumerProps => {
-            if (!consumerProps) return null;
             const { term, changeSearchTerm } = consumerProps;
 
             return (

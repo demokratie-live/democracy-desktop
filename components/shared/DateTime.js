@@ -30,7 +30,7 @@ const formatDate = date => {
 
 const Time = styled.time`
   color: ${({ dateTime, soon, colored, theme }) => {
-    if(!colored) {
+    if (!colored) {
       return theme.colors.default;
     }
     if (soon) {
@@ -57,13 +57,13 @@ DateTime.propTypes = {
   date: PropTypes.string.isRequired,
   fallback: PropTypes.string,
   style: PropTypes.shape(),
-  colored: PropTypes.boolean,
+  colored: PropTypes.bool,
 };
 
 DateTime.defaultProps = {
   fallback: '',
   style: {},
-  colored: false
+  colored: false,
 };
 
 export default DateTime;

@@ -71,7 +71,6 @@ class Filter extends Component {
     return (
       <FilterConsumer>
         {consumerProps => {
-          if (!consumerProps) return null;
           const { state } = consumerProps;
           return (
             <Wrapper>

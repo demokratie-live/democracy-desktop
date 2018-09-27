@@ -10,7 +10,7 @@ const withSourceMaps = require('@zeit/next-source-maps');
 
 // fix: prevents error when .css files are required by node
 if (typeof require !== 'undefined') {
-  require.extensions['.css'] = file => {};
+  require.extensions['.less'] = file => {};
 }
 
 const nextConfig = {

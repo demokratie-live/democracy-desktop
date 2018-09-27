@@ -12,7 +12,6 @@ class List extends Component {
     return (
       <SearchConsumer>
         {consumerProps => {
-          if (!consumerProps) return null;
           const { term } = consumerProps;
 
           if (term.trim()) {

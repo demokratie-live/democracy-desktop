@@ -1,13 +1,13 @@
 module.exports = {
-  presets: ['@babel/env', '@babel/react', 'next/babel'],
+  presets: ['next/babel'],
   plugins: [
     ['styled-components', { ssr: true, displayName: true, preprocess: false }],
-    'transform-decorators-legacy',
+    ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
     [
       'import',
       {
         libraryName: 'antd',
-        style: 'less',
+        style: true,
       },
     ],
   ],

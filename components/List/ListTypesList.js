@@ -96,7 +96,6 @@ class ListTypesList extends Component {
       <Section>
         <FilterConsumer>
           {filterConsumer => {
-            if (!filterConsumer) return null;
             const { state, changeSort, setHasMore } = filterConsumer;
             return (
               <>
