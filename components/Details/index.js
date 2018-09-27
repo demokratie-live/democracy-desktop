@@ -168,6 +168,10 @@ const Panel = styled(PanelComponent)`
   }
 `;
 
+const AppStimmenCollapse = styled(Collapse)`
+  margin-top: ${({theme}) => theme.space(3)}px;
+`
+
 const ImageCol = styled.div`
   width: 100%;
   /* min-height: 200px; */
@@ -303,11 +307,11 @@ class Details extends Component {
                         </Panel>
                       )}
                     </Collapse>
-                    <Collapse defaultActiveKey={['vote']} bordered={false}>
+                    <AppStimmenCollapse defaultActiveKey={['vote']} bordered={false}>
                       <Panel header="AppStimmen" key="vote" id="vote">
                         <AppStimmen />
                       </Panel>
-                    </Collapse>
+                    </AppStimmenCollapse>
                   </ContentSection>
 
                   <AsideRight>
