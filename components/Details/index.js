@@ -138,7 +138,7 @@ const Panel = styled(PanelComponent)`
 
     .arrow {
       right: 16px;
-      top: 15px !important;
+      top: 0 !important;
       left: auto !important;
       color: ${({ theme }) => theme.colors.arrow};
       font-size: ${({ theme }) => theme.fontSizes.small} !important;
@@ -150,7 +150,7 @@ const Panel = styled(PanelComponent)`
   }
 
   .ant-collapse-header[aria-expanded='true'] .arrow {
-    transform: rotate(-180deg) !important;
+    transform: rotate(180deg) !important;
   }
 
   .ant-collapse-content {
