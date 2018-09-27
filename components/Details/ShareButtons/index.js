@@ -26,11 +26,7 @@ const ShareButtons = ({ url }) => (
     <a href={`http://www.twitter.com/share?url=${url}`} target="_blank" rel="noopener noreferrer">
       <ShareButton type="twitter" />
     </a>
-    <a
-      href={`mailto:@?body=${url}`}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <a href={`mailto:@?body=${url}`} rel="noopener noreferrer">
       <ShareButton type="mail" />
     </a>
   </Wrapper>
