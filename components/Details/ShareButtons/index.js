@@ -6,13 +6,20 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   height: 100%;
+
   @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
     width: 50px;
     flex-direction: column;
   }
 `;
 
-const ShareButton = styled(ShareButtonComponent)``; // margin-right: ${({ theme }) => theme.space(1)}px;
+const ShareButton = styled(ShareButtonComponent)`
+  margin-right: ${({ theme }) => theme.space(1)}px;
+
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    margin-right: 0;
+  }
+`;
 
 const ShareButtons = ({ url }) => (
   <Wrapper>
