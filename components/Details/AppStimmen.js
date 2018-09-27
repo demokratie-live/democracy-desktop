@@ -74,7 +74,7 @@ const AppStimmen = () => (
     </H3>
     <StoreLink>
       <Link
-        href="https://www.democracy-deutschland.de/"
+        href="https://itunes.apple.com/us/app/democracy/id1341311162"
         external
         style={{ color: 'rgb(74,74,74)' }}
       >
@@ -82,7 +82,7 @@ const AppStimmen = () => (
       </Link>
 
       <Link
-        href="https://www.democracy-deutschland.de/"
+        href="https://play.google.com/store/apps/details?id=de.democracydeutschland.app"
         external
         style={{ color: 'rgb(74,74,74)' }}
       >
