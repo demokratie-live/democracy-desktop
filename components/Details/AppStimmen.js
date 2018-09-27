@@ -66,12 +66,12 @@ const AppStimmen = () => (
       <VoteButton type="thumb-down" />
     </VoteButtons>
     <H3>
-      Um mitzustimmen, lade Dir bitte das <b>10X-Improvement</b>
-      <br />
+      Um mitzustimmen, lade Dir bitte das
       <Link href="https://www.democracy-deutschland.de/" external primary>
-        für unsere Demokratie
+        &nbsp;
+        <b>10X-Improvement</b> für unsere Demokratie &nbsp;
       </Link>
-      &nbsp;herunter
+      herunter
     </H3>
     <StoreLink>
       <Link
