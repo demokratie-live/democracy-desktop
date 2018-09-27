@@ -31,12 +31,14 @@ export default class MyDocument extends Document {
             name="audience"
             content="Politiker, Bürger, Interessierte, Lobbyisten, Anfänger, Azubis, Erwachsene, Experten, Fortgeschrittene, Frauen, Jugendliche, Männer, Profis, Schüler, Studenten"
           />
-          <meta name="DC.Language" content="de" />
+
           <meta name="revisit-after" content="1 DAYS" />
           <meta name="robots" content="index, follow" />
 
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="DC.Language" content="de" />
           <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+
           <link rel="stylesheet" href="/_next/static/style.css" />
           {styleTags}
         </Head>

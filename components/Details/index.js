@@ -208,6 +208,7 @@ class Details extends Component {
                     completed: procedure.completed,
                   })}: ${procedure.title}`}</title>
                   <meta
+                    key="og-title"
                     property="og:title"
                     content={`${titleByProcedureListType({
                       listType: procedure.listType,
@@ -215,6 +216,7 @@ class Details extends Component {
                     })}: ${procedure.title}`}
                   />
                   <meta
+                    key="page-topic"
                     name="page-topic"
                     content={`${titleByProcedureListType({
                       listType: procedure.listType,
@@ -222,17 +224,22 @@ class Details extends Component {
                     })}: ${procedure.title}`}
                   />
 
-                  <meta name="description" content={procedure.abstract} />
-                  <meta name="DC.Description" content={procedure.abstract} />
-                  <meta property="og:description" content={procedure.abstract} />
+                  <meta key="description" name="description" content={procedure.abstract} />
+                  <meta key="dc-description" name="DC.Description" content={procedure.abstract} />
+                  <meta
+                    key="og-description"
+                    property="og:description"
+                    content={procedure.abstract}
+                  />
 
                   <meta name="keywords" content={procedure.tags.join(', ')} />
 
-                  <meta name="page-type" content="article" />
-                  <meta property="og:type" content="article" />
+                  <meta key="page-type" name="page-type" content="article" />
+                  <meta key="og-type" property="og:type" content="article" />
 
-                  <meta property="og:url" content={`${DOMAIN_DESKTOP}${asPath}`} />
+                  <meta key="og-url" property="og:url" content={`${DOMAIN_DESKTOP}${asPath}`} />
                   <meta
+                    key="og-image"
                     property="og:image"
                     content={`${DOMAIN_DESKTOP}${getImage(procedure.subjectGroups[0])}_1920.jpg`}
                   />
@@ -240,7 +247,7 @@ class Details extends Component {
                 <Wrapper>
                   <AsideLeft>
                     <ShareAside>
-                      <ShareButtons />
+                      <ShareButtons url={`${DOMAIN_DESKTOP}${asPath}`} />
                     </ShareAside>
                   </AsideLeft>
                   <ContentSection>
