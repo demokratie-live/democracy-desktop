@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { Tooltip } from 'antd';
 import PropTypes from 'prop-types';
 
@@ -6,7 +7,9 @@ import subjectGroupIconHelper, { subjectGroups } from 'Helpers/subjectGroupToIco
 
 // Components
 import Button from 'Components/shared/Button';
-import Icon from 'Components/shared/Icon';
+import IconComponent from 'Components/shared/Icon';
+
+const Icon = styled(IconComponent)``;
 
 const SubjectIcon = ({ group, style, onClick }) => (
   <Tooltip placement="bottom" title={group}>
@@ -17,15 +20,7 @@ const SubjectIcon = ({ group, style, onClick }) => (
       shape="circle"
       size="large"
     >
-      <Icon
-        type={subjectGroupIconHelper(group)}
-        style={{
-          width: '39px',
-          height: '40px',
-          display: 'block',
-          paddingTop: '5px',
-        }}
-      />
+      <Icon type={subjectGroupIconHelper(group)} />
     </Button>
   </Tooltip>
 );

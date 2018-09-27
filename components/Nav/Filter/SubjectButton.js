@@ -42,7 +42,7 @@ const ButtonIconWrapper = styled.div`
 
 const Icon = styled(IconComponent)`
   &:before {
-    left: 0;
+    left: 0.5px;
     top: 3;
   }
 `;
