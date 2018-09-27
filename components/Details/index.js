@@ -169,8 +169,8 @@ const Panel = styled(PanelComponent)`
 `;
 
 const AppStimmenCollapse = styled(Collapse)`
-  margin-top: ${({theme}) => theme.space(3)}px;
-`
+  margin-top: ${({ theme }) => theme.space(3)}px;
+`;
 
 const ImageCol = styled.div`
   width: 100%;

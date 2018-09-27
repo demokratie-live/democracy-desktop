@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import _ from 'lodash';
 
@@ -21,9 +22,9 @@ const Charts = styled.div`
   }
   @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
     flex-direction: row;
-  & > *:not(:first-child) {
-    margin-top: 0;
-  }
+    & > *:not(:first-child) {
+      margin-top: 0;
+    }
   }
 `;
 
@@ -103,6 +104,10 @@ const VoteResultsPanel = ({ voteResults }) => {
       />
     </Wrapper>
   );
+};
+
+VoteResultsPanel.propTypes = {
+  voteResults: PropTypes.shape().isRequired,
 };
 
 export default VoteResultsPanel;

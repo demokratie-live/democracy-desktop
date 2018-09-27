@@ -43,7 +43,7 @@ const Icon = styled(IconComponent)`
 
 const ArrowIcon = styled(Icon)`
   &:before {
-    top: -4px;
+    top: 0;
     font-size: 12px;
   }
 `;
@@ -76,7 +76,7 @@ class Filter extends Component {
             <Wrapper>
               <Desktop>
                 <Button onClick={this.toggleVisibility}>
-                  <Badge dot={!state.allTypes || !state.allSubjectGroups} offset={[3, -3]}>
+                  <Badge dot={!state.allTypes || !state.allSubjectGroups} offset={[0, 3]}>
                     <Icon type="funnel" active={!state.allTypes || !state.allSubjectGroups} />
                   </Badge>
                   <ArrowIconWrapper>
