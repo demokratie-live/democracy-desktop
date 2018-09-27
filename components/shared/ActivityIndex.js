@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   text-align: center;
   padding: 0;
   margin-top: -10px;
-  padding-left: 10px;
+  padding-left: ${({ theme }) => theme.space(2)}px;
 `;
 
 const Icon = styled(IconComponent).attrs({
