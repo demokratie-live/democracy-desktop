@@ -27,7 +27,7 @@ const ShareButtons = ({ url }) => (
       <ShareButton type="twitter" />
     </a>
     <a
-      href={`mailto:dein@demokratiefreund.de?body=${url}`}
+      href={`mailto:@?body=${url}`}
       target="_blank"
       rel="noopener noreferrer"
     >
