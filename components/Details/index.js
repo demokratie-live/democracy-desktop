@@ -66,6 +66,7 @@ const AsideRight = styled.div`
 
   @media (min-width: 855px) {
     display: block;
+    min-width: 270px;
   }
 `;
 
@@ -288,8 +289,9 @@ class Details extends Component {
                         </Panel>
                       )}
                       {(procedure.voteResults.yes || procedure.voteResults.no) && (
-                        <Panel header="Ergebnisse" key="results" id="results">
-                          <VoteResultsPanel />
+                        <Panel header="Bundestagsergebnisse" key="results" id="government-results">
+                          <a id="results" />
+                          <VoteResultsPanel voteResults={procedure.voteResults} />
                         </Panel>
                       )}
                     </Collapse>
@@ -318,7 +320,9 @@ class Details extends Component {
                           )}
 
                           {(procedure.voteResults.yes || procedure.voteResults.no) && (
-                            <AnchorLink href="#results" title="Ergebnisse" />
+                            <AnchorLink href="#results" title="Ergebnisse">
+                              <AnchorLink href="#government-results" title="Bundestagsergebnisse" />
+                            </AnchorLink>
                           )}
                         </AnchorLink>
                         <AnchorLink href="#vote" title={<b>2. AppStimmen</b>} />

@@ -24,6 +24,16 @@ export default gql`
         notVoted
         decisionText
         namedVote
+        partyVotes {
+          main
+          party
+          deviants {
+            yes
+            abstination
+            no
+            notVoted
+          }
+        }
       }
       importantDocuments {
         editor
