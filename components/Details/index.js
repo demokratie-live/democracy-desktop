@@ -56,6 +56,7 @@ const AsideLeft = styled.div`
     padding-right: ${({ theme }) => theme.space(1)}px;
     padding-top: ${({ theme }) => theme.space(0)}px;
     padding-bottom: ${({ theme }) => theme.space(0)}px;
+    background-color: transparent;
   }
 `;
 
