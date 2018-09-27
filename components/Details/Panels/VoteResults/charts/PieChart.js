@@ -22,7 +22,10 @@ const dataSortIdentifier = ['yes', 'abstination', 'no'];
 
 const VoteResultsPanel = ({ data, colorScale, label, showNumbers }) => {
   data.sort((a, b) => {
-    return dataSortIdentifier.indexOf(a.label) > dataSortIdentifier.indexOf(b.label);
+    return (
+      dataSortIdentifier.indexOf(b.label) !== -1 &&
+      dataSortIdentifier.indexOf(a.label) > dataSortIdentifier.indexOf(b.label)
+    );
   });
 
   return (
@@ -39,7 +42,7 @@ const VoteResultsPanel = ({ data, colorScale, label, showNumbers }) => {
           data-icon="check"
           width="50"
           height="50"
-          fill={data[0].percentage > data[2].percentage?"#99C93E":"#D43194"}
+          fill={data[0].percentage > data[2].percentage ? '#99C93E' : '#D43194'}
           aria-hidden="true"
           x="175"
           y="175"
