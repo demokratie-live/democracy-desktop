@@ -57,7 +57,7 @@ class PartyChart extends Component {
     return (
       <VoteResultsWrapper>
         <VoteResultsPieWrapper>
-          <VictoryChart height={440} padding={{ left: 50, top: 20, bottom: 20, right: 20 }}>
+          <VictoryChart height={440} padding={{ left: 80, top: 20, bottom: 20, right: 20 }}>
             <VictoryStack horizontal>
               {dataSet.map(chartData => (
                 <VictoryBar
