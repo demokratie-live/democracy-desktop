@@ -55,6 +55,7 @@ const Teaser = ({
   voteDate,
   subjectGroups,
   voteResults,
+  listType,
 }) => (
   <SearchConsumer>
     {consumerProps => {
@@ -80,7 +81,7 @@ const Teaser = ({
                   <ImageContainer>
                     <Image src={`${getImage(subjectGroups[0])}_640.jpg`} alt={subjectGroups[0]} />
                   </ImageContainer>
-                  <Charts voteResults={voteResults} />
+                  {listType === 'vergangen' && <Charts voteResults={voteResults} />}
                 </>
               }
             >
@@ -147,6 +148,7 @@ Teaser.propTypes = {
   voteDate: PropTypes.string,
   subjectGroups: PropTypes.array.isRequired,
   voteResults: PropTypes.shape().isRequired,
+  listType: PropTypes.string,
 };
 
 export default Teaser;

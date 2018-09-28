@@ -142,6 +142,7 @@ class ListTypesList extends Component {
                         hasMore={state.hasMore}
                         loadMore={this.loadMore({ fetchMore, setHasMore })}
                         procedures={procedures}
+                        listType={listType}
                       />
                     );
                   }}

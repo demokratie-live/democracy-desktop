@@ -25,7 +25,7 @@ const TeaserCol = styled(Col).attrs({
   padding-bottom: ${({ theme }) => theme.space(1)}px;
 `;
 
-const TeaserList = ({ loadMore, procedures, hasMore, pageStart }) => {
+const TeaserList = ({ loadMore, procedures, hasMore, pageStart, listType }) => {
   //
   return (
     <InfiniteScroll
@@ -37,7 +37,7 @@ const TeaserList = ({ loadMore, procedures, hasMore, pageStart }) => {
       <TeaserRow>
         {procedures.map(({ procedureId, ...rest }) => (
           <TeaserCol key={procedureId}>
-            <Teaser procedureId={procedureId} {...rest} />
+            <Teaser procedureId={procedureId} listType={listType} {...rest} />
           </TeaserCol>
         ))}
       </TeaserRow>
@@ -50,6 +50,7 @@ TeaserList.propTypes = {
   procedures: PropTypes.array.isRequired,
   hasMore: PropTypes.bool.isRequired,
   pageStart: PropTypes.number,
+  listType: PropTypes.string,
 };
 
 TeaserList.defaultProps = {
