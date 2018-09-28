@@ -11,6 +11,7 @@ const Select = styled(SelectComponent)`
       color: ${({ theme }) => theme.colors.primary};
       font-size: ${({ theme }) => theme.fontSizes.small};
       font-weight: bold;
+      top: 14px;
     }
   }
 
