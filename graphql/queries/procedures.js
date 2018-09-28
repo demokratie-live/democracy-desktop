@@ -23,6 +23,24 @@ export default gql`
       }
       voteDate
       subjectGroups
+      voteResults {
+        yes
+        no
+        abstination
+        notVoted
+        decisionText
+        namedVote
+        partyVotes {
+          main
+          party
+          deviants {
+            yes
+            abstination
+            no
+            notVoted
+          }
+        }
+      }
     }
   }
 `;

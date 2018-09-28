@@ -3,11 +3,12 @@ import speakingurl from 'speakingurl';
 import styled from 'styled-components';
 
 // Components
-import { Card as CardComponent, Row } from 'antd';
+import { Card as CardComponent } from 'antd';
 
 import SubjectIcon from './../../shared/SubjectIcon';
 import Ribbon from './Ribbon';
 import Time from './Time';
+import Charts from './Charts';
 import Link from 'Components/shared/Link';
 import Title from 'Components/shared/Ellipsis';
 import ActivityIndex from 'Components/shared/ActivityIndex';
@@ -46,7 +47,15 @@ const Image = styled.img`
   width: 100%;
 `;
 
-const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGroups }) => (
+const Teaser = ({
+  title,
+  procedureId,
+  type,
+  activityIndex,
+  voteDate,
+  subjectGroups,
+  voteResults,
+}) => (
   <SearchConsumer>
     {consumerProps => {
       if (!consumerProps) return null;
@@ -71,6 +80,7 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
                   <ImageContainer>
                     <Image src={`${getImage(subjectGroups[0])}_640.jpg`} alt={subjectGroups[0]} />
                   </ImageContainer>
+                  <Charts voteResults={voteResults} />
                 </>
               }
             >
@@ -81,48 +91,46 @@ const Teaser = ({ title, procedureId, type, activityIndex, voteDate, subjectGrou
                 <ActivityIndex>{activityIndex.activityIndex}</ActivityIndex>
               </TitleRow>
 
-              <Row>
-                <div style={{ display: 'flex' }}>
-                  <FilterConsumer>
-                    {({ selectType }) => (
-                      <Ribbon
-                        onClick={e => {
-                          e.preventDefault();
-                          selectType(type);
-                        }}
-                      >
-                        {type}
-                      </Ribbon>
-                    )}
-                  </FilterConsumer>
-                  <SubjectGroups
-                    style={{
-                      display: 'flex',
-                      overflow: 'hidden',
-                      height: '40px',
-                      flex: 1,
-                      justifyContent: 'flex-end',
-                    }}
-                  >
-                    <div>
-                      <FilterConsumer>
-                        {({ selectSubjectGroup }) => {
-                          return subjectGroups.map(group => (
-                            <SubjectIcon
-                              key={group}
-                              group={group}
-                              onClick={e => {
-                                e.preventDefault();
-                                selectSubjectGroup(group);
-                              }}
-                            />
-                          ));
-                        }}
-                      </FilterConsumer>
-                    </div>
-                  </SubjectGroups>
-                </div>
-              </Row>
+              <div style={{ display: 'flex' }}>
+                <FilterConsumer>
+                  {({ selectType }) => (
+                    <Ribbon
+                      onClick={e => {
+                        e.preventDefault();
+                        selectType(type);
+                      }}
+                    >
+                      {type}
+                    </Ribbon>
+                  )}
+                </FilterConsumer>
+                <SubjectGroups
+                  style={{
+                    display: 'flex',
+                    overflow: 'hidden',
+                    height: '40px',
+                    flex: 1,
+                    justifyContent: 'flex-end',
+                  }}
+                >
+                  <div>
+                    <FilterConsumer>
+                      {({ selectSubjectGroup }) => {
+                        return subjectGroups.map(group => (
+                          <SubjectIcon
+                            key={group}
+                            group={group}
+                            onClick={e => {
+                              e.preventDefault();
+                              selectSubjectGroup(group);
+                            }}
+                          />
+                        ));
+                      }}
+                    </FilterConsumer>
+                  </div>
+                </SubjectGroups>
+              </div>
             </Card>
           </article>
         </Link>
