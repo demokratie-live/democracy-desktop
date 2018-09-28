@@ -52,14 +52,14 @@ class PartyChart extends Component {
   };
 
   render() {
-    const { data, colorScale, showNumbers } = this.props;
+    const { data } = this.props;
     const dataSet = this.prepareChartData(data);
     return (
       <VoteResultsWrapper>
         <VoteResultsPieWrapper>
           <VictoryChart height={440} padding={{ left: 50, top: 20, bottom: 20, right: 20 }}>
             <VictoryStack horizontal>
-              {dataSet.map((chartData, i) => (
+              {dataSet.map(chartData => (
                 <VictoryBar
                   padding={0}
                   key={chartData[0].y}

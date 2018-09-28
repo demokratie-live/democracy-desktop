@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // Components
@@ -20,7 +21,7 @@ const CheckIcon = styled.svg`
 
 const dataSortIdentifier = ['yes', 'abstination', 'no'];
 
-const VoteResultsPanel = ({ data, colorScale, label, showNumbers }) => {
+const VoteResultsPanel = ({ data, colorScale }) => {
   data.sort((a, b) => {
     return (
       dataSortIdentifier.indexOf(b.label) !== -1 &&
@@ -81,6 +82,11 @@ const VoteResultsPanel = ({ data, colorScale, label, showNumbers }) => {
       </svg>
     </Wrapper>
   );
+};
+
+VoteResultsPanel.propTypes = {
+  data: PropTypes.array.isRequired,
+  colorScale: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default VoteResultsPanel;

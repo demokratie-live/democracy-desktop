@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const VoteResultNumbers = styled.div`
@@ -129,6 +130,12 @@ const ResultNumbers = props => {
       ))}
     </VoteResultNumbers>
   );
+};
+
+ResultNumbers.propTypes = {
+  data: PropTypes.array.isRequired,
+  colorScale: PropTypes.array.isRequired,
+  voteResults: PropTypes.shape().isRequired,
 };
 
 export default ResultNumbers;

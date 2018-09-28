@@ -14,68 +14,7 @@ const VoteResultsPieWrapper = styled.div.attrs({
   pointerEvents: 'none',
 })``;
 
-const VoteResultNumbers = styled.div`
-  display: flex;
-  max-width: 464px;
-  padding-top: 18px;
-  flex-direction: row;
-  justify-content: space-around;
-`;
-
-const VoteResult = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const VoteResultCircleNumber = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const VoteResultNumber = styled.span`
-  color: #4a4a4a;
-  font-size: 12px;
-`;
-const VoteResultLabel = styled.span`
-  color: #d5d5d5;
-  font-size: 10px;
-`;
-
-const VoteResultCircle = styled.div`
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  background-color: ${props => props.color};
-  margin-top: 3px;
-  margin-right: 5px;
-`;
-
 class BarChart extends Component {
-  getColor = (label, colors) => {
-    switch (label) {
-      case 'yes':
-        return colors[0];
-      case 'abstination':
-        return colors[1];
-      case 'no':
-        return colors[2];
-      default:
-        return colors[3];
-    }
-  };
-
-  getLabel = label => {
-    const labels = {
-      yes: 'Zustimmungen',
-      abstination: 'Enthaltungen',
-      no: 'Ablehnungen',
-      notVoted: 'Nicht abg.',
-    };
-    return labels[label] || label;
-  };
-
   getPartyColor = party => {
     switch (party) {
       case 'CDU/CSU':
@@ -97,55 +36,6 @@ class BarChart extends Component {
       default:
         return 'grey';
     }
-  };
-
-  getTotals = data => {
-    const {
-      voteResults: { namedVote },
-    } = this.props;
-    const totals = data.reduce(
-      (prev, party) => {
-        const { yes, abstination, no, notVoted } = party.value;
-        if (namedVote) {
-          return {
-            yes: prev.yes + yes,
-            abstination: prev.abstination + abstination,
-            no: prev.no + no,
-            notVoted: prev.notVoted + notVoted,
-          };
-        }
-        return {
-          yes: prev.yes + (yes === Math.max(yes, abstination, no, notVoted) ? 1 : 0),
-          abstination:
-            prev.abstination + (abstination === Math.max(yes, abstination, no, notVoted) ? 1 : 0),
-          no: prev.no + (no === Math.max(yes, abstination, no, notVoted) ? 1 : 0),
-          notVoted: prev.notVoted + (notVoted === Math.max(yes, abstination, no, notVoted) ? 1 : 0),
-        };
-      },
-      { yes: 0, abstination: 0, no: 0, notVoted: 0 },
-    );
-    const totalsResult = [
-      {
-        label: 'yes',
-        value: totals.yes,
-      },
-      {
-        label: 'abstination',
-        value: totals.abstination,
-      },
-      {
-        label: 'no',
-        value: totals.no,
-      },
-    ];
-    if (totals.notVoted) {
-      totalsResult.push({
-        label: 'notVoted',
-        value: totals.notVoted,
-      });
-    }
-
-    return totalsResult;
   };
 
   prepareChartData = data => {
@@ -191,7 +81,7 @@ class BarChart extends Component {
   });
 
   render() {
-    const { data, colorScale, showNumbers } = this.props;
+    const { data } = this.props;
     const dataSet = this.prepareChartData(data);
     return (
       <VoteResultsWrapper>

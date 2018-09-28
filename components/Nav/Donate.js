@@ -43,7 +43,7 @@ class Donate extends Component {
   render() {
     return (
       <Wrapper>
-        <ExternalLink href="https://www.democracy-deutschland.de/#!donate">
+        <ExternalLink target="_blank" href="https://www.democracy-deutschland.de/#!donate">
           <HeartIcon /> <Text>Unterstützen</Text>
         </ExternalLink>
       </Wrapper>

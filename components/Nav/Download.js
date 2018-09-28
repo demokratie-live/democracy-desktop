@@ -36,7 +36,7 @@ class Download extends Component {
   render() {
     return (
       <Wrapper>
-        <ExternalLink href="https://www.democracy-deutschland.de">
+        <ExternalLink target="_blank" href="https://www.democracy-deutschland.de">
           <Icon type="mobile" top={0} /> <Text>App Downloaden</Text>
         </ExternalLink>
       </Wrapper>

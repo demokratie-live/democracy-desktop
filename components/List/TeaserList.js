@@ -49,7 +49,11 @@ TeaserList.propTypes = {
   loadMore: PropTypes.func.isRequired,
   procedures: PropTypes.array.isRequired,
   hasMore: PropTypes.bool.isRequired,
-  pageStart: PropTypes.number.isRequired,
+  pageStart: PropTypes.number,
+};
+
+TeaserList.defaultProps = {
+  pageStart: 0,
 };
 
 export default TeaserList;

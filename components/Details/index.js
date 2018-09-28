@@ -138,7 +138,7 @@ const Panel = styled(PanelComponent)`
 
     .arrow {
       right: 16px;
-      top: 15px !important;
+      top: 0 !important;
       left: auto !important;
       color: ${({ theme }) => theme.colors.arrow};
       font-size: ${({ theme }) => theme.fontSizes.small} !important;
@@ -150,7 +150,7 @@ const Panel = styled(PanelComponent)`
   }
 
   .ant-collapse-header[aria-expanded='true'] .arrow {
-    transform: rotate(-180deg) !important;
+    transform: rotate(180deg) !important;
   }
 
   .ant-collapse-content {
@@ -169,8 +169,8 @@ const Panel = styled(PanelComponent)`
 `;
 
 const AppStimmenCollapse = styled(Collapse)`
-  margin-top: ${({theme}) => theme.space(3)}px;
-`
+  margin-top: ${({ theme }) => theme.space(3)}px;
+`;
 
 const ImageCol = styled.div`
   width: 100%;

@@ -6,7 +6,7 @@ const Icon = styled.i.attrs({})`
     font-size: ${({ fontSize }) => `${fontSize}px`};
     position: relative;
     top: ${({ top }) => `${top}px`};
-    left: 1px;
+    left: 0px;
   }
 `;
 

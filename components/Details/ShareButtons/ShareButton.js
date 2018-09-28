@@ -19,6 +19,15 @@ const Button = styled(ButtonComponent)`
     border-color: rgba(0, 0, 0, 0.3);
   }
 
+  &:active {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-color: rgba(0, 0, 0, 0.5);
+  }
+  &:focus {
+    background-color: transparent;
+    border: 2px solid rgba(0, 0, 0, 0.6);
+  }
+
   @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
     border: 2px solid rgb(143, 142, 148);
     margin-bottom: 15px;
