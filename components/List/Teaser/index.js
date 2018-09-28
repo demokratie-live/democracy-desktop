@@ -146,6 +146,7 @@ Teaser.propTypes = {
   activityIndex: PropTypes.shape().isRequired,
   voteDate: PropTypes.string,
   subjectGroups: PropTypes.array.isRequired,
+  voteResults: PropTypes.shape().isRequired,
 };
 
 export default Teaser;

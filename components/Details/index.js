@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { withRouter } from 'next/router';
-import { Collapse, Timeline, Anchor as AnchorComponent } from 'antd';
+import { Collapse, Anchor as AnchorComponent } from 'antd';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import getConfig from 'next/config';
@@ -12,6 +12,7 @@ import Overview from './Overview';
 import Tags from './Tags';
 import DetailsPanel from './Panels/Details';
 import DocumentsPanel from './Panels/Documents';
+import HistoryPanel from './Panels/History';
 import VoteResultsPanel from './Panels/VoteResults';
 import AppStimmen from './AppStimmen';
 
@@ -287,17 +288,17 @@ class Details extends Component {
                           abstract={procedure.abstract}
                         />
                       </Panel>
-
-                      <Panel header="Dokumente" key="documents" id="documents">
-                        <DocumentsPanel documents={procedure.importantDocuments} />
-                      </Panel>
+                      {procedure.importantDocuments.length > 0 && (
+                        <Panel header="Dokumente" key="documents" id="documents">
+                          <DocumentsPanel documents={procedure.importantDocuments} />
+                        </Panel>
+                      )}
                       {procedure.currentStatusHistory.length > 1 && (
                         <Panel header="Gesetzesstand" key="status" id="status">
-                          <Timeline>
-                            {procedure.currentStatusHistory.map(status => (
-                              <Timeline.Item key={status}>{status}</Timeline.Item>
-                            ))}
-                          </Timeline>
+                          <HistoryPanel
+                            currentStatus={procedure.currentStatus}
+                            currentStatusHistory={procedure.currentStatusHistory}
+                          />
                         </Panel>
                       )}
                       {(procedure.voteResults.yes || procedure.voteResults.no) && (
@@ -326,7 +327,9 @@ class Details extends Component {
                           }
                         >
                           <AnchorLink href="#details" title="Details" />
-                          <AnchorLink href="#documents" title="Dokumente" />
+                          {procedure.importantDocuments.length > 0 && (
+                            <AnchorLink href="#documents" title="Dokumente" />
+                          )}
                           {procedure.currentStatusHistory.length > 1 && (
                             <AnchorLink href="#status" title="Gesetzesstand" />
                           )}

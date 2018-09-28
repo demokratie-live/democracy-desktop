@@ -29,7 +29,7 @@ const formatDate = date => {
 };
 
 const Time = styled.time`
-  color: ${({ dateTime, soon, colored, theme }) => {
+  color: ${({ dateTime, soon, colored }) => {
     if (!colored) {
       return 'inherit';
     }

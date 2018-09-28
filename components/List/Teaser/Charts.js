@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import _ from 'lodash';
 
@@ -64,6 +65,10 @@ const TeaserCharts = ({ voteResults }) => {
       </Container>
     </Wrapper>
   );
+};
+
+TeaserCharts.propTypes = {
+  voteResults: PropTypes.shape().isRequired,
 };
 
 export default TeaserCharts;
