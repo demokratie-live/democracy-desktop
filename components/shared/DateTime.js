@@ -31,7 +31,7 @@ const formatDate = date => {
 const Time = styled.time`
   color: ${({ dateTime, soon, colored, theme }) => {
     if (!colored) {
-      return theme.colors.default;
+      return 'inherit';
     }
     if (soon) {
       return '#f5a623';
