@@ -12,9 +12,8 @@ const Wrapper = styled.div`
 `;
 
 const H3 = styled.h3`
-  font-size: 20px;
+  font-size: ${({ theme }) => theme.fontSizes.medium};
   text-align: center;
-  max-width: 500px;
 `;
 
 const VoteButtons = styled.div`
