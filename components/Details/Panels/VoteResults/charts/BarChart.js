@@ -196,7 +196,7 @@ class BarChart extends Component {
     return (
       <VoteResultsWrapper>
         <VoteResultsPieWrapper>
-          <VictoryChart height={440} padding={{ left: 50, bottom: 0, right: 50 }}>
+          <VictoryChart height={465} padding={{ left: 50, bottom: 25, right: 50 }}>
             <VictoryStack>
               {dataSet.map(chartData => (
                 <VictoryBar
@@ -226,7 +226,6 @@ class BarChart extends Component {
               ))}
             </VictoryStack>
             <VictoryAxis
-              tickFormat={() => ''}
               style={{
                 axis: { stroke: 'none' },
                 tickLabels: { fontWeight: '100', padding: 5 },
