@@ -14,6 +14,7 @@ const Wrapper = styled.div`
 const H3 = styled.h3`
   font-size: 20px;
   text-align: center;
+  max-width: 500px;
 `;
 
 const VoteButtons = styled.div`
@@ -25,7 +26,7 @@ const VoteButtons = styled.div`
   width: 80vw;
   max-width: 400px;
   padding-top: ${({ theme }) => theme.space(2)}px;
-  padding-bottom: ${({ theme }) => theme.space(2)}px;
+  padding-bottom: ${({ theme }) => theme.space(3)}px;
 `;
 
 const StoreLink = styled.div`
@@ -34,6 +35,7 @@ const StoreLink = styled.div`
   max-width: 400px;
   align-items: center;
   flex-direction: column;
+  padding-top: ${({ theme }) => theme.space(2)}px;
   @media (min-width: 555px) {
     flex-direction: row;
     justify-content: space-between;
@@ -68,8 +70,7 @@ const AppStimmen = () => (
     <H3>
       Um mitzustimmen, lade Dir bitte das
       <Link href="https://www.democracy-deutschland.de/" external primary>
-        &nbsp;
-        <b>10X-Improvement</b> für unsere Demokratie &nbsp;
+        <b>&nbsp;10X-Improvement</b> für unsere Demokratie&nbsp;
       </Link>
       herunter
     </H3>
