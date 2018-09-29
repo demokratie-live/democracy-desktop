@@ -53,7 +53,7 @@ const Overview = ({ title, activityIndex, subjectGroups, voteDate, currentStatus
           {currentStatus}
         </div>
       </SubjectGroups>
-      <DateTime colored date={voteDate} />
+      {voteDate && <DateTime colored date={voteDate} />}
     </div>
   </Wrapper>
 );
@@ -62,7 +62,7 @@ Overview.propTypes = {
   title: PropTypes.string.isRequired,
   activityIndex: PropTypes.number.isRequired,
   subjectGroups: PropTypes.array.isRequired,
-  voteDate: PropTypes.string.isRequired,
+  voteDate: PropTypes.string,
   currentStatus: PropTypes.string.isRequired,
 };
 
