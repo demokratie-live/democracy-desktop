@@ -18,6 +18,7 @@ const TitleRow = styled.div`
   display: flex;
   > h2 {
     flex: 1;
+    word-break: break-word;
   }
 `;
 
