@@ -30,8 +30,8 @@ const rotate = ({ type }) => {
 };
 
 const Button = styled(ButtonComponent)`
-  min-width: 100px;
-  min-height: 100px;
+  min-width: 75px;
+  min-height: 75px;
   background-color: ${({ type }) => backgroundColor({ type })};
   transform: ${({ type }) => rotate({ type })};
   border: 0;
@@ -45,6 +45,11 @@ const Button = styled(ButtonComponent)`
   &:visited {
     background-color: ${({ type }) => backgroundColor({ type })};
   }
+
+  @media (min-width: 400px) {
+    min-width: 100px;
+    min-height: 100px;
+  }
 `;
 
 const Icon = styled(IconComponent)`
@@ -52,9 +57,17 @@ const Icon = styled(IconComponent)`
   height: 10vw;
   color: #fff;
   &:before {
-    font-size: 60px;
+    font-size: 40px;
     top: 0px;
     left: 0px;
+  }
+
+  @media (min-width: 400px) {
+    &:before {
+      font-size: 60px;
+      top: 0px;
+      left: 0px;
+    }
   }
 `;
 

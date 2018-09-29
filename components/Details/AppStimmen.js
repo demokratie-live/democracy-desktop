@@ -21,7 +21,6 @@ const VoteButtons = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  min-width: 320px;
   width: 80vw;
   max-width: 400px;
   padding-top: ${({ theme }) => theme.space(2)}px;
@@ -35,7 +34,7 @@ const StoreLink = styled.div`
   align-items: center;
   flex-direction: column;
   padding-top: ${({ theme }) => theme.space(2)}px;
-  @media (min-width: 555px) {
+  @media (min-width: 500px) {
     flex-direction: row;
     justify-content: space-between;
   }
