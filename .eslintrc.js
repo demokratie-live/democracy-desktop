@@ -21,6 +21,7 @@ module.exports = {
     global: 1,
     document: 1,
     require: 1,
-    exports: 1
+    exports: 1,
+    __dirname: 1
   },
 };

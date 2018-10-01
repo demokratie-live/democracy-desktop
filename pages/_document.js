@@ -13,7 +13,10 @@ export default class MyDocument extends Document {
     const { styleTags } = this.props;
     return (
       <html>
-        <Head>{styleTags}</Head>
+        <Head>
+          <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+          {styleTags}
+        </Head>
         <body>
           <Main />
           <NextScript />
