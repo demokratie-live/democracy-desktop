@@ -3,6 +3,7 @@ const express = require('express');
 const next = require('next');
 const { join } = require('path');
 const { parse } = require('url');
+const fs = require('fs');
 
 const Router = require('./routes').Router;
 
@@ -21,34 +22,14 @@ app
         app.render(req, res, `/${page}`, Object.assign({}, defaultParams, req.query, req.params)),
       ),
     );
-    // path.join(__dirname, '../static', 'favicon.ico')
 
     server.get('*', (req, res) => {
       const parsedUrl = parse(req.url, true);
-      const rootStaticFiles = [
-        '/apple-touch-icon-57x57.png',
-        '/apple-touch-icon-60x60.png',
-        '/apple-touch-icon-72x72.png',
-        '/apple-touch-icon-76x76.png',
-        '/apple-touch-icon-114x114.png',
-        '/apple-touch-icon-120x120.png',
-        '/apple-touch-icon-144x144.png',
-        '/apple-touch-icon-152x152.png',
-        '/favicon-16x16.png',
-        '/favicon-32x32.png',
-        '/favicon-96x96.png',
-        '/favicon-128.png',
-        '/favicon-196x196.png',
-        '/favicon.ico',
-        '/mstile-70x70.png',
-        '/mstile-144x144.png',
-        '/mstile-150x150.png',
-        '/mstile-310x150.png',
-        '/mstile-310x310.png',
-      ];
+      const rootdir = join(__dirname, '../static/rootdir');
+      const rootStaticFiles = fs.readdirSync(rootdir).map(f => `/${f}`);
 
       if (rootStaticFiles.indexOf(parsedUrl.pathname) > -1) {
-        const path = join(__dirname, '../static', parsedUrl.pathname);
+        const path = join(__dirname, '../static/rootdir', parsedUrl.pathname);
         return app.serveStatic(req, res, path);
       }
       return handle(req, res);
