@@ -12,6 +12,9 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+const rootdir = join(__dirname, '../static/rootdir');
+const rootStaticFiles = fs.readdirSync(rootdir).map(f => `/${f}`);
+
 app
   .prepare()
   .then(() => {
@@ -25,8 +28,6 @@ app
 
     server.get('*', (req, res) => {
       const parsedUrl = parse(req.url, true);
-      const rootdir = join(__dirname, '../static/rootdir');
-      const rootStaticFiles = fs.readdirSync(rootdir).map(f => `/${f}`);
 
       if (rootStaticFiles.indexOf(parsedUrl.pathname) > -1) {
         const path = join(__dirname, '../static/rootdir', parsedUrl.pathname);
