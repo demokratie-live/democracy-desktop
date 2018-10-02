@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { withRouter } from 'next/router';
-import { Collapse, Anchor as AnchorComponent } from 'antd';
+import { Collapse as CollapseComponent, Anchor as AnchorComponent } from 'antd';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import getConfig from 'next/config';
@@ -28,7 +28,7 @@ const { publicRuntimeConfig } = getConfig();
 const { DOMAIN_DESKTOP } = publicRuntimeConfig;
 
 const AnchorLink = AnchorComponent.Link;
-const PanelComponent = Collapse.Panel;
+const PanelComponent = CollapseComponent.Panel;
 
 const Wrapper = styled.div`
   display: flex;
@@ -119,17 +119,17 @@ const ASide = styled.aside`
   padding-top: ${({ theme }) => theme.space(3)}px;
 `;
 
+const Collapse = styled(CollapseComponent)`
+  border-top: none;
+  border-left: none;
+  border-right: none;
+`;
+
 const Panel = styled(PanelComponent)`
   padding: 0;
 
-  .ant-collapse-item {
-    border: 0 !important;
-  }
-
   .ant-collapse-header {
     font-size: 19px;
-    border-radius: 0;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.divider};
     background-color: ${({ theme }) => theme.backgrounds.primary};
     padding-left: ${({ theme }) => theme.space(1)}px !important;
     padding-right: ${({ theme }) => theme.space(4)}px !important;
@@ -274,10 +274,7 @@ class Details extends Component {
                     />
                     <Tags tags={procedure.tags} />
 
-                    <Collapse
-                      defaultActiveKey={['details', 'documents', 'status', 'results']}
-                      bordered={false}
-                    >
+                    <Collapse defaultActiveKey={['details', 'documents', 'status', 'results']}>
                       <Panel header="Details" key="details" id="details">
                         <DetailsPanel
                           subjectGroups={procedure.subjectGroups}
@@ -309,7 +306,7 @@ class Details extends Component {
                         </Panel>
                       )}
                     </Collapse>
-                    <AppStimmenCollapse defaultActiveKey={['vote']} bordered={false}>
+                    <AppStimmenCollapse defaultActiveKey={['vote']}>
                       <Panel header="AppStimmen" key="vote" id="vote">
                         <AppStimmen />
                       </Panel>
