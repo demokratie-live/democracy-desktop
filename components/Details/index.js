@@ -127,7 +127,7 @@ const Panel = styled(PanelComponent)`
   }
 
   .ant-collapse-header {
-    font-weight: bold;
+    font-size: 19px;
     border-radius: 0;
     border-bottom: 1px solid ${({ theme }) => theme.colors.divider};
     background-color: ${({ theme }) => theme.backgrounds.primary};
