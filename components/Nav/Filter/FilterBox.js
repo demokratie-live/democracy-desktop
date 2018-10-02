@@ -44,7 +44,9 @@ const FilterGroupTitle = styled.div`
     width: 110px;
   }
   > h3 {
-    border-bottom: ${({ active }) => (active ? '1px solid' : '0')};
+    border-bottom: ${({ active, theme }) =>
+      active ? '1px solid' : `1px solid ${theme.colors.inactive}`};
+    color: ${({ active, theme }) => (active ? 'inherits' : theme.colors.inactive)};
   }
 `;
 
