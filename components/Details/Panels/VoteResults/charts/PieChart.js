@@ -22,8 +22,8 @@ const CheckIcon = styled.svg`
 const dataSortIdentifier = ['yes', 'abstination', 'no', 'notVoted'];
 
 const VoteResultsPanel = ({ data, colorScale }) => {
-  const sortedData = data.sort((a, b) => {
-    return dataSortIdentifier.indexOf(a.label) > dataSortIdentifier.indexOf(b.label);
+  const sortedData = data.map(entry => {
+    return { ...entry, sortKey: dataSortIdentifier.indexOf(entry.label) + 1 };
   });
 
   return (
@@ -63,8 +63,10 @@ const VoteResultsPanel = ({ data, colorScale }) => {
           data={sortedData.map((entry, index) => ({
             x: index,
             y: entry.value,
+            sortKey: entry.sortKey,
             label: entry.percentage >= 5 ? `${entry.percentage}%` : ' ',
           }))}
+          sortKey="sortKey"
           padding={0}
           width={400}
           height={400}
