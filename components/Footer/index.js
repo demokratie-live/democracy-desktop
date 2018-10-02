@@ -10,7 +10,9 @@ const FooterElem = styled.footer`
   padding-top: ${({ stickyFooter, theme }) => (stickyFooter ? '0' : `${theme.space(1)}px`)};
   padding-bottom: ${({ stickyFooter, theme }) => (stickyFooter ? '0' : `${theme.space(1)}px`)};
   background-color: ${({ stickyFooter, theme }) =>
-    stickyFooter ? 'rgba(255,255,255,0.7)' : theme.backgrounds.primary};
+    stickyFooter ? 'rgba(255,255,255,0.9)' : theme.backgrounds.primary};
+
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
   color: ${({ theme }) => theme.colors.link};
   font-size: ${({ theme, stickyFooter }) => (stickyFooter ? '15px' : theme.fontSizes.small)};
   position: ${({ stickyFooter }) => (stickyFooter ? 'fixed' : 'static')};

@@ -1,6 +1,23 @@
 module.exports = {
   presets: ['next/babel'],
   plugins: [
+    ["inline-react-svg",
+    {
+      "svgo": {
+        "plugins": [
+          {
+            "cleanupIDs": {
+              "prefix": {
+                toString() {
+                  this.counter = this.counter || 0;
+                  return `id-${this.counter++}`;
+                }
+              }
+            }
+          }
+        ]
+      }
+    }],
     ['styled-components', { ssr: true, displayName: true, preprocess: false }],
     ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
     [
