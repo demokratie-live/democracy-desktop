@@ -94,7 +94,7 @@ class Filter extends Component {
                 <RenderToBody id="FilterBox">
                   <Modal visible={visible} handleVisibleChange={this.handleVisibleChange}>
                     <Desktop>
-                      <FilterBox />
+                      <FilterBox toggleVisibility={this.toggleVisibility} />
                     </Desktop>
                   </Modal>
                 </RenderToBody>

@@ -1,7 +1,9 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 // Components
+import { Icon } from 'antd';
 import SubjectButton from './SubjectButton';
 import DocumentTypeButton from './DocumentTypeButton';
 import { H3 } from 'Components/shared/Headlines';
@@ -14,12 +16,16 @@ import { subjectGroups } from 'Helpers/subjectGroupToIcon';
 import { Consumer as FilterConsumer } from 'Context/filter';
 
 const Box = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: #fdfdfd;
   border-radius: 5px;
   @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
-    padding: 20px;
+    padding-top: ${({ theme }) => theme.space(1)}px;
+    padding-bottom: ${({ theme }) => theme.space(1)}px;
+    padding-left: ${({ theme }) => theme.space(3)}px;
+    padding-right: ${({ theme }) => theme.space(1)}px;
     margin: 60px auto;
   }
 `;
@@ -83,12 +89,23 @@ const MobileTitles = styled.div`
   }
 `;
 
+const CloseIconWrapper = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 10px;
+`;
+
+const SaveButton = styled(Button)`
+  margin-top: ${({ theme }) => theme.space(1)}px;
+`;
+
 class FilterBox extends Component {
   state = {
     selected: 'subjectGroups',
   };
 
   render() {
+    const { toggleVisibility } = this.props;
     return (
       <FilterConsumer>
         {({ state, toggleSubjectGroup, toggleAllSubjectGroups, toggleType, toggleAllTypes }) => (
@@ -149,6 +166,14 @@ class FilterBox extends Component {
                     />
                   </SubjectGroups>
                 </FilterGroup>
+                <CloseIconWrapper>
+                  <Icon
+                    onClick={toggleVisibility}
+                    style={{ cursor: 'pointer', fontSize: '24px', color: 'rgb(173,173,176)' }}
+                    type="close-circle"
+                    theme="outlined"
+                  />
+                </CloseIconWrapper>
               </Box>
             </Desktop>
             <Mobile>
@@ -210,6 +235,9 @@ class FilterBox extends Component {
                   title="Anträge"
                 />
               </SubjectGroups>
+              <SaveButton type="primary" block onClick={toggleVisibility}>
+                Speichern
+              </SaveButton>
             </Mobile>
           </>
         )}
@@ -217,5 +245,9 @@ class FilterBox extends Component {
     );
   }
 }
+
+FilterBox.propTypes = {
+  toggleVisibility: PropTypes.func,
+};
 
 export default FilterBox;
