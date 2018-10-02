@@ -1,8 +1,8 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 // Components
-import Icon from 'Components/shared/Icon';
+import MobileIconSvg from '../../assets/fontSvgs/mobile.svg';
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,12 +32,20 @@ const ExternalLink = styled.a`
   color: rgba(0, 0, 0, 0.65);
 `;
 
+const MobileIcon = styled(MobileIconSvg)`
+  height: 25px;
+  width: auto;
+  & use {
+    fill: rgba(0, 0, 0, 0.65);
+  }
+`;
+
 class Download extends Component {
   render() {
     return (
       <Wrapper>
         <ExternalLink target="_blank" href="https://www.democracy-deutschland.de">
-          <Icon type="mobile" top={0} /> <Text>App Downloaden</Text>
+          <MobileIcon /> <Text>App Downloaden</Text>
         </ExternalLink>
       </Wrapper>
     );

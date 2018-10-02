@@ -1,10 +1,11 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 // Components
 import { Input as AntInput, Icon as AntIcon } from 'antd';
 import Icon from 'Components/shared/Icon';
 import { Mobile } from './Responsive';
+import LensSvg from '../../assets/fontSvgs/lens.svg';
 
 // Context
 import { Consumer as SearchConsumer } from 'Context/search';
@@ -30,6 +31,14 @@ const InputDesktop = styled(Input)`
   }
 `;
 
+const LensIcon = styled(LensSvg)`
+  height: auto;
+  width: 14px;
+  & use {
+    fill: ${({ theme }) => theme.colors.inactive};
+  }
+`;
+
 class Suche extends Component {
   render() {
     return (
@@ -47,7 +56,7 @@ class Suche extends Component {
                   suffix={suffix}
                   onChange={({ target: { value } }) => changeSearchTerm(value)}
                   value={term}
-                  prefix={<Icon type="lens" fontSize={13} top={0} />}
+                  prefix={<LensIcon />}
                 />
 
                 <Mobile

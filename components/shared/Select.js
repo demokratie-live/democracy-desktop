@@ -19,10 +19,10 @@ const Select = styled(SelectComponent)`
     float: left;
 
     &:before {
+      font-family: icons !important;
       padding-right: 10px;
       content: '${({ prefix }) => prefix}';
       display: block;
-      font-family: icons !important;
       float: left;
     }
   }
