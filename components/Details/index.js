@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { withRouter } from 'next/router';
-import { Collapse as CollapseComponent, Anchor as AnchorComponent } from 'antd';
+import { Collapse as CollapseComponent, Anchor as AnchorComponent, Spin as AntSpin } from 'antd';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import getConfig from 'next/config';
@@ -191,6 +191,13 @@ const Image = styled.img`
   max-width: 100%;
 `;
 
+const SpinWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+`;
+const Spin = styled(AntSpin)``;
+
 class Details extends Component {
   render() {
     const {
@@ -206,7 +213,12 @@ class Details extends Component {
         {/* Query is empty in first call... */}
         <Query query={PROCEDURE} variables={{ id: query.id }}>
           {({ loading, error, data: { procedure } }) => {
-            if (loading) return <p>Lädt...</p>;
+            if (loading)
+              return (
+                <SpinWrapper>
+                  <Spin size="large" tip="Lädt…" />
+                </SpinWrapper>
+              );
             if (error) return <p>Fehler :(</p>;
             return (
               <>
