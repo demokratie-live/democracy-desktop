@@ -27,6 +27,10 @@ const SubjectGroups = styled.div`
   height: 100%;
 `;
 
+const CurrentStatus = styled.span`
+  padding-left: ${({ theme }) => theme.space(1)}px;
+`;
+
 const Overview = ({ title, activityIndex, subjectGroups, voteDate, currentStatus }) => (
   <Wrapper>
     <TitleRow>
@@ -51,7 +55,7 @@ const Overview = ({ title, activityIndex, subjectGroups, voteDate, currentStatus
               style={{ marginRight: '6px', marginLeft: '0' }}
             />
           ))}
-          {currentStatus}
+          <CurrentStatus>{currentStatus}</CurrentStatus>
         </div>
       </SubjectGroups>
       {voteDate && <DateTime colored date={voteDate} />}
