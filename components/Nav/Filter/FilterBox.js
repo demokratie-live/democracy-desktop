@@ -46,7 +46,13 @@ const FilterGroupTitle = styled.div`
   > h3 {
     border-bottom: ${({ active, theme }) =>
       active ? '1px solid' : `1px solid ${theme.colors.inactive}`};
-    color: ${({ active, theme }) => (active ? 'inherits' : theme.colors.inactive)};
+    color: ${({ active, theme }) => (active ? theme.colors.primary : theme.colors.inactive)};
+  }
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    > h3 {
+      border-bottom: none;
+      color: ${({ theme }) => theme.colors.primary};
+    }
   }
 `;
 
