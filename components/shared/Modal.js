@@ -14,6 +14,11 @@ const Wrapper = styled.div`
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto;
+  background-color: transparent;
+
+  @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 `;
 
 class Modal extends Component {

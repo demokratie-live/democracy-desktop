@@ -20,8 +20,7 @@ const Box = styled.div`
   border-radius: 5px;
   @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
     padding: 20px;
-    margin: 100px auto;
-    width: 80%;
+    margin: 60px auto;
   }
 `;
 
@@ -64,6 +63,8 @@ const Desktop = styled.div`
   display: none;
   @media (min-width: ${({ theme }) => theme.responsive.mobileWidth}) {
     display: block;
+    width: 80%;
+    margin: 0 auto;
   }
 `;
 
