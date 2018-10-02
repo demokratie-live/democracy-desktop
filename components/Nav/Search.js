@@ -2,7 +2,7 @@ import { Component } from 'react';
 import styled from 'styled-components';
 
 // Components
-import { Input as AntInput } from 'antd';
+import { Input as AntInput, Icon as AntIcon } from 'antd';
 import Icon from 'Components/shared/Icon';
 import { Mobile } from './Responsive';
 
@@ -37,11 +37,14 @@ class Suche extends Component {
         <SearchConsumer>
           {consumerProps => {
             const { term, changeSearchTerm } = consumerProps;
-
+            const suffix = term ? (
+              <AntIcon type="close-circle" onClick={() => changeSearchTerm('')} />
+            ) : null;
             return (
               <>
                 <InputDesktop
                   placeholder="Suche"
+                  suffix={suffix}
                   onChange={({ target: { value } }) => changeSearchTerm(value)}
                   value={term}
                   prefix={<Icon type="lens" fontSize={13} top={0} />}
@@ -52,6 +55,7 @@ class Suche extends Component {
                     <Input
                       autoFocus
                       placeholder="Suche"
+                      suffix={suffix}
                       onChange={({ target: { value } }) => changeSearchTerm(value)}
                       value={term}
                       prefix={<Icon type="lens" fontSize={13} top={0} />}
