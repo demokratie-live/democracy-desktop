@@ -47,6 +47,10 @@ const Icon = styled(IconComponent)`
   }
 `;
 
+const Title = styled.span`
+  font-size: 14px;
+`;
+
 const SubjectButton = ({ group, onClick, active, icon, title }) => (
   <Container>
     <ButtonWrapper onClick={onClick}>
@@ -55,7 +59,7 @@ const SubjectButton = ({ group, onClick, active, icon, title }) => (
           <Icon type={icon || subjectGroupIconHelper(group)} />
         </Button>
       </ButtonIconWrapper>
-      {title || getDisplayTitle(group)}
+      <Title>{title || getDisplayTitle(group)}</Title>
     </ButtonWrapper>
   </Container>
 );
