@@ -75,6 +75,7 @@ const AsideRight = styled.div`
 const ContentSection = styled.section`
   flex: 1;
   background-color: ${({ theme }) => theme.backgrounds.secondary};
+  padding-bottom: ${({ theme }) => theme.space(1)}px;
 
   @media (min-width: 1024px) {
     max-width: 70vw;
