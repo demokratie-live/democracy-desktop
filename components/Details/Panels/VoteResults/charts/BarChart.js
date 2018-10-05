@@ -77,7 +77,7 @@ class BarChart extends Component {
   };
 
   labelStyle = () => ({
-    color: 'blue',
+    display: 'blue',
   });
 
   render() {
@@ -118,7 +118,7 @@ class BarChart extends Component {
             <VictoryAxis
               style={{
                 axis: { stroke: 'none' },
-                tickLabels: { fontWeight: '100', padding: 5 },
+                tickLabels: { display: 'none', bfontWeight: '100', padding: 5 },
               }}
             />
           </VictoryChart>
