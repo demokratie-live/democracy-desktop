@@ -10,8 +10,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
 `;
 
 const CheckIcon = styled.svg`
