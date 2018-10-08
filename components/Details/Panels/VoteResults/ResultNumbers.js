@@ -50,7 +50,6 @@ const ResultNumbers = props => {
     } = props;
     const totals = data.reduce(
       (prev, party) => {
-        console.log({ party, namedVote });
         const { yes, abstination, no, notVoted } = party.value;
         if (namedVote) {
           return {

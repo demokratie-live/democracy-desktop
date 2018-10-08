@@ -147,10 +147,10 @@ const VoteResultsPanel = ({ voteResults, procedure }) => {
             }}
           >
             {({ data }) => {
-              if (!data.communityVotes) return <div>loading</div>;
+              if (!data.communityVotes) return <div />;
               const communityVoteCount =
                 data.communityVotes.yes + data.communityVotes.abstination + data.communityVotes.no;
-              console.log(data.communityVotes);
+
               return (
                 <>
                   <ChartTitle>Community</ChartTitle>
@@ -189,6 +189,7 @@ const VoteResultsPanel = ({ voteResults, procedure }) => {
 
 VoteResultsPanel.propTypes = {
   voteResults: PropTypes.shape().isRequired,
+  procedure: PropTypes.string,
 };
 
 export default VoteResultsPanel;
