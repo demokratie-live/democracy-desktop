@@ -37,7 +37,7 @@ const descriptions = {
 };
 
 const InfoIcon = styled(InfoSvg)`
-  width: auto;
+  width: 30px;
   height: 22px;
   padding-right: ${({ theme }) => theme.space(1)}px;
   & use {
