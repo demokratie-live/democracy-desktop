@@ -61,7 +61,7 @@ class PartyChart extends Component {
             <VictoryStack horizontal>
               {dataSet.map(chartData => (
                 <VictoryBar
-                  padding={0}
+                  padding={5}
                   key={chartData[0].y}
                   barRatio={0.7}
                   data={chartData.reverse()}
