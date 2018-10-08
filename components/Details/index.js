@@ -314,7 +314,10 @@ class Details extends Component {
                       {(procedure.voteResults.yes || procedure.voteResults.no) && (
                         <Panel header="Bundestagsergebnisse" key="results" id="government-results">
                           <a id="results" />
-                          <VoteResultsPanel voteResults={procedure.voteResults} />
+                          <VoteResultsPanel
+                            voteResults={procedure.voteResults}
+                            procedure={procedure.procedureId}
+                          />
                         </Panel>
                       )}
                     </Collapse>

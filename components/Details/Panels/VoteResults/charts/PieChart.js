@@ -65,7 +65,7 @@ const VoteResultsPanel = ({ data, colorScale }) => {
             label: entry.percentage >= 5 ? `${entry.percentage}%` : ' ',
           }))}
           sortKey="sortKey"
-          padding={0}
+          padding={5}
           width={400}
           height={400}
           innerRadius={400 / 5.6}

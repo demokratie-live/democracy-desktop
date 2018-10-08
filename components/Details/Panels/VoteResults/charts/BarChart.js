@@ -90,7 +90,7 @@ class BarChart extends Component {
             <VictoryStack>
               {dataSet.map(chartData => (
                 <VictoryBar
-                  padding={0}
+                  padding={5}
                   key={chartData[0].y}
                   barRatio={1.5}
                   data={chartData}
