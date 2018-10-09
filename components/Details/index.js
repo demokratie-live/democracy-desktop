@@ -312,7 +312,7 @@ class Details extends Component {
                         </Panel>
                       )}
                       {(procedure.voteResults.yes || procedure.voteResults.no) && (
-                        <Panel header="Bundestagsergebnisse" key="results" id="government-results">
+                        <Panel header="Ergebnisse" key="results" id="results">
                           <a id="results" />
                           <VoteResultsPanel
                             voteResults={procedure.voteResults}
@@ -348,9 +348,7 @@ class Details extends Component {
                           )}
 
                           {(procedure.voteResults.yes || procedure.voteResults.no) && (
-                            <AnchorLink href="#results" title="Ergebnisse">
-                              <AnchorLink href="#government-results" title="Bundestagsergebnisse" />
-                            </AnchorLink>
+                            <AnchorLink href="#results" title="Ergebnisse" />
                           )}
                         </AnchorLink>
                         <AnchorLink href="#vote" title={<b>2. AppStimmen</b>} />
