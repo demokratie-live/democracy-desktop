@@ -4,6 +4,7 @@ const next = require('next');
 const { join } = require('path');
 const { parse } = require('url');
 const fs = require('fs');
+const browser = require('browser-detect');
 
 const Router = require('./routes').Router;
 
@@ -19,6 +20,26 @@ app
   .prepare()
   .then(() => {
     const server = express();
+
+    server.get('*', (req, res, next) => {
+      const brw = browser(req.headers['user-agent']);
+      let fallback = false;
+      if (brw.name === 'ie') {
+        switch (brw.versionNumber) {
+          case 10:
+            fallback = true;
+            break;
+          default:
+            break;
+        }
+      }
+
+      if (fallback) {
+        res.send('Hol dir bitte einen aktuelleren Browser oder lad dir die app :)');
+      } else {
+        next();
+      }
+    });
 
     Router.forEachPattern((page, pattern, defaultParams) =>
       server.get(pattern, (req, res) =>
