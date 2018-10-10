@@ -117,12 +117,6 @@ const VoteResultsPanel = ({ voteResults, procedure }) => {
             voteResults={voteResults}
           />
         </Carousel>
-        {voteResults.decisionText && (
-          <DecisionTextWrapper>
-            <DecisionTextHeadline>Beschlusstext:</DecisionTextHeadline>
-            <DecisionText>{voteResults.decisionText}</DecisionText>
-          </DecisionTextWrapper>
-        )}
         <ResultNumbers
           voteResults={voteResults}
           colorScale={['#99C93E', '#4CB0D8', '#D43194', '#B1B3B4']}
@@ -131,15 +125,15 @@ const VoteResultsPanel = ({ voteResults, procedure }) => {
             label: partyVotes.party,
           }))}
         />
+        {voteResults.decisionText && (
+          <DecisionTextWrapper>
+            <DecisionTextHeadline>Beschlusstext:</DecisionTextHeadline>
+            <DecisionText>{voteResults.decisionText}</DecisionText>
+          </DecisionTextWrapper>
+        )}
       </GovernmentCharts>
       <GovernmentCharts>
-        <Chart
-          style={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
+        <Chart>
           <Query
             query={COMMUNITY_VOTES}
             variables={{
@@ -172,7 +166,7 @@ const VoteResultsPanel = ({ voteResults, procedure }) => {
                     label={'Abstimmende'}
                   />
                   <ResultNumbers
-                    style={{ alignSelf: 'flex-end' }}
+                    style={{ paddingTop: '37px' }}
                     colorScale={['#99C93E', '#4CB0D8', '#D43194', '#B1B3B4']}
                     voteResults={{ namedVote: true }}
                     data={[{ value: data.communityVotes }]}

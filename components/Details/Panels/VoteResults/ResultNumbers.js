@@ -42,7 +42,7 @@ const VoteResultCircle = styled.div`
 `;
 
 const ResultNumbers = props => {
-  const { data, colorScale } = props;
+  const { data, colorScale, ...restProps } = props;
 
   const getTotals = data => {
     const {
@@ -118,7 +118,7 @@ const ResultNumbers = props => {
   };
 
   return (
-    <VoteResultNumbers>
+    <VoteResultNumbers {...restProps}>
       {getTotals(data).map(entry => (
         <VoteResult key={entry.label}>
           <VoteResultCircleNumber>
