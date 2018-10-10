@@ -25,14 +25,25 @@ app
       const brw = browser(req.headers['user-agent']);
       let fallback = false;
       if (brw.name === 'ie') {
-        switch (brw.versionNumber) {
-          case 10:
+        switch (true) {
+          case brw.versionNumber <= 10:
             fallback = true;
             break;
           default:
             break;
         }
       }
+      if (brw.name === 'firefox') {
+        switch (true) {
+          case brw.versionNumber <= 24:
+            fallback = true;
+            break;
+          default:
+            break;
+        }
+      }
+
+      console.log(brw);
 
       if (fallback) {
         res.sendFile(join(__dirname + '/../static/outdated-browser.html'));
