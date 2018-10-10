@@ -67,7 +67,12 @@ class MobileNavButton extends Component {
   };
 
   render() {
-    const { children, dropDownContent, onClick, className, dropDownContentStyle } = this.props;
+    const { children, onClick, className, dropDownContentStyle } = this.props;
+    const dropDownContent = React.Children.map(this.props.dropDownContent, child => {
+      return React.cloneElement(child, {
+        toggleVisibility: this.toggleDropdown,
+      });
+    });
     return (
       <Wrapper className={className}>
         <Button innerRef={this.setButtonRef} onClick={onClick || this.toggleDropdown}>

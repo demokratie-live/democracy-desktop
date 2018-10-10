@@ -11,7 +11,7 @@ import IconComponent from 'Components/shared/Icon';
 import ButtonComponent from 'Components/shared/Button';
 import RenderToBody from 'Components/shared/RenderToBody';
 import FilterBox from './FilterBox';
-import { Desktop, Mobile } from '../Responsive';
+import { Desktop as DesktopComponent, Mobile } from '../Responsive';
 
 const Wrapper = styled.div`
   display: flex;
@@ -45,6 +45,13 @@ const ArrowIcon = styled(Icon)`
   &:before {
     top: 0;
     font-size: 12px;
+  }
+`;
+
+const Desktop = styled(DesktopComponent)`
+  pointer-events: none;
+  & * {
+    pointer-events: auto;
   }
 `;
 
@@ -87,7 +94,7 @@ class Filter extends Component {
                 <RenderToBody id="FilterBox">
                   <Modal visible={visible} handleVisibleChange={this.handleVisibleChange}>
                     <Desktop>
-                      <FilterBox />
+                      <FilterBox toggleVisibility={this.toggleVisibility} />
                     </Desktop>
                   </Modal>
                 </RenderToBody>

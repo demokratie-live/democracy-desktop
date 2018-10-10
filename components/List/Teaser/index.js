@@ -81,7 +81,9 @@ const Teaser = ({
                   <ImageContainer>
                     <Image src={`${getImage(subjectGroups[0])}_648.jpg`} alt={subjectGroups[0]} />
                   </ImageContainer>
-                  {listType === 'vergangen' && <Charts voteResults={voteResults} />}
+                  {listType === 'vergangen' && (
+                    <Charts procedure={procedureId} voteResults={voteResults} />
+                  )}
                 </>
               }
             >

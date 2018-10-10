@@ -1,14 +1,17 @@
+import React from 'react';
 import { withRouter } from 'next/router';
 import styled from 'styled-components';
 import { Tag as AntTag, Tooltip } from 'antd';
 
 // Components
-import Icon from 'Components/shared/Icon';
+import InfoSvg from '../../assets/fontSvgs/info.svg';
 
 // Helper
 import { titleByUrlParam } from '../../lib/helpers/listTypeConvert';
 
 const Tag = styled(AntTag)`
+  display: inline-flex;
+  align-items: center;
   background-color: ${({ theme }) => theme.backgrounds.tertiary};
   font-size: ${({ theme }) => theme.fontSizes.default};
   height: 30px;
@@ -33,6 +36,15 @@ const descriptions = {
     'In dieser Liste findest Du die heißesten Gesetze und Anträge des Bundestages absteigend sortiert nach DEMOCRACY-Aktivitätsindex',
 };
 
+const InfoIcon = styled(InfoSvg)`
+  width: 30px;
+  height: 22px;
+  padding-right: ${({ theme }) => theme.space(1)}px;
+  & use {
+    fill: rgba(0, 0, 0, 0.65);
+  }
+`;
+
 const ListDescription = ({
   router: {
     query: { listType = 'in-abstimmung' },
@@ -42,7 +54,7 @@ const ListDescription = ({
   return (
     <Tooltip title={descriptions[listType]} placement="bottomLeft">
       <Tag>
-        <Icon type="info" /> <Text>{text}</Text>
+        <InfoIcon /> <Text>{text}</Text>
       </Tag>
     </Tooltip>
   );
