@@ -35,7 +35,7 @@ app
       }
 
       if (fallback) {
-        res.send('Hol dir bitte einen aktuelleren Browser oder lad dir die app :)');
+        res.sendFile(join(__dirname + '/../static/outdated-browser.html'));
       } else {
         next();
       }
