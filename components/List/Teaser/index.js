@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 // Components
 import { Card as CardComponent } from 'antd';
+import { ChartLegendTitle, ChartLegendDescription } from './Charts';
 
 import SubjectIcon from './../../shared/SubjectIcon';
 import Ribbon from './Ribbon';
@@ -34,17 +35,24 @@ const SubjectGroups = styled.div`
   height: 100%;
 `;
 
-const Card = styled(CardComponent)``;
+const Image = styled.img`
+  width: 100%;
+`;
+
+const Card = styled(CardComponent)`
+  &:hover ${Image} {
+    filter: ${({ listType }) => (listType === 'vergangen' ? 'blur(2px) brightness(0.7)' : 'none')};
+  }
+  &:hover ${ChartLegendTitle}, &:hover ${ChartLegendDescription} {
+    display: block;
+  }
+`;
 
 const ImageContainer = styled.div`
   display: block;
   height: 0;
   padding-bottom: 55%;
   overflow: hidden;
-`;
-
-const Image = styled.img`
-  width: 100%;
 `;
 
 const Teaser = ({
@@ -71,6 +79,7 @@ const Teaser = ({
             <Card
               onClick={() => changeSearchTerm('')}
               hoverable
+              listType={listType}
               cover={
                 <>
                   {voteDate && (

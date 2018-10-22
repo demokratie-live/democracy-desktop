@@ -11,9 +11,9 @@ import PieChart from './PieChart';
 
 const Wrapper = styled.div`
   width: 100%;
-  padding-top: 30%; /* 1:1 Aspect Ratio */
+  padding-top: 40%;
   position: relative;
-  margin-top: -20%;
+  margin-top: -32%;
 `;
 
 const Container = styled.div`
@@ -27,9 +27,30 @@ const Container = styled.div`
   right: 0;
 `;
 
-const Chart = styled.div`
+const ChartWrapper = styled.div`
   width: 30%;
   height: 100%;
+`;
+
+const ChartLegend = styled.div`
+  text-align: center;
+  color: #fff;
+  padding-bottom: 8px;
+  font-size: 12px;
+  height: 60px;
+`;
+
+const ChartLegendTitle = styled.div`
+  display: none;
+  font-size: 17px;
+`;
+
+const ChartLegendDescription = styled.div`
+  display: none;
+  font-size: 12px;
+`;
+
+const Chart = styled.div`
   background-color: #fff;
   border-radius: 50%;
   padding: 5px;
@@ -39,35 +60,42 @@ const Chart = styled.div`
 
 const TeaserCharts = ({ voteResults, procedure }) => {
   const votes = voteResults.yes + voteResults.no + voteResults.notVoted + voteResults.abstination;
+  const voteCount = voteResults.namedVote ? `${votes} Abgeordnete` : '6 Fraktionen';
   return (
     <Wrapper>
       <Container>
         {(voteResults.yes > 0 || voteResults.no > 0) && (
           <>
-            <Chart>
-              <PieChart
-                key="partyChart"
-                data={_.map(
-                  voteResults,
-                  (value, label) =>
-                    label !== '__typename' && typeof value === 'number'
-                      ? {
-                          value,
-                          label,
-                          fractions: voteResults.namedVote
-                            ? null
-                            : voteResults.partyVotes.filter(
-                                ({ main }) => label === main.toLowerCase(),
-                              ).length,
-                          percentage: Math.round((value / votes) * 100),
-                        }
-                      : false,
-                ).filter(e => e)}
-                colorScale={['#99C93E', '#4CB0D8', '#D43194', '#B1B3B4']}
-                label="Abgeordnete"
-                voteResults={voteResults}
-              />
-            </Chart>
+            <ChartWrapper>
+              <ChartLegend>
+                <ChartLegendTitle>Bundestag</ChartLegendTitle>
+                <ChartLegendDescription>{voteCount}</ChartLegendDescription>
+              </ChartLegend>
+              <Chart>
+                <PieChart
+                  key="partyChart"
+                  data={_.map(
+                    voteResults,
+                    (value, label) =>
+                      label !== '__typename' && typeof value === 'number'
+                        ? {
+                            value,
+                            label,
+                            fractions: voteResults.namedVote
+                              ? null
+                              : voteResults.partyVotes.filter(
+                                  ({ main }) => label === main.toLowerCase(),
+                                ).length,
+                            percentage: Math.round((value / votes) * 100),
+                          }
+                        : false,
+                  ).filter(e => e)}
+                  colorScale={['#99C93E', '#4CB0D8', '#D43194', '#B1B3B4']}
+                  label="Abgeordnete"
+                  voteResults={voteResults}
+                />
+              </Chart>
+            </ChartWrapper>
             <Query
               query={COMMUNITY_VOTES}
               variables={{
@@ -83,26 +111,34 @@ const TeaserCharts = ({ voteResults, procedure }) => {
                   data.communityVotes.abstination +
                   data.communityVotes.no;
                 return (
-                  <Chart>
-                    <PieChart
-                      key="partyChart"
-                      data={_.map(
-                        data.communityVotes,
-                        (value, label) =>
-                          label !== '__typename' && typeof value === 'number'
-                            ? {
-                                value,
-                                label,
-                                fractions: null,
-                                percentage: Math.round((value / communityVoteCount) * 100),
-                              }
-                            : false,
-                      ).filter(e => e)}
-                      colorScale={['#99C93E', '#4CB0D8', '#D43194', '#B1B3B4']}
-                      label="Abgeordnete"
-                      voteResults={voteResults}
-                    />
-                  </Chart>
+                  <ChartWrapper>
+                    <ChartLegend>
+                      <ChartLegendTitle>Community</ChartLegendTitle>
+                      <ChartLegendDescription>
+                        {communityVoteCount} Abstimmende
+                      </ChartLegendDescription>
+                    </ChartLegend>
+                    <Chart>
+                      <PieChart
+                        key="partyChart"
+                        data={_.map(
+                          data.communityVotes,
+                          (value, label) =>
+                            label !== '__typename' && typeof value === 'number'
+                              ? {
+                                  value,
+                                  label,
+                                  fractions: null,
+                                  percentage: Math.round((value / communityVoteCount) * 100),
+                                }
+                              : false,
+                        ).filter(e => e)}
+                        colorScale={['#15C063', '#2C82E4', '#EC3E31']}
+                        label="Abgeordnete"
+                        voteResults={voteResults}
+                      />
+                    </Chart>
+                  </ChartWrapper>
                 );
               }}
             </Query>
@@ -119,3 +155,4 @@ TeaserCharts.propTypes = {
 };
 
 export default TeaserCharts;
+export { ChartLegendTitle, ChartLegendDescription };
