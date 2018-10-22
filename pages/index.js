@@ -19,6 +19,8 @@ const Index = () => (
       <meta name="copyright" content="Democracy Deutschland e.V." />
       <meta name="DC.Rights" content="Democracy Deutschland e.V." />
       <meta name="DC.Creator" content="Democracy Deutschland e.V." />
+      <meta key="apple-itunes-app" name="apple-itunes-app" content="app-id=1341311162" />
+      <meta name="google-play-app" content="app-id=de.democracydeutschland.app" />
       <meta
         name="audience"
         content="Politiker, Bürger, Interessierte, Lobbyisten, Anfänger, Azubis, Erwachsene, Experten, Fortgeschrittene, Frauen, Jugendliche, Männer, Profis, Schüler, Studenten"
