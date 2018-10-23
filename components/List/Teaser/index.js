@@ -41,7 +41,8 @@ const Image = styled.img`
 
 const Card = styled(CardComponent)`
   &:hover ${Image} {
-    filter: ${({ listType }) => (listType === 'vergangen' ? 'blur(2px) brightness(0.7)' : 'none')};
+    filter: ${({ listType, hoverEffect }) =>
+      listType === 'vergangen' && hoverEffect ? 'blur(2px) brightness(0.7)' : 'none'};
   }
   &:hover ${ChartLegendTitle}, &:hover ${ChartLegendDescription} {
     display: block;
@@ -80,6 +81,7 @@ const Teaser = ({
               onClick={() => changeSearchTerm('')}
               hoverable
               listType={listType}
+              hoverEffect={voteResults.yes > 0 || voteResults.no > 0}
               cover={
                 <>
                   {voteDate && (
