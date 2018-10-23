@@ -43,11 +43,13 @@ const ChartLegend = styled.div`
 const ChartLegendTitle = styled.div`
   display: none;
   font-size: 17px;
+  text-shadow: 0 0 20px #000;
 `;
 
 const ChartLegendDescription = styled.div`
   display: none;
   font-size: 12px;
+  text-shadow: 0 0 10px #000;
 `;
 
 const Chart = styled.div`
