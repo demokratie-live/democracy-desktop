@@ -244,6 +244,19 @@ class Details extends Component {
                     })}: ${procedure.title}`}
                   />
 
+                  <meta
+                    key="apple-itunes-app"
+                    name="apple-itunes-app"
+                    content={`app-id=1341311162, app-argument=democracyapp://procedure/${
+                      procedure.procedureId
+                    }`}
+                  />
+                  <meta
+                    key="google-play-app"
+                    name="google-play-app"
+                    content="app-id=de.democracydeutschland.app"
+                  />
+
                   <meta key="description" name="description" content={procedure.abstract} />
                   <meta key="dc-description" name="DC.Description" content={procedure.abstract} />
                   <meta
