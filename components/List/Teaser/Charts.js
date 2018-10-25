@@ -8,6 +8,7 @@ import COMMUNITY_VOTES from 'GraphQl/queries/communityVotes';
 
 // Components
 import PieChart from './PieChart';
+import PieChartCanceled from './PieChartCanceled';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -60,13 +61,16 @@ const Chart = styled.div`
   margin-right: 5px;
 `;
 
-const TeaserCharts = ({ voteResults, procedure }) => {
+const TeaserCharts = ({ voteResults, procedure, currentStatus, isCanceled }) => {
   const votes = voteResults.yes + voteResults.no + voteResults.notVoted + voteResults.abstination;
-  const voteCount = voteResults.namedVote ? `${votes} Abgeordnete` : '6 Fraktionen';
+  let voteCount = voteResults.namedVote ? `${votes} Abgeordnete` : '6 Fraktionen';
+
+  if (isCanceled) voteCount = currentStatus;
+
   return (
     <Wrapper>
       <Container>
-        {(voteResults.yes > 0 || voteResults.no > 0) && (
+        {(voteResults.yes > 0 || voteResults.no > 0 || isCanceled) && (
           <>
             <ChartWrapper>
               <ChartLegend>
@@ -74,28 +78,36 @@ const TeaserCharts = ({ voteResults, procedure }) => {
                 <ChartLegendDescription>{voteCount}</ChartLegendDescription>
               </ChartLegend>
               <Chart>
-                <PieChart
-                  key="partyChart"
-                  data={_.map(
-                    voteResults,
-                    (value, label) =>
-                      label !== '__typename' && typeof value === 'number'
-                        ? {
-                            value,
-                            label,
-                            fractions: voteResults.namedVote
-                              ? null
-                              : voteResults.partyVotes.filter(
-                                  ({ main }) => label === main.toLowerCase(),
-                                ).length,
-                            percentage: Math.round((value / votes) * 100),
-                          }
-                        : false,
-                  ).filter(e => e)}
-                  colorScale={['#99C93E', '#4CB0D8', '#D43194', '#B1B3B4']}
-                  label="Abgeordnete"
-                  voteResults={voteResults}
-                />
+                {!isCanceled ? (
+                  <PieChart
+                    key="partyChart"
+                    data={_.map(
+                      voteResults,
+                      (value, label) =>
+                        label !== '__typename' && typeof value === 'number'
+                          ? {
+                              value,
+                              label,
+                              fractions: voteResults.namedVote
+                                ? null
+                                : voteResults.partyVotes.filter(
+                                    ({ main }) => label === main.toLowerCase(),
+                                  ).length,
+                              percentage: Math.round((value / votes) * 100),
+                            }
+                          : false,
+                    ).filter(e => e)}
+                    colorScale={['#99C93E', '#4CB0D8', '#D43194', '#B1B3B4']}
+                    label="Abgeordnete"
+                    voteResults={voteResults}
+                  />
+                ) : (
+                  <PieChartCanceled
+                    colorScale={['#B1B3B4']}
+                    label="Zurückgezogen"
+                    showNumbers={false}
+                  />
+                )}
               </Chart>
             </ChartWrapper>
             <Query
@@ -154,6 +166,8 @@ const TeaserCharts = ({ voteResults, procedure }) => {
 TeaserCharts.propTypes = {
   voteResults: PropTypes.shape().isRequired,
   procedure: PropTypes.string,
+  currentStatus: PropTypes.string,
+  isCanceled: PropTypes.bool,
 };
 
 export default TeaserCharts;
