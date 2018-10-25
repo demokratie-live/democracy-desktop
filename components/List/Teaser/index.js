@@ -64,12 +64,14 @@ const Teaser = ({
   voteDate,
   subjectGroups,
   voteResults,
+  currentStatus,
   listType,
 }) => (
   <SearchConsumer>
     {consumerProps => {
       if (!consumerProps) return null;
       const { changeSearchTerm } = consumerProps;
+      const isCanceled = ['Zurückgezogen', 'Für erledigt erklärt'].some(s => s === currentStatus);
       return (
         <Link
           as={`/${type.toLowerCase()}/${procedureId}/${speakingurl(title)}`}
@@ -81,7 +83,7 @@ const Teaser = ({
               onClick={() => changeSearchTerm('')}
               hoverable
               listType={listType}
-              hoverEffect={voteResults.yes > 0 || voteResults.no > 0}
+              hoverEffect={voteResults.yes > 0 || voteResults.no > 0 || isCanceled}
               cover={
                 <>
                   {voteDate && (
@@ -93,7 +95,12 @@ const Teaser = ({
                     <Image src={`${getImage(subjectGroups[0])}_648.jpg`} alt={subjectGroups[0]} />
                   </ImageContainer>
                   {listType === 'vergangen' && (
-                    <Charts procedure={procedureId} voteResults={voteResults} />
+                    <Charts
+                      procedure={procedureId}
+                      voteResults={voteResults}
+                      currentStatus={currentStatus}
+                      isCanceled={isCanceled}
+                    />
                   )}
                 </>
               }
@@ -162,6 +169,7 @@ Teaser.propTypes = {
   subjectGroups: PropTypes.array.isRequired,
   voteResults: PropTypes.shape().isRequired,
   listType: PropTypes.string,
+  currentStatus: PropTypes.string,
 };
 
 export default Teaser;

@@ -220,6 +220,10 @@ class Details extends Component {
                 </SpinWrapper>
               );
             if (error) return <p>Fehler :(</p>;
+
+            const isCanceled = ['Zurückgezogen', 'Für erledigt erklärt'].some(
+              s => s === procedure.currentStatus,
+            );
             return (
               <>
                 <Head>
@@ -311,12 +315,14 @@ class Details extends Component {
                           />
                         </Panel>
                       )}
-                      {(procedure.voteResults.yes || procedure.voteResults.no) && (
+                      {(procedure.voteResults.yes || procedure.voteResults.no || isCanceled) && (
                         <Panel header="Ergebnisse" key="results" id="results">
                           <a id="results" />
                           <VoteResultsPanel
                             voteResults={procedure.voteResults}
                             procedure={procedure.procedureId}
+                            currentStatus={procedure.currentStatus}
+                            isCanceled={isCanceled}
                           />
                         </Panel>
                       )}
