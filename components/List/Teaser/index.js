@@ -83,7 +83,7 @@ const Teaser = ({
               onClick={() => changeSearchTerm('')}
               hoverable
               listType={listType}
-              hoverEffect={voteResults.yes > 0 || voteResults.no > 0 || isCanceled}
+              hoverEffect={voteResults && (voteResults.yes > 0 || voteResults.no > 0 || isCanceled)}
               cover={
                 <>
                   {voteDate && (
