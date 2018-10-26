@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import m from 'moment';
 import _ from 'lodash';
 
-const formatDate = date => {
+const formatDate = (date, long) => {
   if (date) {
     if (date <= new Date()) {
       return m(date).format('DD.MM.YY');
@@ -12,8 +12,14 @@ const formatDate = date => {
     const days = Math.floor(m.duration(daysDate.diff(m())).asDays());
 
     if (days > 1) {
+      if (long) {
+        return `Abstimmung in ${days} Tagen`;
+      }
       return `${days} Tage`;
     } else if (days === 1) {
+      if (long) {
+        return `Abstimmung morgen`;
+      }
       return `morgen`;
     }
 
@@ -42,28 +48,37 @@ const Time = styled.time`
   }};
 `;
 
-const DateTime = ({ date, fallback, style, colored }) => (
-  <Time
-    dateTime={date}
-    style={style}
-    soon={formatDate(new Date(date)) === 'morgen' || formatDate(new Date(date)).indexOf(':') !== -1}
-    colored={colored}
-  >
-    {date ? formatDate(new Date(date)) : fallback}
-  </Time>
-);
+const DateTime = ({ date, long, fallback, style, colored }) => {
+  const localDate = new Date(date);
+  localDate.setTime(localDate.getTime() + new Date(date).getTimezoneOffset() * 1000 * 60);
+  return (
+    <Time
+      dateTime={localDate}
+      style={style}
+      soon={
+        formatDate(new Date(localDate)) === 'morgen' ||
+        formatDate(new Date(localDate)).indexOf(':') !== -1
+      }
+      colored={colored}
+    >
+      {date ? formatDate(new Date(localDate), long) : fallback}
+    </Time>
+  );
+};
 
 DateTime.propTypes = {
   date: PropTypes.string.isRequired,
   fallback: PropTypes.string,
   style: PropTypes.shape(),
   colored: PropTypes.bool,
+  long: PropTypes.bool,
 };
 
 DateTime.defaultProps = {
   fallback: '',
   style: {},
   colored: false,
+  long: false,
 };
 
 export default DateTime;
