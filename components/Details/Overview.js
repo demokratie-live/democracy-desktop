@@ -58,7 +58,7 @@ const Overview = ({ title, activityIndex, subjectGroups, voteDate, currentStatus
           <CurrentStatus>{currentStatus}</CurrentStatus>
         </div>
       </SubjectGroups>
-      {voteDate && <DateTime colored date={voteDate} />}
+      {voteDate && <DateTime long colored date={voteDate} />}
     </div>
   </Wrapper>
 );

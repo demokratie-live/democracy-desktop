@@ -220,6 +220,10 @@ class Details extends Component {
                 </SpinWrapper>
               );
             if (error) return <p>Fehler :(</p>;
+
+            const isCanceled = ['Zurückgezogen', 'Für erledigt erklärt'].some(
+              s => s === procedure.currentStatus,
+            );
             return (
               <>
                 <Head>
@@ -242,6 +246,19 @@ class Details extends Component {
                       listType: procedure.listType,
                       completed: procedure.completed,
                     })}: ${procedure.title}`}
+                  />
+
+                  <meta
+                    key="apple-itunes-app"
+                    name="apple-itunes-app"
+                    content={`app-id=1341311162, app-argument=democracyapp://procedure/${
+                      procedure.procedureId
+                    }`}
+                  />
+                  <meta
+                    key="google-play-app"
+                    name="google-play-app"
+                    content="app-id=de.democracydeutschland.app"
                   />
 
                   <meta key="description" name="description" content={procedure.abstract} />
@@ -311,12 +328,14 @@ class Details extends Component {
                           />
                         </Panel>
                       )}
-                      {(procedure.voteResults.yes || procedure.voteResults.no) && (
+                      {(procedure.voteResults.yes || procedure.voteResults.no || isCanceled) && (
                         <Panel header="Ergebnisse" key="results" id="results">
                           <a id="results" />
                           <VoteResultsPanel
                             voteResults={procedure.voteResults}
                             procedure={procedure.procedureId}
+                            currentStatus={procedure.currentStatus}
+                            isCanceled={isCanceled}
                           />
                         </Panel>
                       )}

@@ -23,6 +23,7 @@ export default gql`
       }
       voteDate
       subjectGroups
+      currentStatus
       voteResults {
         yes
         no

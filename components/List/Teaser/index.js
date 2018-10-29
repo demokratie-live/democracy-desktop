@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 // Components
 import { Card as CardComponent } from 'antd';
+import { ChartLegendTitle, ChartLegendDescription } from './Charts';
 
 import SubjectIcon from './../../shared/SubjectIcon';
 import Ribbon from './Ribbon';
@@ -34,17 +35,25 @@ const SubjectGroups = styled.div`
   height: 100%;
 `;
 
-const Card = styled(CardComponent)``;
+const Image = styled.img`
+  width: 100%;
+`;
+
+const Card = styled(CardComponent)`
+  &:hover ${Image} {
+    filter: ${({ listType, hoverEffect }) =>
+      listType === 'vergangen' && hoverEffect ? 'blur(2px) brightness(0.7)' : 'none'};
+  }
+  &:hover ${ChartLegendTitle}, &:hover ${ChartLegendDescription} {
+    display: block;
+  }
+`;
 
 const ImageContainer = styled.div`
   display: block;
   height: 0;
   padding-bottom: 55%;
   overflow: hidden;
-`;
-
-const Image = styled.img`
-  width: 100%;
 `;
 
 const Teaser = ({
@@ -55,12 +64,14 @@ const Teaser = ({
   voteDate,
   subjectGroups,
   voteResults,
+  currentStatus,
   listType,
 }) => (
   <SearchConsumer>
     {consumerProps => {
       if (!consumerProps) return null;
       const { changeSearchTerm } = consumerProps;
+      const isCanceled = ['Zurückgezogen', 'Für erledigt erklärt'].some(s => s === currentStatus);
       return (
         <Link
           as={`/${type.toLowerCase()}/${procedureId}/${speakingurl(title)}`}
@@ -71,6 +82,8 @@ const Teaser = ({
             <Card
               onClick={() => changeSearchTerm('')}
               hoverable
+              listType={listType}
+              hoverEffect={voteResults && (voteResults.yes > 0 || voteResults.no > 0 || isCanceled)}
               cover={
                 <>
                   {voteDate && (
@@ -82,7 +95,12 @@ const Teaser = ({
                     <Image src={`${getImage(subjectGroups[0])}_648.jpg`} alt={subjectGroups[0]} />
                   </ImageContainer>
                   {listType === 'vergangen' && (
-                    <Charts procedure={procedureId} voteResults={voteResults} />
+                    <Charts
+                      procedure={procedureId}
+                      voteResults={voteResults}
+                      currentStatus={currentStatus}
+                      isCanceled={isCanceled}
+                    />
                   )}
                 </>
               }
@@ -151,6 +169,7 @@ Teaser.propTypes = {
   subjectGroups: PropTypes.array.isRequired,
   voteResults: PropTypes.shape().isRequired,
   listType: PropTypes.string,
+  currentStatus: PropTypes.string,
 };
 
 export default Teaser;
