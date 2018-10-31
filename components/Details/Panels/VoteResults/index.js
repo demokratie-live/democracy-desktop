@@ -61,6 +61,14 @@ const ChartDescription = styled.div`
   padding-bottom: 10px;
 `;
 
+const RepresentativeText = styled.div`
+  color: rgb(142, 142, 147);
+  text-align: center;
+  font-size: 10px;
+  padding-top: 10px;
+  font-style: italic;
+`;
+
 const Carousel = styled(AntCarousel)``;
 
 const VoteResultsPanel = ({ voteResults, procedure, currentStatus, isCanceled }) => {
@@ -130,6 +138,9 @@ const VoteResultsPanel = ({ voteResults, procedure, currentStatus, isCanceled })
                 label: partyVotes.party,
               }))}
             />
+            <RepresentativeText>
+              {voteResults.namedVote ? 'Namentliche Abstimmung' : 'Nicht-Namentliche Abstimmung'}
+            </RepresentativeText>
             {voteResults.decisionText && (
               <DecisionTextWrapper>
                 <DecisionTextHeadline>Beschlusstext:</DecisionTextHeadline>
@@ -180,6 +191,9 @@ const VoteResultsPanel = ({ voteResults, procedure, currentStatus, isCanceled })
                     voteResults={{ namedVote: true }}
                     data={[{ value: data.communityVotes }]}
                   />
+                  <RepresentativeText>
+                    Dieses Ergebnis wurde nicht auf seine Repräsentativität überprüft.
+                  </RepresentativeText>
                 </>
               );
             }}
