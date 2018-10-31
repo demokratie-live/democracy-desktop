@@ -9,19 +9,12 @@
 - [X] None
 
 ### Checklist
+<!-- Anything important to be thought of when deploying?
 - [ ] Env-Variables adjustment needed
 - [ ] Breaking/critical change
+-->
 - [X] None
 
-### Repositories Affected
-<!-- Did you update any Submodules? -->
-- [ ] Client
-- [ ] Server
-- [ ] Bundestag.io
-- [ ] Search
-- [ ] Website
-- [ ] Docu
-- [X] None
 
 ### How2Test
 <!-- Give a detailed description how to test your PR and confirm it is working as expected. -->
