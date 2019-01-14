@@ -29,6 +29,10 @@ const Table = styled.table``;
 
 const TR = styled.tr``;
 
+const H4 = styled.h4`
+  color: ${({ theme }) => theme.colors.highlight};
+`;
+
 const TH = styled.th`
   font-weight: normal;
   text-align: right;
@@ -85,7 +89,7 @@ const DetailsPanel = ({
       </Table>
     </DefinitionLists>
 
-    <h4>Inhalt</h4>
+    <H4>Inhalt</H4>
     {abstract}
   </>
 );
