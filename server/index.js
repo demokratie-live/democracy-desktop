@@ -43,7 +43,7 @@ app
         }
       }
 
-      console.log(brw);
+      // console.log(brw);
 
       if (fallback) {
         res.sendFile(join(__dirname + '/../static/outdated-browser.html'));
