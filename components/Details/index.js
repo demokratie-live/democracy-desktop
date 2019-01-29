@@ -228,14 +228,14 @@ class Details extends Component {
               <>
                 <Head>
                   <title>{`${titleByProcedureListType({
-                    listType: procedure.listType,
+                    listType: procedure.list,
                     completed: procedure.completed,
                   })}: ${procedure.title}`}</title>
                   <meta
                     key="og-title"
                     property="og:title"
                     content={`${titleByProcedureListType({
-                      listType: procedure.listType,
+                      listType: procedure.list,
                       completed: procedure.completed,
                     })}: ${procedure.title}`}
                   />
@@ -243,7 +243,7 @@ class Details extends Component {
                     key="page-topic"
                     name="page-topic"
                     content={`${titleByProcedureListType({
-                      listType: procedure.listType,
+                      listType: procedure.list,
                       completed: procedure.completed,
                     })}: ${procedure.title}`}
                   />
