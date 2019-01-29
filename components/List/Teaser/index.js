@@ -39,7 +39,9 @@ const Image = styled.img`
   width: 100%;
 `;
 
-const Card = styled(CardComponent)`
+// Do not pass listType and hoverEffect to DOM
+// eslint-disable-next-line no-unused-vars
+const Card = styled(({ listType, hoverEffect, ...props }) => <CardComponent {...props} />)`
   &:hover ${Image} {
     filter: ${({ listType, hoverEffect }) =>
       listType === 'vergangen' && hoverEffect ? 'blur(2px) brightness(0.7)' : 'none'};
