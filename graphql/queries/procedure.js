@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 export default gql`
   query procedure($id: ID!) {
     procedure(id: $id) {
-      listType
+      list
       completed
       title
       procedureId
