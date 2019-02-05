@@ -4,7 +4,7 @@ export default gql`
   query procedures(
     $offset: Int
     $pageSize: Int
-    $listTypes: [ProcedureType!]
+    $listTypes: [ListType!]
     $sort: String
     $filter: ProcedureFilter
   ) {
