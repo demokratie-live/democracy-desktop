@@ -66,8 +66,8 @@ const Header = ({ page }) => (
     <ListRow>
       <ListLink listType="in-abstimmung">in Abstimmung</ListLink>
       <ListLink listType="vergangen">Vergangen</ListLink>
+      <ListLink listType="whats-hot">Populär</ListLink>
       <ListLink listType="in-vorbereitung">in Vorbereitung</ListLink>
-      <ListLink listType="whats-hot">What's Hot</ListLink>
     </ListRow>
   </Nav>
 );
