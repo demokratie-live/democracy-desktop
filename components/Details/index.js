@@ -328,17 +328,18 @@ class Details extends Component {
                           />
                         </Panel>
                       )}
-                      {(procedure.voteResults.yes || procedure.voteResults.no || isCanceled) && (
-                        <Panel header="Ergebnisse" key="results" id="results">
-                          <a id="results" />
-                          <VoteResultsPanel
-                            voteResults={procedure.voteResults}
-                            procedure={procedure.procedureId}
-                            currentStatus={procedure.currentStatus}
-                            isCanceled={isCanceled}
-                          />
-                        </Panel>
-                      )}
+                      {!!procedure.voteResults &&
+                        (procedure.voteResults.yes || procedure.voteResults.no || isCanceled) && (
+                          <Panel header="Ergebnisse" key="results" id="results">
+                            <a id="results" />
+                            <VoteResultsPanel
+                              voteResults={procedure.voteResults}
+                              procedure={procedure.procedureId}
+                              currentStatus={procedure.currentStatus}
+                              isCanceled={isCanceled}
+                            />
+                          </Panel>
+                        )}
                     </Collapse>
                     <AppStimmenCollapse defaultActiveKey={['vote']}>
                       <Panel header="AppStimmen" key="vote" id="vote">
@@ -366,9 +367,10 @@ class Details extends Component {
                             <AnchorLink href="#status" title="Gesetzesstand" />
                           )}
 
-                          {(procedure.voteResults.yes || procedure.voteResults.no) && (
-                            <AnchorLink href="#results" title="Ergebnisse" />
-                          )}
+                          {!!procedure.voteResults &&
+                            (procedure.voteResults.yes || procedure.voteResults.no) && (
+                              <AnchorLink href="#results" title="Ergebnisse" />
+                            )}
                         </AnchorLink>
                         <AnchorLink href="#vote" title={<b>2. AppStimmen</b>} />
                       </Anchor>
