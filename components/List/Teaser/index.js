@@ -85,7 +85,9 @@ const Teaser = ({
               onClick={() => changeSearchTerm('')}
               hoverable
               listType={listType}
-              hoverEffect={voteResults && (voteResults.yes > 0 || voteResults.no > 0 || isCanceled)}
+              hoverEffect={
+                !!voteResults && (voteResults.yes > 0 || voteResults.no > 0 || isCanceled)
+              }
               cover={
                 <>
                   {voteDate && (
@@ -96,14 +98,15 @@ const Teaser = ({
                   <ImageContainer>
                     <Image src={`${getImage(subjectGroups[0])}_648.jpg`} alt={subjectGroups[0]} />
                   </ImageContainer>
-                  {listType === 'vergangen' && (
-                    <Charts
-                      procedure={procedureId}
-                      voteResults={voteResults}
-                      currentStatus={currentStatus}
-                      isCanceled={isCanceled}
-                    />
-                  )}
+                  {listType === 'vergangen' &&
+                    !!voteResults && (
+                      <Charts
+                        procedure={procedureId}
+                        voteResults={voteResults}
+                        currentStatus={currentStatus}
+                        isCanceled={isCanceled}
+                      />
+                    )}
                 </>
               }
             >
