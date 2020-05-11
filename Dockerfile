@@ -9,4 +9,6 @@ COPY . .
 
 RUN yarn install
 
-ENTRYPOINT [ "./entrypoint.sh" ]
+RUN yarn build
+
+ENTRYPOINT [ "yarn", "start" ]
