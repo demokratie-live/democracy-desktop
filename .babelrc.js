@@ -19,7 +19,7 @@ module.exports = {
       }
     }],
     ['styled-components', { ssr: true, displayName: true, preprocess: false }],
-    ["@babel/plugin-proposal-decorators", { "decoratorsBeforeExport": true }],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
     [
       'import',
       {

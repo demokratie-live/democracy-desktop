@@ -68,6 +68,7 @@ app
       return handle(req, res);
     });
     server.listen(port);
+    console.log(`server start http://localhost:${port}`);
   })
   .catch(ex => {
     // eslint-disable-next-line
