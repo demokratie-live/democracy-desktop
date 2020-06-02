@@ -62,15 +62,15 @@ const Chart = styled.div`
 `;
 
 const TeaserCharts = ({ voteResults, procedure, currentStatus, isCanceled }) => {
-  const votes = voteResults.yes + voteResults.no + voteResults.notVoted + voteResults.abstination;
-  let voteCount = voteResults.namedVote ? `${votes} Abgeordnete` : '6 Fraktionen';
+  const votes = voteResults ? voteResults.yes + voteResults.no + voteResults.notVoted + voteResults.abstination : null;
+  let voteCount = votes ? voteResults.namedVote ? `${votes} Abgeordnete` : '6 Fraktionen': null;
 
   if (isCanceled) voteCount = currentStatus;
 
   return (
     <Wrapper>
       <Container>
-        {(voteResults.yes > 0 || voteResults.no > 0 || isCanceled) && (
+        {!!voteResults && (voteResults.yes > 0 || voteResults.no > 0 || isCanceled) && (
           <>
             <ChartWrapper>
               <ChartLegend>
@@ -110,54 +110,54 @@ const TeaserCharts = ({ voteResults, procedure, currentStatus, isCanceled }) => 
                 )}
               </Chart>
             </ChartWrapper>
-            <Query
-              query={COMMUNITY_VOTES}
-              variables={{
-                procedure,
-              }}
-            >
-              {({ data }) => {
-                if (!data.communityVotes) {
-                  return <div />;
-                }
-                const communityVoteCount =
-                  data.communityVotes.yes +
-                  data.communityVotes.abstination +
-                  data.communityVotes.no;
-                return (
-                  <ChartWrapper>
-                    <ChartLegend>
-                      <ChartLegendTitle>Community</ChartLegendTitle>
-                      <ChartLegendDescription>
-                        {communityVoteCount} Abstimmende
-                      </ChartLegendDescription>
-                    </ChartLegend>
-                    <Chart>
-                      <PieChart
-                        key="partyChart"
-                        data={_.map(
-                          data.communityVotes,
-                          (value, label) =>
-                            label !== '__typename' && typeof value === 'number'
-                              ? {
-                                  value,
-                                  label,
-                                  fractions: null,
-                                  percentage: Math.round((value / communityVoteCount) * 100),
-                                }
-                              : false,
-                        ).filter(e => e)}
-                        colorScale={['#15C063', '#2C82E4', '#EC3E31']}
-                        label="Abgeordnete"
-                        voteResults={voteResults}
-                      />
-                    </Chart>
-                  </ChartWrapper>
-                );
-              }}
-            </Query>
           </>
         )}
+        <Query
+          query={COMMUNITY_VOTES}
+          variables={{
+            procedure,
+          }}
+        >
+          {({ data }) => {
+            if (!data.communityVotes) {
+              return <div />;
+            }
+            const communityVoteCount =
+              data.communityVotes.yes +
+              data.communityVotes.abstination +
+              data.communityVotes.no;
+            return (
+              <ChartWrapper>
+                <ChartLegend>
+                  <ChartLegendTitle>Community</ChartLegendTitle>
+                  <ChartLegendDescription>
+                    {communityVoteCount} Abstimmende
+                  </ChartLegendDescription>
+                </ChartLegend>
+                <Chart>
+                  <PieChart
+                    key="partyChart"
+                    data={_.map(
+                      data.communityVotes,
+                      (value, label) =>
+                        label !== '__typename' && typeof value === 'number'
+                          ? {
+                            value,
+                            label,
+                            fractions: null,
+                            percentage: Math.round((value / communityVoteCount) * 100),
+                          }
+                          : false,
+                    ).filter(e => e)}
+                    colorScale={['#15C063', '#2C82E4', '#EC3E31']}
+                    label="Abgeordnete"
+                    voteResults={voteResults}
+                  />
+                </Chart>
+              </ChartWrapper>
+            );
+          }}
+        </Query>
       </Container>
     </Wrapper>
   );
