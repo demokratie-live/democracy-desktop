@@ -12,15 +12,15 @@ export default gql`
         }
         voteDate
         voteResults {
-        	yes
-        	no
-        	abstination
-        	notVoted
-        	namedVote
-        	partyVotes {
-          		main
-        	}
-      	}
+          yes
+          no
+          abstination
+          notVoted
+          namedVote
+          partyVotes {
+            main
+          }
+        }
         subjectGroups
       }
       autocomplete
