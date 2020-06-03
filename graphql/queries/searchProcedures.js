@@ -10,6 +10,11 @@ export default gql`
         activityIndex {
           activityIndex
         }
+        communityVotes {
+          yes
+          no
+          abstination
+        }
         voteDate
         voteResults {
           yes
