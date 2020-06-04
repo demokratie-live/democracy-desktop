@@ -39,12 +39,11 @@ const Image = styled.img`
   width: 100%;
 `;
 
-// Do not pass listType and hoverEffect to DOM
+// Do not pass listType to DOM
 // eslint-disable-next-line no-unused-vars
-const Card = styled(({ listType, hoverEffect, ...props }) => <CardComponent {...props} />)`
+const Card = styled(({ listType, ...props }) => <CardComponent {...props} />)`
   &:hover ${Image} {
-    filter: ${({ listType, hoverEffect }) =>
-      listType === 'vergangen' && hoverEffect ? 'blur(2px) brightness(0.7)' : 'none'};
+    filter: blur(2px) brightness(0.7);
   }
   &:hover ${ChartLegendTitle}, &:hover ${ChartLegendDescription} {
     display: block;
@@ -63,6 +62,7 @@ const Teaser = ({
   procedureId,
   type,
   activityIndex,
+  communityVotes,
   voteDate,
   subjectGroups,
   voteResults,
@@ -85,9 +85,6 @@ const Teaser = ({
               onClick={() => changeSearchTerm('')}
               hoverable
               listType={listType}
-              hoverEffect={
-                !!voteResults && (voteResults.yes > 0 || voteResults.no > 0 || isCanceled)
-              }
               cover={
                 <>
                   {voteDate && (
@@ -98,15 +95,12 @@ const Teaser = ({
                   <ImageContainer>
                     <Image src={`${getImage(subjectGroups[0])}_648.jpg`} alt={subjectGroups[0]} />
                   </ImageContainer>
-                  {listType === 'vergangen' &&
-                    !!voteResults && (
-                      <Charts
-                        procedure={procedureId}
-                        voteResults={voteResults}
-                        currentStatus={currentStatus}
-                        isCanceled={isCanceled}
-                      />
-                    )}
+                  <Charts
+                    communityVotes={communityVotes}
+                    voteResults={voteResults}
+                    currentStatus={currentStatus}
+                    isCanceled={isCanceled}
+                  />
                 </>
               }
             >
@@ -170,9 +164,10 @@ Teaser.propTypes = {
   procedureId: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   activityIndex: PropTypes.shape().isRequired,
+  communityVotes: PropTypes.shape(),
   voteDate: PropTypes.string,
   subjectGroups: PropTypes.array.isRequired,
-  voteResults: PropTypes.shape().isRequired,
+  voteResults: PropTypes.shape(),
   listType: PropTypes.string,
   currentStatus: PropTypes.string,
 };
