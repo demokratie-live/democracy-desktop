@@ -164,10 +164,10 @@ Teaser.propTypes = {
   procedureId: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   activityIndex: PropTypes.shape().isRequired,
-  communityVotes: PropTypes.shape().isRequired,
+  communityVotes: PropTypes.shape(),
   voteDate: PropTypes.string,
   subjectGroups: PropTypes.array.isRequired,
-  voteResults: PropTypes.shape().isRequired,
+  voteResults: PropTypes.shape(),
   listType: PropTypes.string,
   currentStatus: PropTypes.string,
 };
