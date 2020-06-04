@@ -1,10 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import _ from 'lodash';
-import { Query } from 'react-apollo';
-
-// GraphQL
-import COMMUNITY_VOTES from 'GraphQl/queries/communityVotes';
 
 // Components
 import PieChart from './PieChart';
@@ -61,21 +57,24 @@ const Chart = styled.div`
   margin-right: 5px;
 `;
 
-const TeaserCharts = ({ voteResults, procedure, currentStatus, isCanceled }) => {
-  const votes = voteResults.yes + voteResults.no + voteResults.notVoted + voteResults.abstination;
-  let voteCount = voteResults.namedVote ? `${votes} Abgeordnete` : '6 Fraktionen';
+const TeaserCharts = ({ communityVotes, voteResults, currentStatus, isCanceled }) => {
+  const hasCommunityVotes = !!communityVotes;
+  const hasPartyVotes = !!voteResults && (voteResults.yes > 0 || voteResults.no > 0 || isCanceled);
+  const communityVoteCount = communityVotes ? communityVotes.yes + communityVotes.no + communityVotes.abstination : null;
+  const partyVoteCount = hasPartyVotes ? voteResults.yes + voteResults.no + voteResults.abstination + voteResults.notVoted : null;
 
-  if (isCanceled) voteCount = currentStatus;
+  let partyVoteDesc = hasPartyVotes ? voteResults.namedVote ? `${partyVoteCount} Abgeordnete` : '6 Fraktionen' : null;
+  partyVoteDesc = isCanceled ? currentStatus : partyVoteDesc;
 
   return (
     <Wrapper>
       <Container>
-        {(voteResults.yes > 0 || voteResults.no > 0 || isCanceled) && (
-          <>
+        <>
+          {hasPartyVotes && (
             <ChartWrapper>
               <ChartLegend>
                 <ChartLegendTitle>Bundestag</ChartLegendTitle>
-                <ChartLegendDescription>{voteCount}</ChartLegendDescription>
+                <ChartLegendDescription>{partyVoteDesc}</ChartLegendDescription>
               </ChartLegend>
               <Chart>
                 {!isCanceled ? (
@@ -93,13 +92,12 @@ const TeaserCharts = ({ voteResults, procedure, currentStatus, isCanceled }) => 
                                 : voteResults.partyVotes.filter(
                                     ({ main }) => label === main.toLowerCase(),
                                   ).length,
-                              percentage: Math.round((value / votes) * 100),
+                              percentage: Math.round((value / partyVoteCount) * 100),
                             }
                           : false,
                     ).filter(e => e)}
                     colorScale={['#99C93E', '#4CB0D8', '#D43194', '#B1B3B4']}
                     label="Abgeordnete"
-                    voteResults={voteResults}
                   />
                 ) : (
                   <PieChartCanceled
@@ -110,62 +108,45 @@ const TeaserCharts = ({ voteResults, procedure, currentStatus, isCanceled }) => 
                 )}
               </Chart>
             </ChartWrapper>
-            <Query
-              query={COMMUNITY_VOTES}
-              variables={{
-                procedure,
-              }}
-            >
-              {({ data }) => {
-                if (!data.communityVotes) {
-                  return <div />;
-                }
-                const communityVoteCount =
-                  data.communityVotes.yes +
-                  data.communityVotes.abstination +
-                  data.communityVotes.no;
-                return (
-                  <ChartWrapper>
-                    <ChartLegend>
-                      <ChartLegendTitle>Community</ChartLegendTitle>
-                      <ChartLegendDescription>
-                        {communityVoteCount} Abstimmende
-                      </ChartLegendDescription>
-                    </ChartLegend>
-                    <Chart>
-                      <PieChart
-                        key="partyChart"
-                        data={_.map(
-                          data.communityVotes,
-                          (value, label) =>
-                            label !== '__typename' && typeof value === 'number'
-                              ? {
-                                  value,
-                                  label,
-                                  fractions: null,
-                                  percentage: Math.round((value / communityVoteCount) * 100),
-                                }
-                              : false,
-                        ).filter(e => e)}
-                        colorScale={['#15C063', '#2C82E4', '#EC3E31']}
-                        label="Abgeordnete"
-                        voteResults={voteResults}
-                      />
-                    </Chart>
-                  </ChartWrapper>
-                );
-              }}
-            </Query>
-          </>
-        )}
+          )}
+          {hasCommunityVotes && (
+            <ChartWrapper>
+              <ChartLegend>
+                <ChartLegendTitle>Community</ChartLegendTitle>
+                <ChartLegendDescription>
+                  {communityVoteCount} Abstimmende
+                </ChartLegendDescription>
+              </ChartLegend>
+              <Chart>
+                <PieChart
+                  key="partyChart"
+                  data={_.map(
+                    communityVotes,
+                    (value, label) =>
+                      label !== '__typename' && typeof value === 'number'
+                        ? {
+                          value,
+                          label,
+                          fractions: null,
+                          percentage: Math.round((value / communityVoteCount) * 100),
+                        }
+                        : false,
+                  ).filter(e => e)}
+                  colorScale={['#15C063', '#2C82E4', '#EC3E31']}
+                  label="Abgeordnete"
+                />
+              </Chart>
+            </ChartWrapper>
+          )}
+        </>
       </Container>
     </Wrapper>
   );
 };
 
 TeaserCharts.propTypes = {
+  communityVotes: PropTypes.shape().isRequired,
   voteResults: PropTypes.shape().isRequired,
-  procedure: PropTypes.string,
   currentStatus: PropTypes.string,
   isCanceled: PropTypes.bool,
 };

@@ -10,7 +10,22 @@ export default gql`
         activityIndex {
           activityIndex
         }
+        communityVotes {
+          yes
+          no
+          abstination
+        }
         voteDate
+        voteResults {
+          yes
+          no
+          abstination
+          notVoted
+          namedVote
+          partyVotes {
+            main
+          }
+        }
         subjectGroups
       }
       autocomplete
