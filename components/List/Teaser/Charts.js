@@ -145,8 +145,8 @@ const TeaserCharts = ({ communityVotes, voteResults, currentStatus, isCanceled }
 };
 
 TeaserCharts.propTypes = {
-  communityVotes: PropTypes.shape().isRequired,
-  voteResults: PropTypes.shape().isRequired,
+  communityVotes: PropTypes.shape(),
+  voteResults: PropTypes.shape(),
   currentStatus: PropTypes.string,
   isCanceled: PropTypes.bool,
 };
