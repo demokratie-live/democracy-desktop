@@ -224,6 +224,14 @@ class Details extends Component {
             const isCanceled = ['Zurückgezogen', 'Für erledigt erklärt'].some(
               s => s === procedure.currentStatus,
             );
+
+            const hasResults = isCanceled || !!procedure.communityVotes || (
+              !!procedure.voteResults && (
+                procedure.voteResults.yes ||
+                procedure.voteResults.no
+              )
+            );
+
             return (
               <>
                 <Head>
@@ -328,18 +336,17 @@ class Details extends Component {
                           />
                         </Panel>
                       )}
-                      {!!procedure.voteResults &&
-                        (procedure.voteResults.yes || procedure.voteResults.no || isCanceled) && (
-                          <Panel header="Ergebnisse" key="results" id="results">
-                            <a id="results" />
-                            <VoteResultsPanel
-                              voteResults={procedure.voteResults}
-                              procedure={procedure.procedureId}
-                              currentStatus={procedure.currentStatus}
-                              isCanceled={isCanceled}
-                            />
-                          </Panel>
-                        )}
+                      {hasResults && (
+                        <Panel header="Ergebnisse" key="results" id="results">
+                          <a id="results" />
+                          <VoteResultsPanel
+                            communityVotes={procedure.communityVotes}
+                            voteResults={procedure.voteResults}
+                            currentStatus={procedure.currentStatus}
+                            isCanceled={isCanceled}
+                          />
+                        </Panel>
+                      )}
                     </Collapse>
                     <AppStimmenCollapse defaultActiveKey={['vote']}>
                       <Panel header="AppStimmen" key="vote" id="vote">
