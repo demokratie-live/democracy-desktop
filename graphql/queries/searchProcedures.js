@@ -15,6 +15,7 @@ export default gql`
           no
           abstination
         }
+        currentStatus
         voteDate
         voteResults {
           yes
