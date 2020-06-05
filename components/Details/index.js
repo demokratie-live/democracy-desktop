@@ -373,11 +373,9 @@ class Details extends Component {
                           {procedure.currentStatusHistory.length > 1 && (
                             <AnchorLink href="#status" title="Gesetzesstand" />
                           )}
-
-                          {!!procedure.voteResults &&
-                            (procedure.voteResults.yes || procedure.voteResults.no) && (
+                          {hasResults && (
                               <AnchorLink href="#results" title="Ergebnisse" />
-                            )}
+                          )}
                         </AnchorLink>
                         <AnchorLink href="#vote" title={<b>2. AppStimmen</b>} />
                       </Anchor>
