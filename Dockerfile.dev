@@ -8,7 +8,6 @@ RUN apk --no-cache update \
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn --frozen-lockfile
-COPY . .
 
 FROM node:12-alpine
 
