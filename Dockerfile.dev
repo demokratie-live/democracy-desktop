@@ -18,4 +18,6 @@ COPY . .
 # copy from build image
 COPY --from=BUILD_IMAGE /app/node_modules ./node_modules
 
+ENV NODE_ENV=development
+
 ENTRYPOINT [ "yarn", "dev" ]
