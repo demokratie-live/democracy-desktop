@@ -59,86 +59,84 @@ const Chart = styled.div`
 
 const TeaserCharts = ({ communityVotes, voteResults, currentStatus, isCanceled }) => {
   const hasCommunityVotes = !!communityVotes;
-  const hasPartyVotes = !!voteResults && (voteResults.yes > 0 || voteResults.no > 0 || isCanceled);
-  const communityVoteCount = communityVotes ? communityVotes.yes + communityVotes.no + communityVotes.abstination : null;
-  const partyVoteCount = hasPartyVotes ? voteResults.yes + voteResults.no + voteResults.abstination + voteResults.notVoted : null;
+  const hasPartyVotes = isCanceled || (!!voteResults && (voteResults.yes > 0 || voteResults.no > 0));
+  const communityVoteCount = !!communityVotes ? communityVotes.yes + communityVotes.no + communityVotes.abstination : null;
+  const partyVoteCount = !!voteResults ? voteResults.yes + voteResults.no + voteResults.abstination + voteResults.notVoted : null;
 
-  let partyVoteDesc = hasPartyVotes ? voteResults.namedVote ? `${partyVoteCount} Abgeordnete` : '6 Fraktionen' : null;
+  let partyVoteDesc = !!voteResults ? voteResults.namedVote ? `${partyVoteCount} Abgeordnete` : '6 Fraktionen' : null;
   partyVoteDesc = isCanceled ? currentStatus : partyVoteDesc;
 
   return (
     <Wrapper>
       <Container>
-        <>
-          {hasPartyVotes && (
-            <ChartWrapper>
-              <ChartLegend>
-                <ChartLegendTitle>Bundestag</ChartLegendTitle>
-                <ChartLegendDescription>{partyVoteDesc}</ChartLegendDescription>
-              </ChartLegend>
-              <Chart>
-                {!isCanceled ? (
-                  <PieChart
-                    key="partyChart"
-                    data={_.map(
-                      voteResults,
-                      (value, label) =>
-                        label !== '__typename' && typeof value === 'number'
-                          ? {
-                              value,
-                              label,
-                              fractions: voteResults.namedVote
-                                ? null
-                                : voteResults.partyVotes.filter(
-                                    ({ main }) => label === main.toLowerCase(),
-                                  ).length,
-                              percentage: Math.round((value / partyVoteCount) * 100),
-                            }
-                          : false,
-                    ).filter(e => e)}
-                    colorScale={['#99C93E', '#4CB0D8', '#D43194', '#B1B3B4']}
-                    label="Abgeordnete"
-                  />
-                ) : (
-                  <PieChartCanceled
-                    colorScale={['#B1B3B4']}
-                    label="Zurückgezogen"
-                    showNumbers={false}
-                  />
-                )}
-              </Chart>
-            </ChartWrapper>
-          )}
-          {hasCommunityVotes && (
-            <ChartWrapper>
-              <ChartLegend>
-                <ChartLegendTitle>Community</ChartLegendTitle>
-                <ChartLegendDescription>
-                  {communityVoteCount} Abstimmende
-                </ChartLegendDescription>
-              </ChartLegend>
-              <Chart>
+        {hasPartyVotes && (
+          <ChartWrapper>
+            <ChartLegend>
+              <ChartLegendTitle>Bundestag</ChartLegendTitle>
+              <ChartLegendDescription>{partyVoteDesc}</ChartLegendDescription>
+            </ChartLegend>
+            <Chart>
+              {!isCanceled ? (
                 <PieChart
                   key="partyChart"
                   data={_.map(
-                    communityVotes,
+                    voteResults,
                     (value, label) =>
                       label !== '__typename' && typeof value === 'number'
                         ? {
+                            value,
+                            label,
+                            fractions: voteResults.namedVote
+                              ? null
+                              : voteResults.partyVotes.filter(
+                                  ({ main }) => label === main.toLowerCase(),
+                                ).length,
+                            percentage: Math.round((value / partyVoteCount) * 100),
+                          }
+                        : false,
+                  ).filter(e => e)}
+                  colorScale={['#99C93E', '#4CB0D8', '#D43194', '#B1B3B4']}
+                  label="Abgeordnete"
+                />
+              ) : (
+                <PieChartCanceled
+                  colorScale={['#B1B3B4']}
+                  label="Zurückgezogen"
+                  showNumbers={false}
+                />
+              )}
+            </Chart>
+          </ChartWrapper>
+        )}
+        {hasCommunityVotes && (
+          <ChartWrapper>
+            <ChartLegend>
+              <ChartLegendTitle>Community</ChartLegendTitle>
+              <ChartLegendDescription>
+                {communityVoteCount} Abstimmende
+              </ChartLegendDescription>
+            </ChartLegend>
+            <Chart>
+              <PieChart
+                key="partyChart"
+                data={_.map(
+                  communityVotes,
+                  (value, label) =>
+                    label !== '__typename' && typeof value === 'number'
+                      ? {
                           value,
                           label,
                           fractions: null,
                           percentage: Math.round((value / communityVoteCount) * 100),
                         }
-                        : false,
-                  ).filter(e => e)}
-                  colorScale={['#15C063', '#2C82E4', '#EC3E31']}
-                  label="Abgeordnete"
-                />
-              </Chart>
-            </ChartWrapper>
-          )}
-        </>
+                      : false,
+                ).filter(e => e)}
+                colorScale={['#15C063', '#2C82E4', '#EC3E31']}
+                label="Abgeordnete"
+              />
+            </Chart>
+          </ChartWrapper>
+        )}
       </Container>
     </Wrapper>
   );
