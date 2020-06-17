@@ -7,9 +7,7 @@ export default gql`
         title
         procedureId
         type
-        activityIndex {
-          activityIndex
-        }
+        votes
         communityVotes {
           yes
           no
