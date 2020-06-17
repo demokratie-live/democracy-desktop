@@ -304,7 +304,7 @@ class Details extends Component {
                     </ImageCol>
                     <Overview
                       title={procedure.title}
-                      activityIndex={procedure.activityIndex.activityIndex}
+                      votes={procedure.votes}
                       subjectGroups={procedure.subjectGroups}
                       voteDate={procedure.voteDate}
                       currentStatus={procedure.currentStatus}
