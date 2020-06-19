@@ -31,9 +31,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ github.token }}
           registry: docker.pkg.github.com
-          repository: demokratie-live/democracy-development
+          repository: demokratie-live/democracy-development/democracy-web-app
           tags: latest-${{ steps.extract_branch.outputs.branch }}, ${{ steps.package-version.outputs.version }}-${{ steps.extract_branch.outputs.branch }}
+      # - run: docker build -t docker.pkg.github.com/demokratie-live/democracy-development/democracy-app:${{ steps.package-version.outputs.version }}-${{ steps.extract_branch.outputs.branch }} .
 
-      - run: docker build -t docker.pkg.github.com/demokratie-live/democracy-development/democracy-app:${{ steps.package-version.outputs.version }}-${{ steps.extract_branch.outputs.branch }} .
-
-      - run: docker push docker.pkg.github.com/demokratie-live/democracy-development/democracy-app:${{ steps.package-version.outputs.version }}-${{ steps.extract_branch.outputs.branch }}
+      # - run: docker push docker.pkg.github.com/demokratie-live/democracy-development/democracy-app:${{ steps.package-version.outputs.version }}-${{ steps.extract_branch.outputs.branch }}
