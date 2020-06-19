@@ -26,6 +26,14 @@ jobs:
         uses: tyankatsu0105/read-package-version-actions@v1
         id: package-version
 
+      - uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+          registry: docker.pkg.github.com
+          repository: demokratie-live/democracy-development
+          tags: latest-${{ steps.extract_branch.outputs.branch }}, ${{ steps.package-version.outputs.version }}-${{ steps.extract_branch.outputs.branch }}
+
       - run: docker build -t docker.pkg.github.com/demokratie-live/democracy-development/democracy-app:${{ steps.package-version.outputs.version }}-${{ steps.extract_branch.outputs.branch }} .
 
       - run: docker push docker.pkg.github.com/demokratie-live/democracy-development/democracy-app:${{ steps.package-version.outputs.version }}-${{ steps.extract_branch.outputs.branch }}
