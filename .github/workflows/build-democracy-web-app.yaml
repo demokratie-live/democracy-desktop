@@ -1,0 +1,26 @@
+name: Deploy Democracy Web App
+
+on:
+  - push
+
+jobs:
+  build:
+    name: Build Docker
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: Read package.json
+        uses: tyankatsu0105/read-package-version-actions@v1
+        id: package-version
+
+      - run: docker build -t docker.pkg.github.com/demokratie-live/democracy-development/democracy-app:${{ steps.package-version.outputs.version }}-${{ steps.extract_branch.outputs.branch }} .
+
+      - run: docker push docker.pkg.github.com/demokratie-live/democracy-development/democracy-app:${{ steps.package-version.outputs.version }}-${{ steps.extract_branch.outputs.branch }}
