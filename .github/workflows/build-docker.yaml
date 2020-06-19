@@ -36,5 +36,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ github.token }}
           registry: docker.pkg.github.com
-          repository: ${{ github.repository }}/${{ REPOSITORY_NAME }}
+          repository: ${{ github.repository }}/${{ steps.extract_repository.outputs.REPOSITORY_NAME }}
           tags: ${{ steps.package-version.outputs.version }}-${{ steps.extract_branch.outputs.branch }}, latest-${{ steps.extract_branch.outputs.branch }}
