@@ -26,8 +26,10 @@ jobs:
         uses: tyankatsu0105/read-package-version-actions@v1
         id: package-version
 
-      - run: echo ::set-env name=REPOSITORY_NAME::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//")
+      - name: Extract repository name
         shell: bash
+        run: echo "##[set-output name=REPOSITORY_NAME;]$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}' | sed -e "s/:refs//")"
+        id: extract_repository
 
       - uses: docker/build-push-action@v1
         with:
