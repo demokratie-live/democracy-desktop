@@ -31,11 +31,11 @@ const CurrentStatus = styled.span`
   padding-left: ${({ theme }) => theme.space(1)}px;
 `;
 
-const Overview = ({ title, activityIndex, subjectGroups, voteDate, currentStatus }) => (
+const Overview = ({ title, votes, subjectGroups, voteDate, currentStatus }) => (
   <Wrapper>
     <TitleRow>
       <h2>{title}</h2>
-      <ActivityIndex>{activityIndex}</ActivityIndex>
+      <ActivityIndex>{votes}</ActivityIndex>
     </TitleRow>
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <SubjectGroups
@@ -65,7 +65,7 @@ const Overview = ({ title, activityIndex, subjectGroups, voteDate, currentStatus
 
 Overview.propTypes = {
   title: PropTypes.string.isRequired,
-  activityIndex: PropTypes.number.isRequired,
+  votes: PropTypes.number.isRequired,
   subjectGroups: PropTypes.array.isRequired,
   voteDate: PropTypes.string,
   currentStatus: PropTypes.string.isRequired,

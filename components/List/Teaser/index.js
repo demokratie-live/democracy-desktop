@@ -61,7 +61,7 @@ const Teaser = ({
   title,
   procedureId,
   type,
-  activityIndex,
+  votes,
   communityVotes,
   voteDate,
   subjectGroups,
@@ -108,7 +108,7 @@ const Teaser = ({
                 <Title tag={'h2'} lines={3}>
                   {title}
                 </Title>
-                <ActivityIndex>{activityIndex.activityIndex}</ActivityIndex>
+                <ActivityIndex>{votes}</ActivityIndex>
               </TitleRow>
 
               <div style={{ display: 'flex' }}>
@@ -163,7 +163,7 @@ Teaser.propTypes = {
   title: PropTypes.string.isRequired,
   procedureId: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  activityIndex: PropTypes.shape().isRequired,
+  votes: PropTypes.number.isRequired,
   communityVotes: PropTypes.shape(),
   voteDate: PropTypes.string,
   subjectGroups: PropTypes.array.isRequired,
