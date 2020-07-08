@@ -29,6 +29,7 @@ COPY . .
 # copy from build image
 COPY --from=BUILD_IMAGE /app/.next ./.next
 COPY --from=BUILD_IMAGE /app/node_modules ./node_modules
+COPY --from=BUILD_IMAGE /app/static ./static
 
 ENV NODE_ENV=production
 
