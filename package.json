@@ -1,10 +1,14 @@
 {
-  "name": "democracydesktop",
-  "version": "0.0.1",
+  "name": "democracy-desktop",
+  "version": "0.1.0",
   "description": "DEMOCRACY Desktop & Web Client",
   "main": "index.js",
   "repository": "https://github.com/demokratie-live/democracy-desktop",
-  "author": "Ulf Gebhardt <ulf.gebhardt@webcraft-media.de>",
+  "author": "DEMOCRACY Deutschland e.V. <contact@democracy-deutschland.de>",
+  "contributors": [
+    "Manuel Ruck <m.ruck@democracy-deutschland.de>",
+    "Ulf Gebhardt <ulf.gebhardt@webcraft-media.de>"
+  ],
   "license": "Apache-2.0",
   "private": false,
   "scripts": {
